@@ -32,7 +32,7 @@ function FixedUpdate ()
 
     // Turn the player to face the mouse cursor.
 
-    if(hV != 0 || vV != 0){
+    if(hV != 0 || vV != 0) {
         Turning (hV, vV);    
     }
 
@@ -61,7 +61,7 @@ function Turning (hV : float, vV : float)
     movement.Set (hV, 0f, vV);
     
     // Normalise the movement vector and make it proportional to the speed per second.
-    movement = movement.normalized * speed * Time.deltaTime;
+    movement = movement.normalized * 0.01 * Time.deltaTime;
 	
 	var newRotation : Quaternion = Quaternion.LookRotation (movement);
 	
