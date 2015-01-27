@@ -30,8 +30,8 @@ function FixedUpdate ()
     // Move the player around the scene.
     Move (h, v);
 
-    // Turn the player to face the mouse cursor.
-    Turning (hV, vV);
+    // Turn the player to face the mouse cursor.    
+    Turning (hV, vV);    
 
     // Animate the player.
     Animating (h, v);
