@@ -30,8 +30,11 @@ function FixedUpdate ()
     // Move the player around the scene.
     Move (h, v);
 
-    // Turn the player to face the mouse cursor.    
-    Turning (hV, vV);    
+    // Turn the player to face the mouse cursor.
+
+    if(hV != 0 || vV != 0){
+        Turning (hV, vV);    
+    }
 
     // Animate the player.
     Animating (h, v);
@@ -41,7 +44,7 @@ function FixedUpdate ()
 function Move (h : float, v : float)
 {
     // Set the movement vector based on the axis input.
-    movement.Set (h, 0f, v);
+    movement.Set(h, 0f, v);
     
     // Normalise the movement vector and make it proportional to the speed per second.
     movement = movement.normalized * speed * Time.deltaTime;
