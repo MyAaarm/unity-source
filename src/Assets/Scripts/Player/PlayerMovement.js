@@ -21,11 +21,11 @@ function Awake ()
 function FixedUpdate ()
 {
     // Store the input axes.
-    var h : float = Input.GetAxisRaw ("Horizontal");
-    var v : float = Input.GetAxisRaw ("Vertical");
+    var h : float = Input.GetAxisRaw ("360LeftJoystickXPC");
+    var v : float = Input.GetAxisRaw ("360LeftJoystickYPC");
 	
-	var hV : float = Input.GetAxisRaw ("Horizontal2");
-    var vV : float = Input.GetAxisRaw ("Vertical2");
+	var hV : float = Input.GetAxisRaw ("360RightJoystickXPC");
+    var vV : float = Input.GetAxisRaw ("360RightJoystickYPC");
 	
     // Move the player around the scene.
     Move (h, v);
