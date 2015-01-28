@@ -23,10 +23,21 @@ function FixedUpdate ()
     // Store the input axes.
     var h : float = Input.GetAxisRaw ("360LeftJoystickXPC");
     var v : float = Input.GetAxisRaw ("360LeftJoystickYPC");
+    var hV : float;
+    var vV : float;
 	
-	var hV : float = Input.GetAxisRaw ("360RightJoystickXPC");
-    var vV : float = Input.GetAxisRaw ("360RightJoystickYPC");
+	//Check if the game is running on OSX
+	if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer){
 	
+		hV = Input.GetAxisRaw ("360RightJoystickXOSX");
+    	vV = Input.GetAxisRaw ("360RightJoystickYOSX");
+	
+	}else{
+	
+		hV  = Input.GetAxisRaw ("360RightJoystickXPC");
+    	vV  = Input.GetAxisRaw ("360RightJoystickYPC");
+    }
+		
     // Move the player around the scene.
     Move (h, v);
 
