@@ -17,9 +17,14 @@ function FixedUpdate ()
 		height = 5f;
 	}
 	
+	var zOffset = distance;
+	if(zOffset<5f){
+		zOffset = 5f;
+	}
+	
 	transform.position.x = centerPoint.x ;
  
-	transform.position.z = centerPoint.z - distance;
+	transform.position.z = centerPoint.z - zOffset;
 
 	transform.position.y = height;
 	
