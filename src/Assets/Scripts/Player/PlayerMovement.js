@@ -1,4 +1,5 @@
 ﻿var speed : float = 6f;            // The speed that the player will move at.
+var playerNumber : int;
 
 private var movement : Vector3;                   // The vector to store the direction of the player's movement.
 private var anim : Animator;                      // Reference to the animator component.
@@ -21,23 +22,36 @@ function Awake ()
 function FixedUpdate ()
 {
     // Store the input axes.
-    var h : float = Input.GetAxisRaw ("360LeftJoystickXPC");
-    var v : float = Input.GetAxisRaw ("360LeftJoystickYPC");
+    var h : float; 
+    var v : float; 
     var hV : float;
     var vV : float;
 	
-	//Check if the game is running on OSX
-	if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer){
-	
-		hV = Input.GetAxisRaw ("360RightJoystickXOSX");
-    	vV = Input.GetAxisRaw ("360RightJoystickYOSX");
-	
-	}else{
-	
-		hV  = Input.GetAxisRaw ("360RightJoystickXPC");
-    	vV  = Input.GetAxisRaw ("360RightJoystickYPC");
-    }
+	if(playerNumber==1){
 		
+		h = Input.GetAxisRaw ("Horizontal");
+		v = Input.GetAxisRaw ("Vertical");
+		
+		hV = Input.GetAxisRaw ("Horizontal2");
+		vV = Input.GetAxisRaw ("Vertical2");
+		
+	
+	}else if(playerNumber==2){
+		
+		h = Input.GetAxisRaw ("360LeftJoystickXPC");
+		v = Input.GetAxisRaw ("360LeftJoystickYPC");
+		//Check if the game is running on OSX
+		if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer){
+		
+			hV = Input.GetAxisRaw ("360RightJoystickXOSX");
+	    	vV = Input.GetAxisRaw ("360RightJoystickYOSX");
+		
+		}else{
+		
+			hV  = Input.GetAxisRaw ("360RightJoystickXPC");
+	    	vV  = Input.GetAxisRaw ("360RightJoystickYPC");
+	    }
+	}	
     // Move the player around the scene.
     Move (h, v);
 
