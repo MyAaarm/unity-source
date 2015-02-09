@@ -26,6 +26,7 @@ function FixedUpdate ()
     var v : float; 
     var hV : float;
     var vV : float;
+
 	
 	if(playerNumber==1){
 		
@@ -38,13 +39,13 @@ function FixedUpdate ()
 	
 	}else if(playerNumber==2){
 		
-		h = Input.GetAxisRaw ("360LeftJoystickXPC");
-		v = Input.GetAxisRaw ("360LeftJoystickYPC");
+		h = Input.GetAxisRaw ("PS3LeftJoystickXOSX");
+		v = Input.GetAxisRaw ("PS3LeftJoystickYOSX");
 		//Check if the game is running on OSX
 		if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer){
 		
-			hV = Input.GetAxisRaw ("360RightJoystickXOSX");
-	    	vV = Input.GetAxisRaw ("360RightJoystickYOSX");
+			hV = Input.GetAxisRaw ("PS3RightJoystickXOSX");
+	    	vV = Input.GetAxisRaw ("PS3RightJoystickYOSX");
 		
 		}else{
 		
