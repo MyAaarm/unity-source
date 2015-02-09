@@ -64,6 +64,8 @@
      <Compile Include="Assets\Scripts\Level\Modify.cs" />
      <Compile Include="Assets\Scripts\Level\Noise.cs" />
      <Compile Include="Assets\Scripts\Level\PolygonGenerator.cs" />
+     <Compile Include="Assets\Scripts\Level\Save.cs" />
+     <Compile Include="Assets\Scripts\Level\Serialization.cs" />
      <Compile Include="Assets\Scripts\Level\Terrain.cs" />
      <Compile Include="Assets\Scripts\Level\TerrainGen.cs" />
      <Compile Include="Assets\Scripts\Level\World.cs" />

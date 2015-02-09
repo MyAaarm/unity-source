@@ -6,6 +6,12 @@ public class World : MonoBehaviour {
 
     public Dictionary<WorldPos, Chunk> chunks = new Dictionary<WorldPos, Chunk>();
     public GameObject chunkPrefab;
+	public string worldName = "world";
+	public int newChunkX;
+	public int newChunkY;
+	public int newChunkZ;
+	
+	public bool genChunk;
 
     void Start()
     {
@@ -24,7 +30,21 @@ public class World : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
+		if (genChunk)
+		{
+			genChunk = false;
+			WorldPos chunkPos = new WorldPos(newChunkX, newChunkY, newChunkZ);
+			Chunk chunk = null;
+			
+			if (chunks.TryGetValue(chunkPos, out chunk))
+			{
+				DestroyChunk(chunkPos.x, chunkPos.y, chunkPos.z);
+			}
+			else
+			{
+				CreateChunk(chunkPos.x, chunkPos.y, chunkPos.z);
+			}
+		}
 	}
 
     public void CreateChunk(int x, int y, int z)
@@ -44,6 +64,10 @@ public class World : MonoBehaviour {
 
         //Add it to the chunks dictionary with the position as the key
         chunks.Add(worldPos, newChunk);
+
+		///bool loaded = Serialization.Load(newChunk);
+		//if (loaded)
+		//	return;
 		/*
         for (int xi = 0; xi < 16; xi++)
         {
@@ -68,9 +92,9 @@ public class World : MonoBehaviour {
 		var terrainGen = new TerrainGen();
 		newChunk = terrainGen.ChunkGen(newChunk);
 		
-		//newChunk.SetBlocksUnmodified();
+		newChunk.SetBlocksUnmodified();
 		
-		//bool loaded = Serialization.Load(newChunk);
+		bool loaded = Serialization.Load(newChunk);
     }
 
     public void DestroyChunk(int x, int y, int z)
@@ -78,6 +102,7 @@ public class World : MonoBehaviour {
         Chunk chunk = null;
         if (chunks.TryGetValue(new WorldPos(x, y, z), out chunk))
         {
+			Serialization.SaveChunk(chunk); 
             Object.Destroy(chunk.gameObject);
             chunks.Remove(new WorldPos(x, y, z));
         }
