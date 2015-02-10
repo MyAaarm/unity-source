@@ -81,6 +81,39 @@ public class CraterController : MonoBehaviour {
 		foreach(int x in nbPosTemp){
 			Debug.Log ("bananer : " + x);
 		}
+		chunk.world.SetBlock(pos.x - 1, pos.y, pos.z, new BlockAir());
+		chunk.world.SetBlock(pos.x + 1, pos.y, pos.z, new BlockAir());
+		chunk.world.SetBlock(pos.x - 2, pos.y, pos.z, new BlockAir());
+		chunk.world.SetBlock(pos.x + 2, pos.y, pos.z, new BlockAir());
+		chunk.world.SetBlock(pos.x, pos.y - 1, pos.z, new BlockAir());
+		chunk.world.SetBlock(pos.x, pos.y + 1, pos.z, new BlockAir());
+		chunk.world.SetBlock(pos.x, pos.y - 2, pos.z, new BlockAir());
+		chunk.world.SetBlock(pos.x, pos.y + 2, pos.z, new BlockAir());
+		chunk.world.SetBlock(pos.x, pos.y, pos.z - 1, new BlockAir());
+		chunk.world.SetBlock(pos.x, pos.y, pos.z + 1, new BlockAir());
+		chunk.world.SetBlock(pos.x, pos.y, pos.z - 2, new BlockAir());
+		chunk.world.SetBlock(pos.x, pos.y, pos.z + 2, new BlockAir());
+		chunk.world.SetBlock(pos.x - 1, pos.y -1, pos.z, new BlockAir());
+		chunk.world.SetBlock(pos.x - 1, pos.y +1, pos.z, new BlockAir());
+		chunk.world.SetBlock(pos.x + 1, pos.y +1, pos.z, new BlockAir());
+		chunk.world.SetBlock(pos.x + 1, pos.y -1, pos.z, new BlockAir());
+		chunk.world.SetBlock(pos.x - 1, pos.y, pos.z+1, new BlockAir());
+		chunk.world.SetBlock(pos.x - 1, pos.y, pos.z-1, new BlockAir());
+		chunk.world.SetBlock(pos.x + 1, pos.y, pos.z+1, new BlockAir());
+		chunk.world.SetBlock(pos.x + 1, pos.y, pos.z-1, new BlockAir());
+		chunk.world.SetBlock(pos.x, pos.y - 1, pos.z-1, new BlockAir());
+		chunk.world.SetBlock(pos.x, pos.y - 1, pos.z+1, new BlockAir());
+		chunk.world.SetBlock(pos.x, pos.y + 1, pos.z-1, new BlockAir());
+		chunk.world.SetBlock(pos.x, pos.y + 1, pos.z+1, new BlockAir());
+		chunk.world.SetBlock(pos.x-1, pos.y + 1, pos.z+1, new BlockAir());
+		chunk.world.SetBlock(pos.x-1, pos.y - 1, pos.z+1, new BlockAir());
+		chunk.world.SetBlock(pos.x-1, pos.y + 1, pos.z-1, new BlockAir());
+		chunk.world.SetBlock(pos.x-1, pos.y - 1, pos.z-1, new BlockAir());
+		chunk.world.SetBlock(pos.x+1, pos.y + 1, pos.z+1, new BlockAir());
+		chunk.world.SetBlock(pos.x+1, pos.y - 1, pos.z+1, new BlockAir());
+		chunk.world.SetBlock(pos.x+1, pos.y + 1, pos.z-1, new BlockAir());
+		chunk.world.SetBlock(pos.x+1, pos.y - 1, pos.z-1, new BlockAir());
+
 
 		return neighbours;
 
