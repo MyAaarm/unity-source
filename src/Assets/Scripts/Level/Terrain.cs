@@ -2,16 +2,7 @@
 using System.Collections;
 
 public class Terrain : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public static WorldPos GetBlockPos(Vector3 pos)
 	{

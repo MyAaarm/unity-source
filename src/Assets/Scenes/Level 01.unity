@@ -862,6 +862,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunkPrefab: {fileID: 150422, guid: 5b91eada18b3c7049bf2afda15d922c1, type: 2}
+  worldName: world
+  newChunkX: 0
+  newChunkY: 0
+  newChunkZ: 0
+  genChunk: 0
 --- !u!4 &966166048
 Transform:
   m_ObjectHideFlags: 0
