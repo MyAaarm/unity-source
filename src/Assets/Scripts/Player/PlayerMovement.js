@@ -6,7 +6,8 @@ private var anim : Animator;                      // Reference to the animator c
 private var playerRigidbody : Rigidbody;          // Reference to the player's rigidbody.
 private var floorMask : int;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 private var camRayLength : float = 100f;          // The length of the ray from the camera into the scene.
-
+private var currentGameController = "PS3OSX";
+private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
 
 function Awake ()
 {
@@ -26,7 +27,8 @@ function FixedUpdate ()
     var v : float; 
     var hV : float;
     var vV : float;
-
+    
+	UpdateGameController (); //Check if controller should be changed
 	
 	if(playerNumber==1){
 		
@@ -41,13 +43,18 @@ function FixedUpdate ()
 		
 		h = Input.GetAxisRaw ("PS3LeftJoystickXOSX");
 		v = Input.GetAxisRaw ("PS3LeftJoystickYOSX");
-		//Check if the game is running on OSX
-		if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer){
+		//Check if the game is running on OSX with PS3 controller
+		if (currentGameController == "PS3OSX"){
 		
 			hV = Input.GetAxisRaw ("PS3RightJoystickXOSX");
 	    	vV = Input.GetAxisRaw ("PS3RightJoystickYOSX");
 		
-		}else{
+		}else if (currentGameController == "X360OSX"){
+		
+			hV  = Input.GetAxisRaw ("360RightJoystickXOSX");
+	    	vV  = Input.GetAxisRaw ("360RightJoystickYOSX");
+	    	
+	    }else if (currentGameController == "X360PC"){
 		
 			hV  = Input.GetAxisRaw ("360RightJoystickXPC");
 	    	vV  = Input.GetAxisRaw ("360RightJoystickYPC");
@@ -64,6 +71,23 @@ function FixedUpdate ()
 
     // Animate the player.
     Animating (h, v);
+}
+
+function UpdateGameController ()
+{	
+	if (isOSX){
+		if(Input.GetKey('joystick button 9')){
+			currentGameController = "X360OSX";
+		}else if(Input.GetKey('joystick button 0')){
+			currentGameController = "PS3OSX";
+		}
+	}else{	
+	
+		if(Input.GetKey('joystick button 7')){
+			currentGameController = "X360PC";
+			Debug.Log("stitched controller");
+		}
+	}
 }
 
 
