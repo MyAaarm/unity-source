@@ -7,12 +7,16 @@ public class CraterController : MonoBehaviour {
 	public World world;
 	WorldPos pos;
 	Dictionary<string, List<int>> nbPos;
+	private GameObject dynamicBlock;
 
 	public void Impact (RaycastHit hit, int force) {
 		Terrain.SetBlock(hit, new BlockAir());
 		Block b = Terrain.GetBlock (hit);
 		chunk = hit.collider.GetComponent<Chunk>();
-		pos = Terrain.GetBlockPos(hit, false);
+		pos = Terrain.GetBlockPos (hit, false);
+
+		dynamicBlock = Instantiate(Resources.Load("BlockDynamic"), new Vector3(pos.x, pos.y, pos.z), Quaternion.identity) as GameObject;
+
 		
 		Debug.Log("force 1 : " + force);
 

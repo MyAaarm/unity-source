@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: ee6a8862b0eefb943986edbf85724f50
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - world: {instanceID: 0}
+  - dynamicBlock: {fileID: 124604, guid: 263430d025f353941ab7889b18af3f3b, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
