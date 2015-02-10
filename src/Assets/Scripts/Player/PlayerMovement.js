@@ -43,12 +43,12 @@ function FixedUpdate ()
 		
 		h = Input.GetAxisRaw ("PS3LeftJoystickXOSX");
 		v = Input.GetAxisRaw ("PS3LeftJoystickYOSX");
+		
 		//Check if the game is running on OSX with PS3 controller
 		if (currentGameController == "PS3OSX"){
 		
 			hV = Input.GetAxisRaw ("PS3RightJoystickXOSX");
 	    	vV = Input.GetAxisRaw ("PS3RightJoystickYOSX");
-		
 		}else if (currentGameController == "X360OSX"){
 		
 			hV  = Input.GetAxisRaw ("360RightJoystickXOSX");

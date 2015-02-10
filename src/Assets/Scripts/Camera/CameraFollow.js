@@ -4,7 +4,7 @@ var target1 : Transform;
 var target2 : Transform;            // The position that that camera will be following.
 var cameraSpeed : float = 5f;        // The speed with which the camera will be following.
 var height : float = 10f;
-var zOffset : float = 20f;                 
+var zOffset : float = 20f;  
 
 function FixedUpdate ()
 {	
