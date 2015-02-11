@@ -9,47 +9,7 @@ public class CraterController : MonoBehaviour {
 	Dictionary<string, List<int>> nbPos;
 	private GameObject dynamicBlock;
 
-	/*
-	private int[] xArray;
-	private int[] yArray;
-	private int[] zArray;
-	private 
-	chunk.world.SetBlock(pos.x - 2, pos.y, pos.z, new BlockAir());
-	chunk.world.SetBlock(pos.x + 2, pos.y, pos.z, new BlockAir());
-	chunk.world.SetBlock(pos.x, pos.y - 1, pos.z, new BlockAir());
-	chunk.world.SetBlock(pos.x, pos.y + 1, pos.z, new BlockAir());
-	chunk.world.SetBlock(pos.x, pos.y - 2, pos.z, new BlockAir());
-	chunk.world.SetBlock(pos.x, pos.y + 2, pos.z, new BlockAir());
-	chunk.world.SetBlock(pos.x, pos.y, pos.z - 1, new BlockAir());
-	chunk.world.SetBlock(pos.x, pos.y, pos.z + 1, new BlockAir());
-	chunk.world.SetBlock(pos.x, pos.y, pos.z - 2, new BlockAir());
-	chunk.world.SetBlock(pos.x, pos.y, pos.z + 2, new BlockAir());
-	chunk.world.SetBlock(pos.x - 1, pos.y -1, pos.z, new BlockAir());
-	chunk.world.SetBlock(pos.x - 1, pos.y +1, pos.z, new BlockAir());
-	chunk.world.SetBlock(pos.x + 1, pos.y +1, pos.z, new BlockAir());
-	chunk.world.SetBlock(pos.x + 1, pos.y -1, pos.z, new BlockAir());
-	chunk.world.SetBlock(pos.x - 1, pos.y, pos.z+1, new BlockAir());
-	chunk.world.SetBlock(pos.x - 1, pos.y, pos.z-1, new BlockAir());
-	chunk.world.SetBlock(pos.x + 1, pos.y, pos.z+1, new BlockAir());
-	chunk.world.SetBlock(pos.x + 1, pos.y, pos.z-1, new BlockAir());
-	chunk.world.SetBlock(pos.x, pos.y - 1, pos.z-1, new BlockAir());
-	chunk.world.SetBlock(pos.x, pos.y - 1, pos.z+1, new BlockAir());
-	chunk.world.SetBlock(pos.x, pos.y + 1, pos.z-1, new BlockAir());
-	chunk.world.SetBlock(pos.x, pos.y + 1, pos.z+1, new BlockAir());
-	chunk.world.SetBlock(pos.x-1, pos.y + 1, pos.z+1, new BlockAir());
-	chunk.world.SetBlock(pos.x-1, pos.y - 1, pos.z+1, new BlockAir());
-	chunk.world.SetBlock(pos.x-1, pos.y + 1, pos.z-1, new BlockAir());
-	chunk.world.SetBlock(pos.x-1, pos.y - 1, pos.z-1, new BlockAir());
-	chunk.world.SetBlock(pos.x+1, pos.y + 1, pos.z+1, new BlockAir());
-	chunk.world.SetBlock(pos.x+1, pos.y - 1, pos.z+1, new BlockAir());
-	chunk.world.SetBlock(pos.x+1, pos.y + 1, pos.z-1, new BlockAir());
-	chunk.world.SetBlock(pos.x+1, pos.y - 1, pos.z-1, new BlockAir());
 
-	void Start()
-	{
-
-	}
-	*/
 
 
 	public void Impact (RaycastHit hit, int force) {
@@ -108,39 +68,49 @@ public class CraterController : MonoBehaviour {
 						chunk.world.SetBlock (p.x, p.y, p.z, new BlockAir ());
 
 						if (bx is BlockGrass) {
-								dynamicBlock = Instantiate (Resources.Load ("BlockDynamic"), new Vector3 (p.x, p.y, p.z), Quaternion.identity) as GameObject;
+								dynamicBlock = Instantiate (Resources.Load ("BlockGrassDynamic"), new Vector3 (p.x, p.y, p.z), Quaternion.identity) as GameObject;
 								dynamicBlock.rigidbody.AddForce (0, f * 5, 0);
 						} else if (bx is BlockAir) {
 								Debug.Log ("blabla");
 						} else {
 								Debug.Log ("blablaasdasd");
+								dynamicBlock = Instantiate (Resources.Load ("BlockStoneDynamic"), new Vector3 (p.x, p.y, p.z), Quaternion.identity) as GameObject;
+								dynamicBlock.rigidbody.AddForce (0, f * 5, 0);
 						}
 						chunk.world.SetBlock(pos.x - 1, pos.y, pos.z, new BlockAir());
-						dynamicBlock = Instantiate(Resources.Load("BlockDynamic"), new Vector3(pos.x - 1, pos.y, pos.z), Quaternion.identity) as GameObject;
-						dynamicBlock.rigidbody.AddForce (250, 250, 0);
+			dynamicBlock = Instantiate(Resources.Load("BlockGrassDynamic"), new Vector3(pos.x - 1, pos.y, pos.z), Quaternion.identity) as GameObject;
+						dynamicBlock.rigidbody.AddForce (f*3, f*3, 0);
 						
 						chunk.world.SetBlock(pos.x + 1, pos.y, pos.z, new BlockAir());
-						dynamicBlock = Instantiate(Resources.Load("BlockDynamic"), new Vector3(pos.x - 1, pos.y, pos.z), Quaternion.identity) as GameObject;
-						dynamicBlock.rigidbody.AddForce (-250, 250, 0);
+			dynamicBlock = Instantiate(Resources.Load("BlockGrassDynamic"), new Vector3(pos.x - 1, pos.y, pos.z), Quaternion.identity) as GameObject;
+						dynamicBlock.rigidbody.AddForce (f*3, f * 3, 0);
 
 						chunk.world.SetBlock(pos.x - 2, pos.y, pos.z, new BlockAir());
-						dynamicBlock = Instantiate (Resources.Load ("BlockDynamic"), new Vector3 (pos.x - 2, pos.y, pos.z), Quaternion.identity) as GameObject;
-						dynamicBlock.rigidbody.AddForce (f*(-3), f * 1, 0);
+			dynamicBlock = Instantiate (Resources.Load ("BlockGrassDynamic"), new Vector3 (pos.x - 2, pos.y, pos.z), Quaternion.identity) as GameObject;
+						dynamicBlock.rigidbody.AddForce (f*(-1), f * 1, 0);
 						chunk.world.SetBlock(pos.x + 2, pos.y, pos.z, new BlockAir());
-						dynamicBlock = Instantiate (Resources.Load ("BlockDynamic"), new Vector3 (pos.x + 2, pos.y, pos.z), Quaternion.identity) as GameObject;
-						dynamicBlock.rigidbody.AddForce (f*3, f * 1, 0);
+			dynamicBlock = Instantiate (Resources.Load ("BlockGrassDynamic"), new Vector3 (pos.x + 2, pos.y, pos.z), Quaternion.identity) as GameObject;
+						dynamicBlock.rigidbody.AddForce (f*1, f * 1, 0);
 						chunk.world.SetBlock(pos.x, pos.y - 1, pos.z, new BlockAir());
-						dynamicBlock = Instantiate (Resources.Load ("BlockDynamic"), new Vector3 (pos.x , pos.y -1, pos.z), Quaternion.identity) as GameObject;
+			dynamicBlock = Instantiate (Resources.Load ("BlockGrassDynamic"), new Vector3 (pos.x , pos.y -1, pos.z), Quaternion.identity) as GameObject;
 						dynamicBlock.rigidbody.AddForce (0, f * 3, 0);
 						chunk.world.SetBlock(pos.x, pos.y + 1, pos.z, new BlockAir());
 						chunk.world.SetBlock(pos.x, pos.y - 2, pos.z, new BlockAir());
-						dynamicBlock = Instantiate (Resources.Load ("BlockDynamic"), new Vector3 (pos.x, pos.y - 2, pos.z), Quaternion.identity) as GameObject;
+			dynamicBlock = Instantiate (Resources.Load ("BlockGrassDynamic"), new Vector3 (pos.x, pos.y - 2, pos.z), Quaternion.identity) as GameObject;
 						dynamicBlock.rigidbody.AddForce (0, f * 1, 0);	
 						chunk.world.SetBlock(pos.x, pos.y + 2, pos.z, new BlockAir());
 						chunk.world.SetBlock(pos.x, pos.y, pos.z - 1, new BlockAir());
+			dynamicBlock = Instantiate (Resources.Load ("BlockGrassDynamic"), new Vector3 (pos.x + 2, pos.y, pos.z), Quaternion.identity) as GameObject;
+						dynamicBlock.rigidbody.AddForce (0, f*3, f*(-3));
 						chunk.world.SetBlock(pos.x, pos.y, pos.z + 1, new BlockAir());
+			dynamicBlock = Instantiate (Resources.Load ("BlockGrassDynamic"), new Vector3 (pos.x + 2, pos.y, pos.z), Quaternion.identity) as GameObject;
+						dynamicBlock.rigidbody.AddForce (0, f*3, f*3);
 						chunk.world.SetBlock(pos.x, pos.y, pos.z - 2, new BlockAir());
+			dynamicBlock = Instantiate (Resources.Load ("BlockGrassDynamic"), new Vector3 (pos.x + 2, pos.y, pos.z), Quaternion.identity) as GameObject;
+						dynamicBlock.rigidbody.AddForce (0, f * 1, f*(-1));
 						chunk.world.SetBlock(pos.x, pos.y, pos.z + 2, new BlockAir());
+			dynamicBlock = Instantiate (Resources.Load ("BlockGrassDynamic"), new Vector3 (pos.x + 2, pos.y, pos.z), Quaternion.identity) as GameObject;
+						dynamicBlock.rigidbody.AddForce (0, f * 1, f*1);
 						chunk.world.SetBlock(pos.x - 1, pos.y -1, pos.z, new BlockAir());
 						chunk.world.SetBlock(pos.x - 1, pos.y +1, pos.z, new BlockAir());
 						chunk.world.SetBlock(pos.x + 1, pos.y +1, pos.z, new BlockAir());
@@ -209,3 +179,45 @@ public class CraterController : MonoBehaviour {
 
 	}
 }
+
+/*
+	private int[] xArray;
+	private int[] yArray;
+	private int[] zArray;
+	private 
+	chunk.world.SetBlock(pos.x - 2, pos.y, pos.z, new BlockAir());
+	chunk.world.SetBlock(pos.x + 2, pos.y, pos.z, new BlockAir());
+	chunk.world.SetBlock(pos.x, pos.y - 1, pos.z, new BlockAir());
+	chunk.world.SetBlock(pos.x, pos.y + 1, pos.z, new BlockAir());
+	chunk.world.SetBlock(pos.x, pos.y - 2, pos.z, new BlockAir());
+	chunk.world.SetBlock(pos.x, pos.y + 2, pos.z, new BlockAir());
+	chunk.world.SetBlock(pos.x, pos.y, pos.z - 1, new BlockAir());
+	chunk.world.SetBlock(pos.x, pos.y, pos.z + 1, new BlockAir());
+	chunk.world.SetBlock(pos.x, pos.y, pos.z - 2, new BlockAir());
+	chunk.world.SetBlock(pos.x, pos.y, pos.z + 2, new BlockAir());
+	chunk.world.SetBlock(pos.x - 1, pos.y -1, pos.z, new BlockAir());
+	chunk.world.SetBlock(pos.x - 1, pos.y +1, pos.z, new BlockAir());
+	chunk.world.SetBlock(pos.x + 1, pos.y +1, pos.z, new BlockAir());
+	chunk.world.SetBlock(pos.x + 1, pos.y -1, pos.z, new BlockAir());
+	chunk.world.SetBlock(pos.x - 1, pos.y, pos.z+1, new BlockAir());
+	chunk.world.SetBlock(pos.x - 1, pos.y, pos.z-1, new BlockAir());
+	chunk.world.SetBlock(pos.x + 1, pos.y, pos.z+1, new BlockAir());
+	chunk.world.SetBlock(pos.x + 1, pos.y, pos.z-1, new BlockAir());
+	chunk.world.SetBlock(pos.x, pos.y - 1, pos.z-1, new BlockAir());
+	chunk.world.SetBlock(pos.x, pos.y - 1, pos.z+1, new BlockAir());
+	chunk.world.SetBlock(pos.x, pos.y + 1, pos.z-1, new BlockAir());
+	chunk.world.SetBlock(pos.x, pos.y + 1, pos.z+1, new BlockAir());
+	chunk.world.SetBlock(pos.x-1, pos.y + 1, pos.z+1, new BlockAir());
+	chunk.world.SetBlock(pos.x-1, pos.y - 1, pos.z+1, new BlockAir());
+	chunk.world.SetBlock(pos.x-1, pos.y + 1, pos.z-1, new BlockAir());
+	chunk.world.SetBlock(pos.x-1, pos.y - 1, pos.z-1, new BlockAir());
+	chunk.world.SetBlock(pos.x+1, pos.y + 1, pos.z+1, new BlockAir());
+	chunk.world.SetBlock(pos.x+1, pos.y - 1, pos.z+1, new BlockAir());
+	chunk.world.SetBlock(pos.x+1, pos.y + 1, pos.z-1, new BlockAir());
+	chunk.world.SetBlock(pos.x+1, pos.y - 1, pos.z-1, new BlockAir());
+
+	void Start()
+	{
+
+	}
+	*/
