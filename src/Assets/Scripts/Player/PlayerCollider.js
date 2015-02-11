@@ -9,13 +9,18 @@ function Awake (){
 	
 function OnCollisionEnter( col : Collision ){
 
-	if(col.gameObject.tag=="Player") {
+	if(col.collider.transform.parent != null && (col.collider.transform.parent.name == "Arms" || col.collider.transform.parent.name == "Hands")) {
 		
-		var otherPlayerHealth = col.gameObject.GetComponent(PlayerHealth);
-		Debug.Log(col.rigidbody.velocity.magnitude);
+		if(col.collider.transform.root.name != gameObject.name){		
+			
+			if(col.relativeVelocity.magnitude>6){
+				playerHealth.TakeDamage(col.relativeVelocity.magnitude*.5);
+			}
+			
+			
+		}
 		
 	}
-	Debug.Log(col.gameObject.transform.parent.tag);
 	
 	
 }

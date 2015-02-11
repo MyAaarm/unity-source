@@ -46,6 +46,8 @@ public function TakeDamage (amount : int)
         // ... it should die a horrible horrible (and possibly humiliating) death.
         Death ();
     }
+    Debug.Log("Damage taken, Current health for " + this.name + ": "+ currentHealth);
+    
 }
 
 
