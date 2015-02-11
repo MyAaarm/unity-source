@@ -704,7 +704,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400072, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
   m_PrefabInternal: {fileID: 179218364}
   m_GameObject: {fileID: 269821539}
-  m_LocalRotation: {x: 0, y: -.0763079226, z: 0, w: .99708432}
+  m_LocalRotation: {x: 0, y: -.0763079226, z: 0, w: .997084379}
   m_LocalPosition: {x: -2.72180009, y: 1.14300001, z: -1.60520005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1201,6 +1201,7 @@ MonoBehaviour:
   target2: {fileID: 1936204888}
   cameraSpeed: 5
   height: 10
+  zOffset: 20
 --- !u!1 &610719468
 GameObject:
   m_ObjectHideFlags: 0
@@ -4159,7 +4160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  playerNumber: 1
+  playerNumber: 2
+  currentGameController: Keyboard
 --- !u!82 &1936204891
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4967,7 +4969,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  playerNumber: 2
+  playerNumber: 1
+  currentGameController: X360PC
 --- !u!114 &2137299185
 MonoBehaviour:
   m_ObjectHideFlags: 0

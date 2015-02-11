@@ -294,8 +294,8 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: 360LeftJoystickXPC
-    descriptiveName: X axis for left joystick on xbox 360 controller for PC
+    m_Name: 360LeftJoystickX1
+    descriptiveName: X axis for left joystick on xbox 360 controller for player 1
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
@@ -310,7 +310,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: 360LeftJoystickYPC
+    m_Name: 360LeftJoystickY1
     descriptiveName: Y axis for left joystick on xbox 360 controller for PC
     descriptiveNegativeName: 
     negativeButton: 
@@ -326,7 +326,7 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
-    m_Name: 360RightJoystickXPC
+    m_Name: 360RightJoystickXPC1
     descriptiveName: X axis for right joystick on xbox 360 controller for PC
     descriptiveNegativeName: 
     negativeButton: 
@@ -342,7 +342,7 @@ InputManager:
     axis: 3
     joyNum: 1
   - serializedVersion: 3
-    m_Name: 360RightJoystickYPC
+    m_Name: 360RightJoystickYPC1
     descriptiveName: Y axis for right joystick on xbox 360 controller for PC
     descriptiveNegativeName: 
     negativeButton: 
@@ -358,7 +358,7 @@ InputManager:
     axis: 4
     joyNum: 1
   - serializedVersion: 3
-    m_Name: 360RightJoystickXOSX
+    m_Name: 360RightJoystickXOSX1
     descriptiveName: X axis for right joystick on xbox 360 controller for OSX
     descriptiveNegativeName: 
     negativeButton: 
@@ -374,7 +374,7 @@ InputManager:
     axis: 2
     joyNum: 1
   - serializedVersion: 3
-    m_Name: 360RightJoystickYOSX
+    m_Name: 360RightJoystickYOSX1
     descriptiveName: Y axis for right joystick on xbox 360 controller for OSX
     descriptiveNegativeName: 
     negativeButton: 
@@ -390,7 +390,7 @@ InputManager:
     axis: 3
     joyNum: 1
   - serializedVersion: 3
-    m_Name: PS3LeftJoystickXPC
+    m_Name: PS3LeftJoystickXPC1
     descriptiveName: X axis for left joystick on PS3 controller for PC
     descriptiveNegativeName: 
     negativeButton: 
@@ -406,7 +406,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: PS3LeftJoystickYPC
+    m_Name: PS3LeftJoystickYPC1
     descriptiveName: Y axis for left joystick on PS3 controller for PC
     descriptiveNegativeName: 
     negativeButton: 
@@ -422,7 +422,7 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
-    m_Name: PS3RightJoystickXPC
+    m_Name: PS3RightJoystickXPC1
     descriptiveName: X axis for right joystick on PS3 controller for PC
     descriptiveNegativeName: 
     negativeButton: 
@@ -438,7 +438,7 @@ InputManager:
     axis: 3
     joyNum: 1
   - serializedVersion: 3
-    m_Name: PS3RightJoystickYPC
+    m_Name: PS3RightJoystickYPC1
     descriptiveName: Y axis for right joystick on PS3 controller for PC
     descriptiveNegativeName: 
     negativeButton: 
@@ -454,7 +454,7 @@ InputManager:
     axis: 4
     joyNum: 1
   - serializedVersion: 3
-    m_Name: PS3LeftJoystickXOSX
+    m_Name: PS3LeftJoystickXOSX1
     descriptiveName: X axis for right joystick on PS3 controller for OSX
     descriptiveNegativeName: 
     negativeButton: 
@@ -470,7 +470,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: PS3LeftJoystickYOSX
+    m_Name: PS3LeftJoystickYOSX1
     descriptiveName: Y axis for right joystick on PS3 controller for OSX
     descriptiveNegativeName: 
     negativeButton: 
@@ -486,7 +486,7 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: PS3RightJoystickXOSX
+    m_Name: PS3RightJoystickXOSX1
     descriptiveName: X axis for right joystick on PS3 controller for OSX
     descriptiveNegativeName: 
     negativeButton: 
@@ -502,7 +502,7 @@ InputManager:
     axis: 2
     joyNum: 1
   - serializedVersion: 3
-    m_Name: PS3RightJoystickYOSX
+    m_Name: PS3RightJoystickYOSX1
     descriptiveName: Y axis for right joystick on PS3 controller for OSX
     descriptiveNegativeName: 
     negativeButton: 
