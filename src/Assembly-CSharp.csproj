@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\Level\BlockGrass.cs" />
      <Compile Include="Assets\Scripts\Level\Chunk.cs" />
      <Compile Include="Assets\Scripts\Level\CraterController.cs" />
+     <Compile Include="Assets\Scripts\Level\Debris.cs" />
      <Compile Include="Assets\Scripts\Level\MeshData.cs" />
      <Compile Include="Assets\Scripts\Level\Modify.cs" />
      <Compile Include="Assets\Scripts\Level\Noise.cs" />
