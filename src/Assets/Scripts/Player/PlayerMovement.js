@@ -23,50 +23,50 @@ function Awake ()
 function FixedUpdate ()
 {
     // Store the input axes.
-    var h : float; 
-    var v : float; 
+    var h : float;
+    var v : float;
     var hV : float;
     var vV : float;
-    
+
 	UpdateGameController (); //Check if controller should be changed
-	
+
 	if(playerNumber==1){
-		
+
 		h = Input.GetAxisRaw ("Horizontal");
 		v = Input.GetAxisRaw ("Vertical");
-		
+
 		hV = Input.GetAxisRaw ("Horizontal2");
 		vV = Input.GetAxisRaw ("Vertical2");
-		
-	
+
+
 	}else if(playerNumber==2){
-		
+
 		h = Input.GetAxisRaw ("PS3LeftJoystickXOSX");
 		v = Input.GetAxisRaw ("PS3LeftJoystickYOSX");
-		
+
 		//Check if the game is running on OSX with PS3 controller
 		if (currentGameController == "PS3OSX"){
-		
+
 			hV = Input.GetAxisRaw ("PS3RightJoystickXOSX");
 	    	vV = Input.GetAxisRaw ("PS3RightJoystickYOSX");
 		}else if (currentGameController == "X360OSX"){
-		
+
 			hV  = Input.GetAxisRaw ("360RightJoystickXOSX");
 	    	vV  = Input.GetAxisRaw ("360RightJoystickYOSX");
-	    	
+
 	    }else if (currentGameController == "X360PC"){
-		
+
 			hV  = Input.GetAxisRaw ("360RightJoystickXPC");
 	    	vV  = Input.GetAxisRaw ("360RightJoystickYPC");
 	    }
-	}	
+	}
     // Move the player around the scene.
     Move (h, v);
 
     // Turn the player to face the mouse cursor.
 
     if(hV != 0 || vV != 0) {
-        Turning (hV, vV);    
+        Turning (hV, vV);
     }
 
     // Animate the player.
@@ -74,15 +74,15 @@ function FixedUpdate ()
 }
 
 function UpdateGameController ()
-{	
+{
 	if (isOSX){
 		if(Input.GetKey('joystick button 9')){
 			currentGameController = "X360OSX";
 		}else if(Input.GetKey('joystick button 0')){
 			currentGameController = "PS3OSX";
 		}
-	}else{	
-	
+	}else{
+
 		if(Input.GetKey('joystick button 7')){
 			currentGameController = "X360PC";
 			Debug.Log("stitched controller");
@@ -95,7 +95,7 @@ function Move (h : float, v : float)
 {
     // Set the movement vector based on the axis input.
     movement.Set(h, 0f, v);
-    
+
     // Normalise the movement vector and make it proportional to the speed per second.
     movement = movement.normalized * speed * Time.deltaTime;
 
@@ -106,18 +106,18 @@ function Move (h : float, v : float)
 
 function Turning (hV : float, vV : float)
 {
-       
+
      // Set the movement vector based on the axis input.
     movement.Set (hV, 0f, vV);
-    
+
     // Normalise the movement vector and make it proportional to the speed per second.
     movement = movement.normalized * 0.01 * Time.deltaTime;
-	
+
 	var newRotation : Quaternion = Quaternion.LookRotation (movement);
-	
+
     // Move the player to it's current position plus the movement.
     playerRigidbody.MoveRotation (newRotation);
-    
+
 }
 
 
