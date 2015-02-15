@@ -1209,6 +1209,7 @@ MonoBehaviour:
   target2: {fileID: 1936204888}
   cameraSpeed: 5
   height: 10
+  zOffset: 20
 --- !u!1 &610719468
 GameObject:
   m_ObjectHideFlags: 0
@@ -4276,7 +4277,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  playerNumber: 0
+  playerNumber: 1
+  currentGameController: Keyboard
 --- !u!82 &1936204891
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5093,6 +5095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   playerNumber: 2
+  currentGameController: 
 --- !u!114 &2137299185
 MonoBehaviour:
   m_ObjectHideFlags: 0

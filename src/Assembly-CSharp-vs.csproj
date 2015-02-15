@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\PauseManager.cs" />
-<<<<<<< HEAD
      <Compile Include="Assets\Scripts\VoxelWorld\Block.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\BlockAir.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\BlockGrass.cs" />
@@ -60,38 +59,10 @@
      <Compile Include="Assets\Scripts\VoxelWorld\TerrainGen.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\World.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\WorldPos.cs" />
-=======
-     <Compile Include="Assets\Scripts\Enemy\EnemyAttack.cs" />
-     <Compile Include="Assets\Scripts\Enemy\EnemyHealth.cs" />
-     <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
-     <Compile Include="Assets\Scripts\Managers\EnemyManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\GameOverManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\ScoreManager.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerShooting.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Camera\CameraFollow.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Enemy\EnemyAttack.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Enemy\EnemyHealth.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Enemy\EnemyMovement.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Helpers\BeautyShot.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Helpers\RandomAnimationPoint.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Helpers\RandomParticlePoint.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Helpers\VolumeHandler.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Managers\EnemyManager.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Managers\GameOverManager.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Managers\ScoreManager.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Player\PlayerHealth.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Player\PlayerMovement.cs" />
-     <Compile Include="Assets\_CompletedAssets\Scripts\Player\PlayerShooting.cs" />
-     <None Include="Assets\Shaders\Rim Lit Bumped Specular.shader" />
-     <None Include="Assets\Fonts\LuckiestGuy\LICENSE.txt" />
      <None Include="Assets\TinySkeleton\Documents\Readme.txt" />
-     <None Include="Assets\Horse\SoftAlpha.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>C:/Users/Samir Chaabi/unity-source/src/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
->>>>>>> Spawn crates and tinySkeleton
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

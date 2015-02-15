@@ -75,9 +75,6 @@ function FixedUpdate ()
     if(hV != 0 || vV != 0) {
         Turning (hV, vV);
     }
-
-    // Animate the player.
-    Animating (h, v);
 }
 
 function UpdateGameController ()
@@ -125,14 +122,4 @@ function Turning (hV : float, vV : float)
     // Move the player to it's current position plus the movement.
     playerRigidbody.MoveRotation (newRotation);
 
-}
-
-
-function Animating (h : float, v : float)
-{
-    // Create a boolean that is true if either of the input axes is non-zero.
-    var walking : boolean = h != 0f || v != 0f;
-
-    // Tell the animator whether or not the player is walking.
-    anim.SetBool ("IsWalking", walking);
 }
