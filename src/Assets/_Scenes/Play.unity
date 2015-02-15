@@ -250,7 +250,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: currentGameController
-      value: Keyboard
+      value: PS3OSX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
@@ -470,6 +470,14 @@ Prefab:
     - target: {fileID: 113696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: m_Name
       value: Player 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: currentGameController
+      value: X360PC
+      objectReference: {fileID: 0}
+    - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: playerNumber
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
@@ -1138,8 +1146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  playerNumber: 1
-  currentGameController: 
+  playerNumber: 2
+  currentGameController: X360PC
 --- !u!82 &915189695
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1349,7 +1357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   playerNumber: 1
-  currentGameController: Keyboard
+  currentGameController: PS3OSX
 --- !u!82 &1006496299
 AudioSource:
   m_ObjectHideFlags: 0
