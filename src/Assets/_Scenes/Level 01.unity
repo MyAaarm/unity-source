@@ -1767,7 +1767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   playerNumber: 1
-  currentGameController: X360PC
+  currentGameController: PS3OSX
 --- !u!82 &1936204891
 AudioSource:
   m_ObjectHideFlags: 0
