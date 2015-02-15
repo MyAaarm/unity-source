@@ -1,42 +1,43 @@
-﻿private var selectedItem;
-private var menu;
-private var isPressed = false;
+﻿
+ private var menu:Array = new Array();
+
+ private var selection:GameObject;
+ private var selectionNum:float = 0;
+ private var isChanging = false;
 
 function Start () {
-  menu = new Array ();
-  selectedItem = 0;
-  //Menu objects
+  menu.push(GameObject.Find("Buttons/play"));
+  menu.push(GameObject.Find("Buttons/players"));
+  menu.push(GameObject.Find("Buttons/help"));
+  menu.push(GameObject.Find("Buttons/exit"));
 
-  menu.Push(GameObject.Find("play"));
-  menu.Push(GameObject.Find("#ofplayers"));
-  menu.Push(GameObject.Find("controllers"));
-  menu.Push(GameObject.Find("exit"));
+
+  menu[0].GetComponent(UI.Image).color = Color.black;
 }
 
 function Update () {
-
   transform.rotation = Quaternion.Euler(Mathf.Sin(Time.realtimeSinceStartup) * 3, Mathf.Sin(Time.realtimeSinceStartup) * 7, 0);
 
-  Debug.Log('Vertical: ' + Input.GetAxisRaw ("Vertical"));
-  Debug.Log('Length:' + menu.length);
-  Debug.Log(selectedItem);
-  if((Input.GetAxisRaw("Vertical") == 1) && isPressed == false) {
-    isPressed = true;
-
-    menu[selectedItem].GetComponent(UI.Text).color = Color.white;
-    selectedItem = selectedItem + 1;
-    menu[selectedItem].GetComponent(UI.Text).color = Color.yellow;
+  if(Input.GetAxis("Vertical") < 0 && isChanging == false) {
+    UpdateMenu(1);
   }
+  else if(Input.GetAxis("Vertical") > 0 && isChanging == false) {
+    UpdateMenu(-1);
 
-  if((Input.GetAxisRaw("Vertical") == -1) && isPressed == false) {
-    isPressed = true;
-
-    menu[selectedItem].GetComponent(UI.Text).color = Color.white;
-    selectedItem = selectedItem - 1;
-    menu[selectedItem].GetComponent(UI.Text).color = Color.yellow;
   }
+}
 
+function UpdateMenu (value) {
+  isChanging = true;
 
+  if(selectionNum + value >= menu.length || selectionNum + value < 0) return;
+  Debug.Log('value:' + value);
 
+  menu[selectionNum].GetComponent(UI.Image).color = Color(0,0,0,0);
+  menu[selectionNum + value].GetComponent(UI.Image).color = Color.black;
 
+  selectionNum = selectionNum + value;
+
+  yield WaitForSeconds (0.2);
+  isChanging = false;
 }
