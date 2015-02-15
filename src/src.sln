@@ -1,8 +1,17 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
+Project("{25D902C2-4283-AB8C-FBAC-54DFA101AD31}") = "src", "Assembly-CSharp-firstpass.csproj", "{E53CDB40-1DF9-8A61-5878-81243AFDF805}"
+EndProject
 Project("{25D902C2-4283-AB8C-FBAC-54DFA101AD31}") = "src", "Assembly-CSharp.csproj", "{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}"
 EndProject
+<<<<<<< HEAD
+=======
+Project("{25D902C2-4283-AB8C-FBAC-54DFA101AD31}") = "src", "Assembly-CSharp-Editor.csproj", "{0F82C266-B129-FC86-404A-370C3030009B}"
+EndProject
+Project("{25D902C2-4283-AB8C-FBAC-54DFA101AD31}") = "src", "Assembly-UnityScript-firstpass.unityproj", "{AD3E0071-432F-F80C-C7FE-310C20C08FA0}"
+EndProject
+>>>>>>> Spawn crates and tinySkeleton
 Project("{25D902C2-4283-AB8C-FBAC-54DFA101AD31}") = "src", "Assembly-UnityScript.unityproj", "{AE3E4C40-759D-294E-DEEC-9C870A888A8B}"
 EndProject
 Global
@@ -11,10 +20,25 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E53CDB40-1DF9-8A61-5878-81243AFDF805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E53CDB40-1DF9-8A61-5878-81243AFDF805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E53CDB40-1DF9-8A61-5878-81243AFDF805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E53CDB40-1DF9-8A61-5878-81243AFDF805}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CFFDA30-0E63-039E-0DCA-DAC117CE2649}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+=======
+		{0F82C266-B129-FC86-404A-370C3030009B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F82C266-B129-FC86-404A-370C3030009B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F82C266-B129-FC86-404A-370C3030009B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F82C266-B129-FC86-404A-370C3030009B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD3E0071-432F-F80C-C7FE-310C20C08FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD3E0071-432F-F80C-C7FE-310C20C08FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD3E0071-432F-F80C-C7FE-310C20C08FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD3E0071-432F-F80C-C7FE-310C20C08FA0}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> Spawn crates and tinySkeleton
 		{AE3E4C40-759D-294E-DEEC-9C870A888A8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AE3E4C40-759D-294E-DEEC-9C870A888A8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE3E4C40-759D-294E-DEEC-9C870A888A8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -23,6 +47,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+<<<<<<< HEAD
 				GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
@@ -45,6 +70,9 @@ Global
 =======
 																			GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> master
+=======
+																																														GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> Spawn crates and tinySkeleton
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
