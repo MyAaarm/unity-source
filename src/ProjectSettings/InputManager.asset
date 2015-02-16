@@ -564,7 +564,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 0
-    joyNum: 0
+    joyNum: 1
   - serializedVersion: 3
     m_Name: PS3LeftJoystickYOSX1
     descriptiveName: Y axis for right joystick on PS3 controller for OSX
@@ -580,7 +580,7 @@ InputManager:
     invert: 1
     type: 2
     axis: 1
-    joyNum: 0
+    joyNum: 1
   - serializedVersion: 3
     m_Name: PS3RightJoystickXOSX1
     descriptiveName: X axis for right joystick on PS3 controller for OSX
