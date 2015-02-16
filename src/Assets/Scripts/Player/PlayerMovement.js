@@ -2,6 +2,14 @@
 var playerNumber : int;
 var currentGameController : String;
 
+
+private var leftLeg : GameObject;
+private var rightLeg : GameObject;
+private var armBox : GameObject;
+private var leftLegRigidBody : Rigidbody;
+private var rightLegRigidBody : Rigidbody;
+
+
 private var movement : Vector3;                   // The vector to store the direction of the player's movement.
 private var anim : Animator;                      // Reference to the animator component.
 private var playerRigidbody : Rigidbody;          // Reference to the player's rigidbody.
@@ -12,6 +20,10 @@ private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor 
 
 function Awake ()
 {
+	leftLeg = GameObject.Find("Body/LegBox/leftLeg");
+    rightLeg = GameObject.Find("Body/LegBox/rightLeg");
+   	armBox = GameObject.Find("Body/ArmBox");
+    
     // Create a layer mask for the floor layer.
     floorMask = LayerMask.GetMask ("Floor");
 
@@ -66,6 +78,15 @@ function FixedUpdate ()
 		hV  = Input.GetAxisRaw ("360RightJoystickXPC"+playerNumber);
     	vV  = Input.GetAxisRaw ("360RightJoystickYPC"+playerNumber);
     }
+    
+    
+	if (h != 0 || v != 0){
+		MoveLegs();	
+	} else {
+		leftLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
+		rightLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
+	}
+
 
     // Move the player around the scene.
     Move (h, v);
@@ -122,4 +143,9 @@ function Turning (hV : float, vV : float)
     // Move the player to it's current position plus the movement.
     playerRigidbody.MoveRotation (newRotation);
 
+}
+
+function MoveLegs() {
+	leftLeg.transform.rotation = Quaternion.Euler(Mathf.Sin(Time.realtimeSinceStartup*5) * 50, 0, 0);
+	rightLeg.transform.rotation = Quaternion.Euler(-Mathf.Sin(Time.realtimeSinceStartup*5) * 50,0, 0);
 }
