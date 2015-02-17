@@ -1,37 +1,80 @@
 ﻿#pragma strict
 
-var target1 : Transform;         
-var target2 : Transform;            // The position that that camera will be following.
 var cameraSpeed : float = 5f;        // The speed with which the camera will be following.
 var height : float = 10f;
 var zOffset : float = 20f;  
 
+private var targets : GameObject[];
+private var largestDistance : float;
+
 function FixedUpdate ()
 {	
-	var centerPoint = (target1.position + target2.position)/2;
+	targets = GameObject.FindGameObjectsWithTag("Player"); 
 	
-	var distance = Vector3.Distance(target1.position, target2.position);
+	if (!GameObject.FindWithTag("Player")){ //If no Players are left on the battlefield
+ 		return;	//Maybe the camera should focus on something else here?
+	}
 	
-	var newHeight = distance;
+	var sum = Vector3(0,0,0);
+
+	for (var n = 0; n < targets.length ; n++){
+
+		sum += targets[n].transform.position;
+
+	}
+	
+	var avgDistance = sum / targets.length;
+	
+		
+	var largestDifference = returnLargestDifference();
+								
+	var newHeight = largestDifference;
+	
 	if(newHeight <5f){
 		newHeight = 5f;
  	}
 	height = Mathf.Lerp(height,newHeight,Time.deltaTime*cameraSpeed);
 	
-	var newZOffset = Mathf.Log(distance)*6;
+	var newZOffset = Mathf.Log(largestDifference)*6;
 	if(newZOffset<8f){
 		newZOffset = 8f;
  	}
 	zOffset = Mathf.Lerp(zOffset,newZOffset,Time.deltaTime*cameraSpeed);
 	
-	transform.position.x = centerPoint.x ;
+	transform.position.x = avgDistance.x ;
  
-	transform.position.z = centerPoint.z - zOffset;
+	transform.position.z = avgDistance.z - zOffset;
 
 	transform.position.y = height;
 	
 	
 	
-	transform.LookAt(centerPoint);	
+	transform.LookAt(avgDistance);	
 
+}
+
+function returnLargestDifference(){
+	
+	var currentDistance = 0.0;
+
+	largestDistance = 0.0;
+
+	for(var i = 0; i < targets.length; i++){
+
+		for(var j = 0; j <  targets.length; j++){
+
+			currentDistance = Vector3.Distance(targets[i].transform.position,targets[j].transform.position);
+
+			if(currentDistance > largestDistance){
+
+				largestDistance = currentDistance;
+
+			}
+
+		}
+
+	}
+
+	return largestDistance;
+	
 }

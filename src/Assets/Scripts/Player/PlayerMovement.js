@@ -40,6 +40,12 @@ function FixedUpdate ()
 		vV = Input.GetAxisRaw ("Vertical2");
 		
 	
+	}else if(currentGameController == "Keyboard2"){
+
+		h = Input.GetAxisRaw ("Horizontal3");
+		v = Input.GetAxisRaw ("Vertical3");
+		
+	
 	}else if(currentGameController == "PS3OSX"){
 		
 		h = Input.GetAxisRaw ("PS3LeftJoystickXOSX"+playerNumber);
