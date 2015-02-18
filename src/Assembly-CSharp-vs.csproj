@@ -51,6 +51,8 @@
      <Compile Include="Assets\Scripts\VoxelWorld\BlockAir.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\BlockGrass.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Chunk.cs" />
+     <Compile Include="Assets\Scripts\VoxelWorld\CraterController.cs" />
+     <Compile Include="Assets\Scripts\VoxelWorld\Debris.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\MeshData.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Modify.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Noise.cs" />
@@ -61,7 +63,7 @@
      <Compile Include="Assets\Scripts\VoxelWorld\WorldPos.cs" />
      <None Include="Assets\TinySkeleton\Documents\Readme.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/Samir Chaabi/unity-source/src/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/School/Simulation/unity-source/src/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>

@@ -3,17 +3,17 @@ using System.Collections;
 
 public class TerrainGen : MonoBehaviour {
 
-	float stoneBaseHeight = -24;
-	float stoneBaseNoise = 0.05f;
-	float stoneBaseNoiseHeight = 4;
+	float stoneBaseHeight = 1;
+	float stoneBaseNoise = 0f;
+	float stoneBaseNoiseHeight = 0;
 	
-	float stoneMountainHeight = 48;
-	float stoneMountainFrequency = 0.008f;
+	float stoneMountainHeight = 0;
+	float stoneMountainFrequency = 0f;
 	float stoneMinHeight = -12;
 	
-	float dirtBaseHeight = 1;
+	float dirtBaseHeight = 3;
 	float dirtNoise = 0.04f;
-	float dirtNoiseHeight = 3;
+	float dirtNoiseHeight = 1;
 
 	public Chunk ChunkGen(Chunk chunk)
 	{

@@ -51,6 +51,8 @@
      <Compile Include="Assets\Scripts\VoxelWorld\BlockAir.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\BlockGrass.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Chunk.cs" />
+     <Compile Include="Assets\Scripts\VoxelWorld\CraterController.cs" />
+     <Compile Include="Assets\Scripts\VoxelWorld\Debris.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\MeshData.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Modify.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Noise.cs" />

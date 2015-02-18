@@ -214,15 +214,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.0999999
       objectReference: {fileID: 0}
     - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.42999983
+      value: 4.5999999
       objectReference: {fileID: 0}
     - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: m_LocalRotation.x
@@ -251,6 +251,18 @@ Prefab:
     - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: currentGameController
       value: PS3OSX
+      objectReference: {fileID: 0}
+    - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
@@ -441,7 +453,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 4.5999999
       objectReference: {fileID: 0}
     - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: m_LocalPosition.z
@@ -478,6 +490,18 @@ Prefab:
     - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: playerNumber
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
@@ -753,6 +777,7 @@ GameObject:
   - 124: {fileID: 609685287}
   - 81: {fileID: 609685286}
   - 114: {fileID: 609685291}
+  - 45: {fileID: 609685292}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -841,6 +866,14 @@ MonoBehaviour:
   cameraSpeed: 5
   height: 10
   zOffset: 20
+--- !u!45 &609685292
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 609685285}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: e624c42c373185e4e8fdc9c8ab621717, type: 2}
 --- !u!1 &708541741
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,7 +917,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: .5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .646000028, y: 1.52899981, z: .063000001}
+  m_ConnectedAnchor: {x: .646000087, y: 1.52900016, z: .0630000085}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -20
@@ -1099,8 +1132,8 @@ Transform:
   m_PrefabInternal: {fileID: 132632083}
   m_GameObject: {fileID: 915189689}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -5, y: 4.5999999, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 1903727658}
   - {fileID: 47393821}
@@ -1309,8 +1342,8 @@ Transform:
   m_PrefabInternal: {fileID: 55141323}
   m_GameObject: {fileID: 1006496294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.42999983, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 5.0999999, y: 4.5999999, z: .5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 1730711021}
   - {fileID: 1308298209}
@@ -1629,7 +1662,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: .5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.645999908, y: 1.52900004, z: .0630003214}
+  m_ConnectedAnchor: {x: -.646000087, y: 1.52900016, z: .0630003214}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -20
@@ -2000,7 +2033,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: .5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.646000028, y: 1.52899981, z: .0630003214}
+  m_ConnectedAnchor: {x: -.646000087, y: 1.52900016, z: .0630003214}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -20
@@ -2170,7 +2203,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: .5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .645999908, y: 1.52900004, z: .063000001}
+  m_ConnectedAnchor: {x: .646000087, y: 1.52900016, z: .0630000085}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -20

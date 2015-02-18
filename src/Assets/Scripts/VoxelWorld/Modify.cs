@@ -1,21 +1,23 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 using System.Collections;
 
 public class Modify : MonoBehaviour
 {
 	
 	Vector2 rot;
+	CraterController cc = new CraterController();
 	
 	void Update()
 	{
-		Debug.Log("space");
+		/*Debug.Log("space");*/
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			Debug.Log("space");
+			/*Debug.Log("space");*/
 			RaycastHit hit;
 			if (Physics.Raycast(transform.position, transform.forward,out hit, 100 ))
 			{
-				Terrain.SetBlock(hit, new BlockAir());
+				cc.Impact(hit, 150);
+				//Terrain.SetBlock(hit, new BlockAir());
 			}
 		}
 		
