@@ -39,22 +39,26 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/School/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/School/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\PauseManager.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Block.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\BlockAir.cs" />
+     <Compile Include="Assets\Scripts\VoxelWorld\BlockDestroy.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\BlockGrass.cs" />
+     <Compile Include="Assets\Scripts\VoxelWorld\BlockHandler.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Chunk.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\CraterController.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Debris.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\MeshData.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Modify.cs" />
+     <Compile Include="Assets\Scripts\VoxelWorld\NewGrassPoolerScript.cs" />
+     <Compile Include="Assets\Scripts\VoxelWorld\NewStonePoolerScript.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Noise.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\PolygonGenerator.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Terrain.cs" />
@@ -63,10 +67,10 @@
      <Compile Include="Assets\Scripts\VoxelWorld\WorldPos.cs" />
      <None Include="Assets\TinySkeleton\Documents\Readme.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/School/Simulation/unity-source/src/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/School/Projects/MyArm Project/unity-source/src/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/School/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

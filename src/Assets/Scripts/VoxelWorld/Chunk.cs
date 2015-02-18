@@ -23,6 +23,7 @@ public class Chunk : MonoBehaviour
     {
         filter = gameObject.GetComponent<MeshFilter>();
         coll = gameObject.GetComponent<MeshCollider>();
+		this.gameObject.transform.parent = GameObject.Find ("SpawnedChunks").transform;
     }
 
     //Update is called once per frame
