@@ -23,6 +23,12 @@ function Awake ()
 function Start ()
 {
     // Set the initial health of the player (Maybe cheat a little and add more health to your character, only an if statement away).
+    if(this.name == 'Player 2'){
+        p1Health.GetComponent(UI.Text).text = 'p1:' + currentHealth;
+    }
+    else {
+        p2Health.GetComponent(UI.Text).text = 'p2:' + currentHealth;
+    }
 }
 
 
