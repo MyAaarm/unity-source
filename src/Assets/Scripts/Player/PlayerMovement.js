@@ -8,6 +8,9 @@ private var playerRigidbody : Rigidbody;          // Reference to the player's r
 private var floorMask : int;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 private var camRayLength : float = 100f;          // The length of the ray from the camera into the scene.
 
+public var leftHand : GameObject;
+public var rightHand : GameObject;
+
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
 
 function Awake ()
@@ -18,6 +21,7 @@ function Awake ()
     // Set up references.
     anim = GetComponent (Animator);
     playerRigidbody = GetComponent (Rigidbody);
+    
 }
 
 
@@ -121,11 +125,17 @@ function Turning (hV : float, vV : float)
     movement.Set (hV, 0f, vV);
 
     // Normalise the movement vector and make it proportional to the speed per second.
-    movement = movement.normalized * 0.01 * Time.deltaTime;
+    movement = movement.normalized * 0.1 * Time.deltaTime;
 
-	var newRotation : Quaternion = Quaternion.LookRotation (movement);
+	//var newRotation : Quaternion = Quaternion.LookRotation (movement);
+	
+	
+	leftHand.rigidbody.AddForce (movement * 1000f, ForceMode.Impulse);
+	rightHand.rigidbody.AddForce (movement * 1000f, ForceMode.Impulse);
+
+	
 
     // Move the player to it's current position plus the movement.
-    playerRigidbody.MoveRotation (newRotation);
+    // playerRigidbody.MoveRotation (newRotation);
 
 }
