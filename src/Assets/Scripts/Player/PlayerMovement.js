@@ -8,6 +8,8 @@ private var playerRigidbody : Rigidbody;          // Reference to the player's r
 private var floorMask : int;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 private var camRayLength : float = 100f;          // The length of the ray from the camera into the scene.
 
+private var activeArm : String; 
+
 public var leftHand : GameObject;
 public var rightHand : GameObject;
 
@@ -32,6 +34,8 @@ function FixedUpdate ()
     var v : float;
     var hV : float;
     var vV : float;
+    var leftBumperPressed;
+    var rightBumperPressed;
 
 	UpdateGameController (); //Check if controller should be changed
 	
@@ -75,8 +79,18 @@ function FixedUpdate ()
 		
 		hV  = Input.GetAxisRaw ("360RightJoystickXPC"+playerNumber);
     	vV  = Input.GetAxisRaw ("360RightJoystickYPC"+playerNumber);
+    	
+    	leftBumperPressed = Input.GetButtonDown('360LeftBumperPC'+playerNumber);
+    	rightBumperPressed = Input.GetButtonDown('360RightBumperPC'+playerNumber);
     }
-
+	
+	
+	if(leftBumperPressed){
+		activeArm = "Left";
+	}else if(rightBumperPressed){
+		activeArm = "Right";
+	}
+	
     // Move the player around the scene.
     Move (h, v);
 
@@ -115,11 +129,12 @@ function Move (h : float, v : float)
 
     // Move the player to it's current position plus the movement.
     playerRigidbody.MovePosition (transform.position + movement);
+    
 }
 
 
 function Turning (hV : float, vV : float)
-{
+{	
 
      // Set the movement vector based on the axis input.
     movement.Set (hV, 0f, vV);
@@ -129,10 +144,11 @@ function Turning (hV : float, vV : float)
 
 	//var newRotation : Quaternion = Quaternion.LookRotation (movement);
 	
-	
-	leftHand.rigidbody.AddForce (movement * 1000f, ForceMode.Impulse);
-	rightHand.rigidbody.AddForce (movement * 1000f, ForceMode.Impulse);
-
+	if(activeArm == "Left"){	
+		leftHand.rigidbody.AddForce (movement * 1000f, ForceMode.Impulse);
+	}else if(activeArm == "Right"){
+		rightHand.rigidbody.AddForce (movement * 1000f, ForceMode.Impulse);
+	}
 	
 
     // Move the player to it's current position plus the movement.

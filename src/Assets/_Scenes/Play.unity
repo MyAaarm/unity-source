@@ -250,7 +250,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: currentGameController
-      value: Keyboard
+      value: X360PC
       objectReference: {fileID: 0}
     - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: m_LocalScale.x
@@ -1484,7 +1484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   playerNumber: 1
-  currentGameController: Keyboard
+  currentGameController: X360PC
   leftHand: {fileID: 1826906230}
   rightHand: {fileID: 74761349}
 --- !u!82 &1006496299
