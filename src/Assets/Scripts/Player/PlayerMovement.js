@@ -113,7 +113,6 @@ function UpdateGameController ()
 
 		if(Input.GetKey('joystick button 7')){
 			currentGameController = "X360PC";
-			Debug.Log("stitched controller");
 		}
 	}
 }
@@ -137,15 +136,19 @@ function Turning (hV : float, vV : float)
 {	
 
      // Set the movement vector based on the axis input.
-    movement.Set (hV, 0f, vV);
+    movement.Set (0f, vV, hV);
 
     // Normalise the movement vector and make it proportional to the speed per second.
     movement = movement.normalized * 0.1 * Time.deltaTime;
-
+	
+	movement = playerRigidbody.gameObject.transform.rotation * Quaternion.Euler(0, 0, 0) *movement ;
+	
 	//var newRotation : Quaternion = Quaternion.LookRotation (movement);
 	
 	if(activeArm == "Left"){	
 		leftHand.rigidbody.AddForce (movement * 1000f, ForceMode.Impulse);
+		
+		
 	}else if(activeArm == "Right"){
 		rightHand.rigidbody.AddForce (movement * 1000f, ForceMode.Impulse);
 	}
