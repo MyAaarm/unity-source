@@ -272,10 +272,6 @@ Prefab:
       propertyPath: leftHand
       value: 
       objectReference: {fileID: 1826906230}
-    - target: {fileID: 5413704, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
   m_RootGameObject: {fileID: 1006496294}
@@ -519,17 +515,10 @@ Prefab:
       propertyPath: leftHand
       value: 
       objectReference: {fileID: 33101051}
-<<<<<<< HEAD
-    - target: {fileID: 5413704, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
-      propertyPath: m_Constraints
-      value: 80
-      objectReference: {fileID: 0}
-=======
     - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: rightHand
       value: 
       objectReference: {fileID: 584713900}
->>>>>>> oneArmZombie
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
   m_RootGameObject: {fileID: 915189689}
@@ -1769,7 +1758,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!95 &1006496303
 Animator:
