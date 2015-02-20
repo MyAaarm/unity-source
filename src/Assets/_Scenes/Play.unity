@@ -250,7 +250,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: currentGameController
-      value: PS3OSX
+      value: X360PC
       objectReference: {fileID: 0}
     - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: m_LocalScale.x
@@ -264,6 +264,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: rightHand
+      value: 
+      objectReference: {fileID: 74761349}
+    - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: leftHand
+      value: 
+      objectReference: {fileID: 1826906230}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
   m_RootGameObject: {fileID: 1006496294}
@@ -485,7 +493,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: currentGameController
-      value: X360OSX
+      value: X360PC
       objectReference: {fileID: 0}
     - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: playerNumber
@@ -503,6 +511,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: leftHand
+      value: 
+      objectReference: {fileID: 33101051}
+    - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: rightHand
+      value: 
+      objectReference: {fileID: 584713900}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
   m_RootGameObject: {fileID: 915189689}
@@ -1427,7 +1443,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   playerNumber: 2
-  currentGameController: X360OSX
+  currentGameController: X360PC
+  leftHand: {fileID: 33101051}
+  rightHand: {fileID: 584713900}
 --- !u!82 &915189695
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1637,7 +1655,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   playerNumber: 1
-  currentGameController: PS3OSX
+  currentGameController: X360PC
+  leftHand: {fileID: 1826906230}
+  rightHand: {fileID: 74761349}
 --- !u!82 &1006496299
 AudioSource:
   m_ObjectHideFlags: 0
