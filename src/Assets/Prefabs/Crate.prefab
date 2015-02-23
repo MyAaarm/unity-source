@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tinySkeleton: {fileID: 151480, guid: 63f0c5eadae2e664b8015f755810a863, type: 2}
+  judge: {fileID: 120052, guid: 7fea62840de72104d92681a6563667ca, type: 2}
 --- !u!122 &12230268
 Halo:
   m_ObjectHideFlags: 1
