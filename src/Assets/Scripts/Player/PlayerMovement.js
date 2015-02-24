@@ -128,7 +128,16 @@ function Move (h : float, v : float)
 
     // Move the player to it's current position plus the movement.
     playerRigidbody.MovePosition (transform.position + movement);
+   
+   	if(h != 0 || v != 0) {
     
+	    var newRotation : Quaternion;
+	    
+	    newRotation = Quaternion.Lerp(transform.rotation,Quaternion.LookRotation (movement),Time.deltaTime*20);
+	    
+	    // Move the player to it's current position plus the movement.
+	    playerRigidbody.MoveRotation (newRotation);
+    }
 }
 
 
