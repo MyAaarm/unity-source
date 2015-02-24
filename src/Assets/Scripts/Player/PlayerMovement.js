@@ -145,13 +145,10 @@ function Turning (hV : float, vV : float)
 	
 	//var newRotation : Quaternion = Quaternion.LookRotation (movement);
 	
-	if(activeArm == "Left"){	
-		leftHand.rigidbody.AddForce (movement * 1000f, ForceMode.Impulse);
+	leftHand.rigidbody.AddForce (movement * 1000f, ForceMode.Impulse);
 		
-		
-	}else if(activeArm == "Right"){
-		rightHand.rigidbody.AddForce (movement * 1000f, ForceMode.Impulse);
-	}
+	rightHand.rigidbody.AddForce (movement * 1000f, ForceMode.Impulse);
+	
 	
 
     // Move the player to it's current position plus the movement.
