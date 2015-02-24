@@ -272,6 +272,42 @@ Prefab:
       propertyPath: leftHand
       value: 
       objectReference: {fileID: 1826906230}
+    - target: {fileID: 14413710, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -.646000087
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413710, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.52900016
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413710, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_LowTwistLimit.limit
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413710, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_HighTwistLimit.limit
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: .646000087
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.52900016
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.z
+      value: .0630000085
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_LowTwistLimit.limit
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_HighTwistLimit.limit
+      value: 180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
   m_RootGameObject: {fileID: 1006496294}
@@ -519,6 +555,42 @@ Prefab:
       propertyPath: rightHand
       value: 
       objectReference: {fileID: 584713900}
+    - target: {fileID: 14413710, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -.646000087
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413710, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.52900016
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413710, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_LowTwistLimit.limit
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413710, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_HighTwistLimit.limit
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: .646000087
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.52900016
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.z
+      value: .0630000085
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_LowTwistLimit.limit
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_HighTwistLimit.limit
+      value: 180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
   m_RootGameObject: {fileID: 915189689}
@@ -1012,12 +1084,12 @@ CharacterJoint:
   m_ConnectedAnchor: {x: .646000087, y: 1.52900016, z: .0630000085}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
-    limit: -20
+    limit: -180
     bounciness: 0
     spring: 0
     damper: 0
   m_HighTwistLimit:
-    limit: 70
+    limit: 180
     bounciness: 0
     spring: 0
     damper: 0
@@ -1998,12 +2070,12 @@ CharacterJoint:
   m_ConnectedAnchor: {x: -.646000087, y: 1.52900016, z: .0630003214}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
-    limit: -20
+    limit: -180
     bounciness: 0
     spring: 0
     damper: 0
   m_HighTwistLimit:
-    limit: 70
+    limit: 180
     bounciness: 0
     spring: 0
     damper: 0
@@ -2417,12 +2489,12 @@ CharacterJoint:
   m_ConnectedAnchor: {x: -.646000087, y: 1.52900016, z: .0630003214}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
-    limit: -20
+    limit: -180
     bounciness: 0
     spring: 0
     damper: 0
   m_HighTwistLimit:
-    limit: 70
+    limit: 180
     bounciness: 0
     spring: 0
     damper: 0
@@ -2630,12 +2702,12 @@ CharacterJoint:
   m_ConnectedAnchor: {x: .646000087, y: 1.52900016, z: .0630000085}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
-    limit: -20
+    limit: -180
     bounciness: 0
     spring: 0
     damper: 0
   m_HighTwistLimit:
-    limit: 70
+    limit: 180
     bounciness: 0
     spring: 0
     damper: 0
