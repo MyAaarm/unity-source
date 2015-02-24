@@ -130,8 +130,8 @@ function Turning (hV : float, vV : float)
 	//var newRotation : Quaternion = Quaternion.LookRotation (movement);
 	
 	
-	leftHand.rigidbody.AddForce (movement * 1500f, ForceMode.Impulse);
-	rightHand.rigidbody.AddForce (movement * 1500f, ForceMode.Impulse);
+	leftHand.rigidbody.AddForce (movement * 250f, ForceMode.Impulse);
+	rightHand.rigidbody.AddForce (movement * 250f, ForceMode.Impulse);
 
 	
 

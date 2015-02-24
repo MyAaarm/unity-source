@@ -1,4 +1,4 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,7 +11,12 @@ public class CraterController : MonoBehaviour {
 	private Debris d = new Debris();
 	
 	
-	
+	public void handleOuterImpacts(Vector3 pos){
+				RaycastHit hit;
+				Physics.Raycast (pos, -transform.up, out hit, 100);
+				this.Impact (hit, 450);
+		}
+
 	
 	public void Impact (RaycastHit hit, int force) {
 		Block b = Terrain.GetBlock (hit);

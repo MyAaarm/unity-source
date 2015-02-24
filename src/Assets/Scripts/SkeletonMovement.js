@@ -9,6 +9,7 @@ private var anim : Animator;                      // Reference to the animator c
 private var timer: float = 30; 			// set duration time in seconds in the Inspector
 public var force : float = 10.0f;
 
+
 function Awake ()
 {
     // Set up the references.
@@ -22,7 +23,14 @@ function OnTriggerEnter (other : Collider) {
 	if(other.tag == "Player" && timer <= 28){
 		SkeletonDeath();
      	var direction : Vector3 = other.transform.position - transform.position;
-     	other.rigidbody.AddForce(direction * 600,ForceMode.Acceleration);
+     	other.rigidbody.AddForce(direction * 1800,ForceMode.Acceleration);
+     	var ums : GameObject;
+		ums = GameObject.Find( "CraterController" );
+		Debug.Log(ums);
+		ums.BroadcastMessage( "handleOuterImpacts", transform.position );
+		
+		//Physics.Raycast(transform.position, -Vector3.up, hit, 100 );
+		//cc.Impact(hit, 150);
      	other.rigidbody.useGravity = true;
 	}
 }

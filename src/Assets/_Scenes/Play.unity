@@ -214,7 +214,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5.0999999
+      value: 5.01999998
       objectReference: {fileID: 0}
     - target: {fileID: 413696, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: m_LocalPosition.y
@@ -272,6 +272,34 @@ Prefab:
       propertyPath: leftHand
       value: 
       objectReference: {fileID: 1826906230}
+    - target: {fileID: 5413704, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413704, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_AngularDrag
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413710, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.52900016
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: .646000087
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.52900016
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.z
+      value: .0630000085
+      objectReference: {fileID: 0}
+    - target: {fileID: 14413710, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -.646000087
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
   m_RootGameObject: {fileID: 1006496294}
@@ -400,7 +428,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 118047789}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af20935baf51b1942b9ec155c122e9ab, type: 3}
   m_Name: 
@@ -493,7 +521,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: currentGameController
-      value: Keyboard
+      value: X360PC
       objectReference: {fileID: 0}
     - target: {fileID: 11413712, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
       propertyPath: playerNumber
@@ -519,6 +547,14 @@ Prefab:
       propertyPath: leftHand
       value: 
       objectReference: {fileID: 33101051}
+    - target: {fileID: 5413704, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413704, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
+      propertyPath: m_AngularDrag
+      value: .5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e725b9c5d3e2c41ac896fa6e16bbdffe, type: 2}
   m_RootGameObject: {fileID: 915189689}
@@ -1210,8 +1246,8 @@ Rigidbody:
   m_GameObject: {fileID: 915189689}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1000
-  m_AngularDrag: 0
+  m_Drag: 0
+  m_AngularDrag: .5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1272,7 +1308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   playerNumber: 2
-  currentGameController: Keyboard
+  currentGameController: X360PC
   leftHand: {fileID: 33101051}
   rightHand: {fileID: 584713900}
 --- !u!82 &915189695
@@ -1436,7 +1472,7 @@ Transform:
   m_PrefabInternal: {fileID: 55141323}
   m_GameObject: {fileID: 1006496294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.0999999, y: 4.5999999, z: .5}
+  m_LocalPosition: {x: 5.01999998, y: 4.5999999, z: .5}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 1730711021}
@@ -1582,8 +1618,8 @@ Rigidbody:
   m_GameObject: {fileID: 1006496294}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1000
-  m_AngularDrag: 0
+  m_Drag: 0
+  m_AngularDrag: .5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2311,6 +2347,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 264714786}
   m_RootOrder: 0
+--- !u!1 &1942084414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1942084416}
+  - 114: {fileID: 1942084415}
+  m_Layer: 0
+  m_Name: CraterController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1942084415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1942084414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb861e1318252b428698d3c137e5cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  world: {fileID: 0}
+--- !u!4 &1942084416
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1942084414}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -50.7955551, y: 17.923069, z: 12.3997164}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &1944225962
 GameObject:
   m_ObjectHideFlags: 0
