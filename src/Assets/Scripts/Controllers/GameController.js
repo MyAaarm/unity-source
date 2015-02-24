@@ -8,7 +8,7 @@ public var Player : GameObject;
 
 static var players : GameObject[];
 
-static var playerControllers = ['Keyboard', '', '', ''];
+static var playerControllers = ['PS3OSX', 'X360OSX', '', ''];
 
 function Start () {
   HUD = GetComponent(HUDController);
