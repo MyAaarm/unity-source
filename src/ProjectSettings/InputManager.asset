@@ -326,6 +326,38 @@ InputManager:
     axis: 0
     joyNum: 2
   - serializedVersion: 3
+    m_Name: 360LeftJoystickX3
+    descriptiveName: X axis for left joystick on xbox 360 controller for player 1
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 0
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: 360LeftJoystickX4
+    descriptiveName: X axis for left joystick on xbox 360 controller for player 1
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 0
+    joyNum: 4
+  - serializedVersion: 3
     m_Name: 360LeftJoystickY1
     descriptiveName: Y axis for left joystick on xbox 360 controller for PC
     descriptiveNegativeName: 
@@ -357,6 +389,38 @@ InputManager:
     type: 2
     axis: 1
     joyNum: 2
+  - serializedVersion: 3
+    m_Name: 360LeftJoystickY3
+    descriptiveName: Y axis for left joystick on xbox 360 controller for PC
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 1
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: 360LeftJoystickY4
+    descriptiveName: Y axis for left joystick on xbox 360 controller for PC
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 1
+    joyNum: 4
   - serializedVersion: 3
     m_Name: 360RightJoystickXPC1
     descriptiveName: X axis for right joystick on xbox 360 controller for PC
@@ -454,6 +518,38 @@ InputManager:
     axis: 2
     joyNum: 2
   - serializedVersion: 3
+    m_Name: 360RightJoystickXOSX3
+    descriptiveName: X axis for right joystick on xbox 360 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 2
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: 360RightJoystickXOSX4
+    descriptiveName: X axis for right joystick on xbox 360 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 2
+    joyNum: 4
+  - serializedVersion: 3
     m_Name: 360RightJoystickYOSX1
     descriptiveName: Y axis for right joystick on xbox 360 controller for OSX
     descriptiveNegativeName: 
@@ -485,6 +581,38 @@ InputManager:
     type: 2
     axis: 3
     joyNum: 2
+  - serializedVersion: 3
+    m_Name: 360RightJoystickYOSX3
+    descriptiveName: Y axis for right joystick on xbox 360 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 3
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: 360RightJoystickYOSX4
+    descriptiveName: Y axis for right joystick on xbox 360 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 3
+    joyNum: 4
   - serializedVersion: 3
     m_Name: PS3LeftJoystickXPC1
     descriptiveName: X axis for left joystick on PS3 controller for PC
@@ -566,6 +694,54 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
+    m_Name: PS3LeftJoystickXOSX2
+    descriptiveName: X axis for right joystick on PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 0
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: PS3LeftJoystickXOSX3
+    descriptiveName: X axis for right joystick on PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 0
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: PS3LeftJoystickXOSX4
+    descriptiveName: X axis for right joystick on PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 0
+    joyNum: 4
+  - serializedVersion: 3
     m_Name: PS3LeftJoystickYOSX1
     descriptiveName: Y axis for right joystick on PS3 controller for OSX
     descriptiveNegativeName: 
@@ -581,6 +757,54 @@ InputManager:
     type: 2
     axis: 1
     joyNum: 1
+  - serializedVersion: 3
+    m_Name: PS3LeftJoystickYOSX2
+    descriptiveName: Y axis for right joystick on PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 1
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: PS3LeftJoystickYOSX3
+    descriptiveName: Y axis for right joystick on PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 1
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: PS3LeftJoystickYOSX4
+    descriptiveName: Y axis for right joystick on PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 1
+    joyNum: 4
   - serializedVersion: 3
     m_Name: PS3RightJoystickXOSX1
     descriptiveName: X axis for right joystick on PS3 controller for OSX
@@ -598,6 +822,54 @@ InputManager:
     axis: 2
     joyNum: 1
   - serializedVersion: 3
+    m_Name: PS3RightJoystickXOSX2
+    descriptiveName: X axis for right joystick on PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 2
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: PS3RightJoystickXOSX3
+    descriptiveName: X axis for right joystick on PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 2
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: PS3RightJoystickXOSX4
+    descriptiveName: X axis for right joystick on PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 2
+    joyNum: 4
+  - serializedVersion: 3
     m_Name: PS3RightJoystickYOSX1
     descriptiveName: Y axis for right joystick on PS3 controller for OSX
     descriptiveNegativeName: 
@@ -613,6 +885,54 @@ InputManager:
     type: 2
     axis: 3
     joyNum: 1
+  - serializedVersion: 3
+    m_Name: PS3RightJoystickYOSX2
+    descriptiveName: Y axis for right joystick on PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 3
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: PS3RightJoystickYOSX3
+    descriptiveName: Y axis for right joystick on PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 3
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: PS3RightJoystickYOSX4
+    descriptiveName: Y axis for right joystick on PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 3
+    joyNum: 4
   - serializedVersion: 3
     m_Name: PS3LeftJoystickTriggerOSX
     descriptiveName: Left Trigger on  PS3 controller for OSX
