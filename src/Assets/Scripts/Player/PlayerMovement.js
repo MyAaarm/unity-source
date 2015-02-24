@@ -15,28 +15,25 @@ private var activeArm : String;
 
 public var leftHand : GameObject;
 public var rightHand : GameObject;
-private var leftHandRigidBody : Rigidbody;
-private var rightHandRigidBody : Rigidbody;
 
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
 
 function Awake ()
 {
-    // Create a layer mask for the floor layer.
+
+}
+
+function Start () {
+   // Create a layer mask for the floor layer.
     floorMask = LayerMask.GetMask ("Floor");
 
     // Set up references.
     anim = GetComponent (Animator);
     playerRigidbody = GetComponent (Rigidbody);
 
-    leftHand = GameObject.Find("Arms/Hands/left");
-    rightHand = GameObject.Find("Arms/Hands/right");
-
-    leftHandRigidBody = leftHand.GetComponent(Rigidbody);
-    rightHandRigidBody = rightHand.GetComponent(Rigidbody);
-
+    leftHand = this.transform.Find("Arms/Hands/left").gameObject;
+    rightHand = this.transform.Find("Arms/Hands/right").gameObject;
 }
-
 
 function FixedUpdate ()
 {
@@ -102,7 +99,7 @@ function FixedUpdate ()
       shouldMove = true;
       LeftArm(h, v);
     } else {
-      leftHand.rigidbody.constraints = RigidbodyConstraints.FrezeeAll;
+      //leftHand.rigidbody.constraints = RigidbodyConstraints.FrezeeAll;
     }
     // Turn the player to face the mouse cursor.
 
@@ -110,11 +107,11 @@ function FixedUpdate ()
       shouldMove = true;
       RightArm(hV, vV);
     } else {
-      leftHand.rigidbody.constraints = RigidbodyConstraints.FrezeeAll;
+      //rightHand.rigidbody.constraints = RigidbodyConstraints.FrezeeAll;
     }
 
     if(shouldMove){
-      //playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+      playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
       Move(h, v, hV, vV);
     }
     else {
@@ -144,7 +141,7 @@ function LeftArm (h: float, v : float) {
 
      // Set the movement vector based on the axis input.
     movementLeftArm.Set(h, 0f, v);
-    //leftHand.rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
+    //leftHandRigidBody.constraints = RigidbodyConstraints.FreezePositionY;
     leftHand.rigidbody.AddForce(movementLeftArm*5f, ForceMode.Impulse);
 }
 
