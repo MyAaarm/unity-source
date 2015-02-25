@@ -41,9 +41,13 @@ function FixedUpdate ()
  	}
 	zOffset = Mathf.Lerp(zOffset,newZOffset,Time.deltaTime*cameraSpeed);
 	
-	transform.position.x = avgDistance.x ;
+	var newXpos = Mathf.Lerp(transform.position.x, avgDistance.x, Time.deltaTime*cameraSpeed);
+	
+	var newZpos = Mathf.Lerp(transform.position.z, avgDistance.z  - zOffset, Time.deltaTime*cameraSpeed);
+				
+	transform.position.x = newXpos;
  
-	transform.position.z = avgDistance.z - zOffset;
+	transform.position.z = newZpos;
 
 	transform.position.y = height;
 	

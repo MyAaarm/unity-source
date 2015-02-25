@@ -21,6 +21,9 @@ function OnCollisionEnter( col : Collision ){
 		}
 
 	}
-
+	
+	if(col.collider.name=="DespawnPlane"){
+		Destroy (this.gameObject);
+	}
 
 }
