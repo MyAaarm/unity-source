@@ -970,7 +970,7 @@ InputManager:
     descriptiveName: Right Trigger on  PS3 controller for OSX
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 1 button 0
+    positiveButton: joystick button 0
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1
@@ -986,7 +986,7 @@ InputManager:
     descriptiveName: Right Trigger on  PS3 controller for OSX
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 1 button 16
+    positiveButton: joystick button 16
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
