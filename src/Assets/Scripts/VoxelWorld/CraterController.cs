@@ -1,4 +1,4 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,6 +11,13 @@ public class CraterController : MonoBehaviour {
 	private Debris d = new Debris();
 	
 	
+	public void handleOuterImpacts(Vector3 pos){
+		Debug.Log ("Impact");
+		RaycastHit hit;
+		Physics.Raycast (pos, -transform.up, out hit, 100);
+		this.Impact (hit, 450);
+
+	}
 	
 	
 	public void Impact (RaycastHit hit, int force) {
@@ -162,16 +169,6 @@ public class CraterController : MonoBehaviour {
 		nbPos.Add (chunk.world.GetBlock(pos.x, pos.y, pos.z + 1).ToString ,nbPosTemp);
 		nbPosTemp.Clear();
 		*/
-		
-		foreach (Block b in neighbours) {
-			Debug.Log("blockdata:");
-		}
-		foreach(int x in nbPosTemp){
-			Debug.Log ("bananer : " + x);
-		}
-		
-		
-		
 		
 		return neighbours;
 		

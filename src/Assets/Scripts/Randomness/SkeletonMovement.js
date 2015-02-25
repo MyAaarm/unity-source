@@ -8,6 +8,8 @@ private var nav : NavMeshAgent;               // Reference to the nav mesh agent
 private var anim : Animator;                      // Reference to the animator component.
 private var timer: float = 30; 			// set duration time in seconds in the Inspector
 public var force : float = 10.0f;
+var ums : GameObject;
+
 
 function Awake ()
 {
@@ -22,7 +24,15 @@ function OnTriggerEnter (other : Collider) {
 	if(other.tag == "Player" && timer <= 28){
 		SkeletonDeath();
      	var direction : Vector3 = other.transform.position - transform.position;
-     	other.rigidbody.AddForce(direction * 10000,ForceMode.Acceleration);		
+     	other.rigidbody.AddForce(direction * 1800,ForceMode.Acceleration);
+		ums = GameObject.Find( "CraterController" );
+		Debug.Log(ums);
+		Debug.Log("explosion");
+		ums.BroadcastMessage( "handleOuterImpacts", transform.position );
+		
+		//Physics.Raycast(transform.position, -Vector3.up, hit, 100 );
+		//cc.Impact(hit, 150);
+     	other.rigidbody.useGravity = true;
 	}
 }
 
