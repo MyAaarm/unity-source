@@ -111,11 +111,12 @@ function FixedUpdate ()
     }
 
     if(shouldMove){
-      playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+      playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ ;
       Move(h, v, hV, vV);
     }
     else {
       playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
+      playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
     }
 }
 
@@ -142,7 +143,7 @@ function LeftArm (h: float, v : float) {
      // Set the movement vector based on the axis input.
     movementLeftArm.Set(h, 0f, v);
     //leftHandRigidBody.constraints = RigidbodyConstraints.FreezePositionY;
-    leftHand.rigidbody.AddForce(movementLeftArm*5f, ForceMode.Impulse);
+    leftHand.rigidbody.AddForce(movementLeftArm*1f, ForceMode.Impulse);
 }
 
 
@@ -150,7 +151,7 @@ function RightArm (hV : float, vV : float) {
 
     movementRightArm.Set(hV, 0f, vV);
     //rightHand.rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
-    rightHand.rigidbody.AddForce (movementRightArm*5f, ForceMode.Impulse);
+    rightHand.rigidbody.AddForce (movementRightArm*1f, ForceMode.Impulse);
 }
 
 
