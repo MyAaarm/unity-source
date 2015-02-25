@@ -68,10 +68,8 @@ function Death () {
   //lets make the body fly around!
   rigidBody.constraints = RigidbodyConstraints.None;
   yield WaitForSeconds(0.1);
-  rigidbody.AddForce(100000, 1000, 5000);
-  rigidbody.AddTorque (0, 1000, 0);
-  yield WaitForSeconds(0.5);
-  rigidbody.AddForce(100000, 1000, 5000);
+
+  Destroy(this.gameObject);
 
 
 }

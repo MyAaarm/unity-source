@@ -7,7 +7,7 @@ static var numberOfPlayersPlaying: int;
 public var Player : GameObject;
 
 static var players : GameObject[];
-static var playerControllers = ['Keyboard'];
+static var playerControllers = ['Keyboard','','',''];
 //static var playerControllers = ['PS3OSX', 'X360OSX', 'X360OSX', 'PS3OSX'];
 
 function Start () {
@@ -54,12 +54,8 @@ static function PlayerDied (player) {
   HUD.SetPlayerToDead(player);
 
   if(numberOfPlayersPlaying == 1) {
-    for (var i = 0; i < players.length; i++){
-      if (!players[i].GetComponent(PlayerHealth).isDead) {
-        HUD.ShowWonMessage(players[i]);
-        yield WaitForSeconds(3);
-        Application.LoadLevel('Play');
-      }
-    }
+    HUD.ShowWonMessage(players[0]);
+    yield WaitForSeconds(3);
+    Application.LoadLevel('Play');
   }
 }
