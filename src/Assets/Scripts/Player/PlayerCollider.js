@@ -56,7 +56,8 @@ function FixedUpdate(){
     
     if((GameObject.Find("Player1").transform.position - GameObject.Find("Player2").transform.position).magnitude <20){
     	
-        if(Input.GetKey(KeyCode.E)){
+        if(Input.GetButton("X360AButtonPC")||Input.GetButton("X360AButtonOSX")||Input.GetKey(KeyCode.E)){
+        	
         		//GameObject.Find("Player2").rigidbody.constraints =  RigidbodyConstraints.None;
       			GameObject.Find("Player2").rigidbody.constraints &=  ~RigidbodyConstraints.FreezePositionX;
       			GameObject.Find("Player2").rigidbody.constraints &=  ~RigidbodyConstraints.FreezePositionZ;
@@ -74,7 +75,7 @@ function FixedUpdate(){
                  if(pullForDist>20) pullForDist=20;
                  pullF += pullForDist;
               
-                 Debug.Log(pullDir*(pullF * Time.deltaTime));
+                // Debug.Log(pullDir*(pullF * Time.deltaTime));
                  GameObject.Find("Player2").rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*300f, ForceMode.Acceleration);
                  //GameObject.Find("Player 2").rigidbody.velocity += pullDir*(pullF * Time.deltaTime);
                }

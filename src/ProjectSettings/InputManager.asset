@@ -965,3 +965,35 @@ InputManager:
     type: 2
     axis: 4
     joyNum: 1
+  - serializedVersion: 3
+    m_Name: X360AButtonPC
+    descriptiveName: Right Trigger on  PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 1 button 0
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1
+    dead: .200000003
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 0
+    axis: 4
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: X360AButtonOSX
+    descriptiveName: Right Trigger on  PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 1 button 16
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: .00100000005
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 0
+    axis: 4
+    joyNum: 1

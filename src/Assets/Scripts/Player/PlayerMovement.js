@@ -87,8 +87,8 @@ function FixedUpdate ()
 		hV  = Input.GetAxisRaw ("360RightJoystickXPC"+playerNumber);
     	vV  = Input.GetAxisRaw ("360RightJoystickYPC"+playerNumber);
 
-    	leftBumperPressed = Input.GetButtonDown('360LeftBumperPC'+playerNumber);
-    	rightBumperPressed = Input.GetButtonDown('360RightBumperPC'+playerNumber);
+    	//leftBumperPressed = Input.GetButtonDown('360LeftBumperPC'+playerNumber);
+    	//rightBumperPressed = Input.GetButtonDown('360RightBumperPC'+playerNumber);
     }
 
 
