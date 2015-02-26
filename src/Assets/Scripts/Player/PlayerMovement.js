@@ -115,8 +115,10 @@ function FixedUpdate ()
       Move(h, v, hV, vV);
     }
     else {
-      playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
-      playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
+    	if(!this.gameObject.GetComponent(PlayerCollider).isHit){	
+     	playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
+      	playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
+      }
     }
 }
 
