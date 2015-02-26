@@ -2,6 +2,7 @@
 
 static var numberOfPlayers : int = 2;
 static var HUD:HUDController;
+static var PauseMenu:PauseController;
 static var numberOfPlayersPlaying: int;
 
 public var Player : GameObject;
@@ -17,6 +18,7 @@ function Awake () {
 
 function Start () {
   HUD = FindObjectOfType(HUDController);
+  PauseMenu = FindObjectOfType(PauseController);
 
   if(Application.loadedLevel == 1){
     addPlayers();
@@ -55,8 +57,7 @@ static function PlayerDied (player) {
   HUD.SetPlayerToDead(player);
 
   if(numberOfPlayersPlaying == 1) {
-    HUD.ShowWonMessage(players[0]);
-    yield WaitForSeconds(3);
-    Application.LoadLevel('Play');
+    HUD.Hide();
+    PauseMenu.ShowWonMessage(players[0]);
   }
 }

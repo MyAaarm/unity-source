@@ -70,7 +70,7 @@ function ChangePlayerNumber(value) {
 
   //homeMenu[1].GetComponentInChildren(UI.Text).text = playerMap[GameController.numberOfPlayers] + ' PLAYERS';
   homeMenu[1].GetComponentInChildren(UI.Text).text = "< " + playerMap[GameController.numberOfPlayers-1]  + ' PLAYERS >';
-  yield WaitForSeconds (0.2);
+  yield WaitForSeconds (0.01);
   isChanging = false;
 }
 
