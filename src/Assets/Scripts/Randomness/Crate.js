@@ -1,19 +1,13 @@
 ﻿#pragma strict
 
 public var tinySkeleton : GameObject;
+public var judge : GameObject;
 private var timer: float = 30;
 
 //Transforms & Rotates the crate 
 function Update () {
 	transform.Rotate(new Vector3(15, 30,45) * Time.deltaTime);
-//	if (transform.position.y < 20 && transform.position.y > 1){
-//		transform.position.y -= 0.05;
-//	}
-//	else if(transform.position.y > 1){
-//		transform.position.y -= 0.2;
-//	}
 	OldCrate();
-//	this.renderer.material.color.a = 1.0f;
 }
 
 //Removes crate after 'x' amount of time
@@ -34,6 +28,7 @@ function DestroyCrate(){
 function OnTriggerEnter (other : Collider) {
 	if(other.tag == "Player"){
 		DestroyCrate();
+		//Instantiate (judge, transform.position, Quaternion.identity);
 		Instantiate (tinySkeleton, transform.position, Quaternion.identity);
 	}
 }

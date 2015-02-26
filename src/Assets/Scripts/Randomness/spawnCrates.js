@@ -16,7 +16,7 @@ function setTimer(){
 		timer -= Time.deltaTime;
 		if(timer <= 0){
 			timeOk = Time.realtimeSinceStartup > 2; //To not spawn crates directly
-			timer = Random.Range(5, 10); //Crate spawn-timer (between 60 and 90 sec)
+			timer = Random.Range(1, 5); //Crate spawn-timer (between 60 and 90 sec)
 			spawnCrate(timeOk);
 		}
 	}

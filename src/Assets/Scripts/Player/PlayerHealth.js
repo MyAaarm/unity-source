@@ -9,11 +9,16 @@ private var damaged : boolean;
 private var lastDamaged : float = Time.time;   
 private var healthAdder : float = 0;                                          // True when the player gets damaged.
 
+private var GameController:GameController;
 
-function Awake ()
-{
-    // Set the initial health of the player (Maybe cheat a little and add more health to your character, only an if statement away).
-    currentHealth = startingHealth;
+function Awake () {
+  // Set the initial health of the player (Maybe cheat a little and add more health to your character, only an if statement away).
+  currentHealth = startingHealth;
+}
+
+function Start () {
+  // Set the initial health of the player (Maybe cheat a little and add more health to your character, only an if statement away).
+  GameController = GetComponent('GameController');
 }
 
 
@@ -46,7 +51,11 @@ function Update ()
 
 
 public function TakeDamage (amount : int)
-{
+{	
+	if(isDead) {
+    	return;
+  	}
+	
     // Set the damaged flag 
     damaged = true;
 	
@@ -54,23 +63,28 @@ public function TakeDamage (amount : int)
 	
     // Reduce the current health by the damage amount.
     currentHealth -= amount;
-
-    // If the player has lost all it's health and the death flag hasn't been set yet...
-    if(currentHealth <= 0 && !isDead)
-    {
-        // ... it should die a horrible horrible (and possibly humiliating) death.
-        Death ();
-    }
-    Debug.Log("Damage taken, Current health for " + this.name + ": "+ currentHealth);
+    
+    if(currentHealth <= 0) {
+    	// ... it should die a horrible horrible (and possibly humiliating) death.
+    	Death ();
+	}else {
+		GameController.PlayerHurt(this);
+	}
     
 }
 
 
-function Death ()
-{
-    // Set the death flag so this function won't be called again (you wouldn't want to die twice would you?).
-    isDead = true;
+function Death () {
+  // Set the death flag so this function won't be called again (you wouldn't want to die twice would you?).
+  var rigidBody = this.GetComponent(Rigidbody);
 
-   //Do dead stuff that dead players do
-   
+  isDead = true;
+  GameController.PlayerDied(this);
+  //lets make the body fly around!
+  rigidBody.constraints = RigidbodyConstraints.None;
+  yield WaitForSeconds(0.1);
+
+  Destroy(this.gameObject);
+
+
 }
