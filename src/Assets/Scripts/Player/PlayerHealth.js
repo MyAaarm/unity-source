@@ -3,6 +3,7 @@
 var startingHealth : int = 100;                             // The amount of health the player starts the game with.
 var currentHealth : int;  
 var regenFactor : int = 2;                                  // The current health the player has.
+var regenHealth : int = 30;
 
 private var isDead : boolean;                                                // Whether the player is dead.
 private var damaged : boolean;  
@@ -35,12 +36,12 @@ function Update ()
     	//Make player look not damaged (duh)
     }
 	
-	if(Time.time-lastDamaged>3&&currentHealth<startingHealth){
+	if(Time.time-lastDamaged>3&&currentHealth<regenHealth){
 		healthAdder += regenFactor*Time.deltaTime;
 		if(healthAdder>=1){
 			healthAdder = 0;
 			currentHealth += 1;
-			Debug.Log("Health regenerating, Current health for " + this.name + ": "+ currentHealth);
+			GameController.PlayerHurt(this);
 		}
 	}
 	
