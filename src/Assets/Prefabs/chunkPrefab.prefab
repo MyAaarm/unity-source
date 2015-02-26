@@ -12,12 +12,13 @@ GameObject:
   - 64: {fileID: 6450422}
   - 23: {fileID: 2350422}
   - 114: {fileID: 11450422}
+  - 208: {fileID: 20818238}
   m_Layer: 0
   m_Name: chunkPrefab
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &450422
 Transform:
@@ -84,6 +85,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   world: {fileID: 0}
+--- !u!208 &20818238
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150422}
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 2
+  m_MoveThreshold: 0
+  m_Carve: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

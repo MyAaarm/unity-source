@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -24,10 +25,10 @@ public class World : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
-    public void CreateChunk(int x, int y, int z)
+	public void CreateChunk(int x, int y, int z)
     {
         WorldPos worldPos = new WorldPos(x, y, z);
 

@@ -22,7 +22,10 @@ function OnTriggerEnter (other : Collider) {
 	if(other.tag == "Player" && timer <= 28){
 		SkeletonDeath();
      	var direction : Vector3 = other.transform.position - transform.position;
-     	other.rigidbody.AddForce(direction * 10000,ForceMode.Acceleration);		
+     	other.rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
+     	direction.y += 0.75;
+     	other.rigidbody.AddForce(direction * 60,ForceMode.Impulse);	
+     	//other.rigidbody.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
 	}
 }
 
