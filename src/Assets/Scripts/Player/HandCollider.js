@@ -26,12 +26,19 @@ function OnCollisionEnter( col : Collision ){
 		}*/
 		cld = col;
 		handCollision = true;
-		collisionTimer = 20;
+		collisionTimer = 100;
 }
  
 function FixedUpdate(){
+    var hingeJoints : Component[];
     
-    
+    if(!this.transform.root.GetComponent(PlayerMovement).dragButton) {
+        	
+		hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
+		for (var joint : HingeJoint in hingeJoints) {
+			Destroy(joint);
+		}
+	}
     
     if(collisionTimer > 0  && handCollision){
     	
@@ -94,7 +101,7 @@ function FixedUpdate(){
                //}
             }
         } else {
-        	var hingeJoints : Component[];
+        	//var hingeJoints : Component[];
 			hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
 			for (var joint : HingeJoint in hingeJoints) {
 				Destroy(joint);
@@ -108,4 +115,5 @@ function FixedUpdate(){
     	}
     	
         }
-    }   
+    }
+   
