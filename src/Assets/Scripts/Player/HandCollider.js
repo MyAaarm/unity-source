@@ -44,16 +44,37 @@ function FixedUpdate(){
     	
     	//Debug.Log("THIS =====" + this.transform.root.name);
     	//Debug.Log("NOT THIS =====" + cld.collider.gameObject.transform.root.name);
-    	
-    	if((cld.collider.gameObject.transform.root.name != this.transform.root.name) && this.transform.root.GetComponent(PlayerCollider).occupied != true){
+    	// && this.transform.root.GetComponent(PlayerCollider).occupied != true
+    	if((cld.collider.gameObject.transform.root.name != this.transform.root.name)){
         	if(this.transform.root.GetComponent(PlayerMovement).dragButton){
         	//if(Input.GetButton("X360AButtonPC")||Input.GetButton("X360AButtonOSX")||Input.GetKey(KeyCode.E)){
         		
-        		//Debug.Log("WIN " + collisionTimer);
+        		Debug.Log("Collided"); 
+        		var hJ : Component[];
+				hJ = this.gameObject.GetComponentsInChildren(HingeJoint);
+				if(hJ.Length == 0){
+        		this.gameObject.AddComponent(HingeJoint); 
+        		var otherBody = cld.collider.gameObject.gameObject.rigidbody; 
+        		hingeJoint.breakForce = 45; 
+        		hingeJoint.breakTorque = 45; 
+        		hingeJoint.connectedBody = otherBody;} 
         		cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = true;
-        		//cld.collider.gameObject.transform.root.rigidbody.constraints =  RigidbodyConstraints.None;
       			cld.collider.gameObject.transform.root.rigidbody.constraints &=  ~RigidbodyConstraints.FreezePositionX;
       			cld.collider.gameObject.transform.root.rigidbody.constraints &=  ~RigidbodyConstraints.FreezePositionZ;
+        		/*D = this.transform.root.transform.position - cld.collider.gameObject.transform.root.transform.position; // line from crate to player
+                pullF = 10;
+                dist = D.magnitude;
+                pullDir = D.normalized;
+                Debug.Log(pullDir*(pullF * Time.deltaTime)*100f);
+        		cld.collider.gameObject.transform.root.rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*100f, ForceMode.Impulse);
+                */ 
+        		
+        		
+        		/*//Debug.Log("WIN " + collisionTimer);
+        		cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = true;
+        		cld.collider.gameObject.transform.root.rigidbody.constraints =  RigidbodyConstraints.None;
+      			//cld.collider.gameObject.transform.root.rigidbody.constraints &=  ~RigidbodyConstraints.FreezePositionX;
+      			//cld.collider.gameObject.transform.root.rigidbody.constraints &=  ~RigidbodyConstraints.FreezePositionZ;
       			D = this.transform.root.transform.position - cld.collider.gameObject.transform.root.transform.position; // line from crate to player
                 this.gameObject.transform.rotation = Quaternion.LookRotation(D);
                 dist = D.magnitude;
@@ -68,19 +89,21 @@ function FixedUpdate(){
                  /*pullForDist = (dist-3)/2.0f;
                  if(pullForDist>20) pullForDist=20;
                  pullF += pullForDist;*/
-                // Debug.Log("Player1 = " + this.gameObject.transform.root.GetComponent(PlayerCollider).occupied);
-                 //Debug.Log("Player2 = " + cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied);
-              	//Debug.Log(cld.collider.gameObject.transform.root.name);
-                // Debug.Log(pullDir*(pullF * Time.deltaTime));
-                	cld.collider.gameObject.transform.root.rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*50f, ForceMode.Impulse);
-                 //GameObject.Find("Player 2").rigidbody.velocity += pullDir*(pullF * Time.deltaTime);
-               }
+                	//cld.collider.gameObject.transform.root.rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*20f, ForceMode.Impulse);
+                 //GameObject.Find("Player 2").rigidbody.velocity += pullDir*(pullF * Time.deltaTime); */
+               //}
             }
+        } else {
+        	var hingeJoints : Component[];
+			hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
+			for (var joint : HingeJoint in hingeJoints) {
+				Destroy(joint);
+			}
         }
         
         if(collisionTimer == 0){ 
     	handCollision = false; 
-    	cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = false;
+    	//cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = false;
     	cld = null;
     	}
     	
