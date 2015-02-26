@@ -9,6 +9,7 @@ private var seeker : GameObject;
 private var Aa : GameObject; 
 //The calculated pat
 private var path : Path;
+private var vectors : Vector3[];
 //Speed
 public var speed : float;
 //The waypoint we are currently moving towards
@@ -23,7 +24,7 @@ function Awake ()
     // Set up the references.
     seeker = GameObject.Find("Seeker");
     Aa = GameObject.Find("A*");
-    speed = 500;
+    speed = 100;
     currentWaypoint = 0;
     nextWaypointDistance  = 3;
     targetTimer = 0;
@@ -31,7 +32,7 @@ function Awake ()
     //Aa.BroadcastMessage("Scan");
 }
 
-function FixedUpdate () { 
+function Update () { 
 	var targets = gameObject.FindGameObjectsWithTag("Player");
 	var minDist = Number.MaxValue;
 	if (theTarget == null || timer <= 0){
@@ -62,25 +63,32 @@ function FixedUpdate () {
 		myTarget = theTarget.transform.position;
 	}
 	//Look at the target
-	transform.LookAt(myTarget);
-	if (targetTimer >= 1){// PlayerDetection.playerDetected == false &&){
-		var vectors = [transform.position, myTarget];
-		seeker.BroadcastMessage("StartPath", vectors);	
+	//transform.LookAt(myTarget);
+	//if (targetTimer >= 1){// PlayerDetection.playerDetected == false &&){
+		vectors = [transform.position, myTarget];
+		seeker.BroadcastMessage("IsDone");	
 		targetTimer = 0;	
 //		var vectors = [transform.position, myTarget];
 //		seeker.BroadcastMessage("StartPath", vectors);
-	}
+	//}
         	
 		if (path != null && currentWaypoint < path.vectorPath.Count) {
             //Direction to the next waypoint
         	var dir : Vector3 = (path.vectorPath[currentWaypoint]-transform.position).normalized;
+        	Debug.Log("dir1 = " + dir);
         	dir *= speed * Time.fixedDeltaTime;
-        	dir.y += 3;
-        	controller.SimpleMove(dir);
+        	Debug.Log("dir2 = " + dir);
+        	dir.y = 0; 
+        	transform.rigidbody.MovePosition(transform.rigidbody.position + dir);
         	
-        	Debug.Log(Vector3.Distance(transform.position,path.vectorPath[currentWaypoint]) + " " + path.vectorPath[currentWaypoint] + " " + nextWaypointDistance);
+        	//controller.SimpleMove(dir);
+        	
+        	//Debug.Log(Vector3.Distance(transform.position,path.vectorPath[currentWaypoint]) + " " + nextWaypointDistance);
+        	
+        	//Debug.Log((currentWaypoint));
         		
         	if (Vector3.Distance(transform.position,path.vectorPath[currentWaypoint]) < nextWaypointDistance) {
+        		Debug.Log("HH");
             	currentWaypoint++;
         	}
         }
@@ -108,4 +116,8 @@ function OnPathComplete (p : Path) {
         //Reset the waypoint counter
         currentWaypoint = 0;
     }
+}
+
+function bananaBalls(){
+		seeker.BroadcastMessage("StartPath", vectors);
 }

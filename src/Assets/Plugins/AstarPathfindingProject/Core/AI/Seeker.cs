@@ -245,6 +245,13 @@ public class Seeker : MonoBehaviour {
 	 * \version Behaviour changed in 3.2
 	 * */
 	public bool IsDone () {
+
+		if (path == null || path.GetState () >= PathState.Returned) {
+			GameObject ums = GameObject.Find ("Judge");
+			ums.BroadcastMessage("bananaBalls");
+		}
+
+
 		return path == null || path.GetState() >= PathState.Returned;
 	}
 	
@@ -376,8 +383,8 @@ public class Seeker : MonoBehaviour {
 	 */
 	public Path StartPath (Vector3[] vectors) {
 		Path p = StartPath (vectors[0], vectors[1],null,-1);
-		GameObject ums = GameObject.Find ("Judge");
-		ums.BroadcastMessage ("OnPathComplete", p);
+		GameObject pms = GameObject.Find ("Judge");
+		pms.BroadcastMessage ("OnPathComplete", p);
 		return p;
 	}
 
