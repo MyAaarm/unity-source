@@ -7,11 +7,16 @@ static var numberOfPlayersPlaying: int;
 public var Player : GameObject;
 
 static var players : GameObject[];
-static var playerControllers = ['Keyboard','','',''];
-//static var playerControllers = ['PS3OSX', 'X360OSX', 'X360OSX', 'PS3OSX'];
+//static var playerControllers = ['Keyboard','','',''];
+static var playerControllers = ['Keyboard', 'X360OSX', 'X360OSX', 'PS3OSX'];
+
+function Awake () {
+  DontDestroyOnLoad(this);
+}
+
 
 function Start () {
-  HUD = GetComponent(HUDController);
+  HUD = FindObjectOfType(HUDController);
 
   if(Application.loadedLevel == 1){
     addPlayers();
@@ -20,7 +25,7 @@ function Start () {
 
 function addPlayers() {
   for(var i  = 0; i < numberOfPlayers; i++) {
-    var playerObject = GameObject.Instantiate(Player, Vector3(-10 + 5*i , 4.6, 0), Quaternion.identity) as GameObject;
+    var playerObject = GameObject.Instantiate(Player, Vector3(-20 + 10*i , 4.6, 0), Quaternion.identity) as GameObject;
     Debug.Log('Added player ' + i);
     playerObject.name = 'Player' + (i + 1);
     playerObject.GetComponent(PlayerMovement).playerNumber = i + 1;
@@ -34,10 +39,6 @@ function addPlayers() {
 function StartTheGame() {
   Application.LoadLevel('Play');
   addPlayers();
-}
-
-function Awake () {
-  DontDestroyOnLoad(this);
 }
 
 static function SetNumberOfPlayers (integer) {
