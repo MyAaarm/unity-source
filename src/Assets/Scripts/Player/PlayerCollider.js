@@ -9,10 +9,12 @@ private var pullForDist : float;
 private var pullF : float;  
 private var handCollision : boolean;
 private var otherBody : Rigidbody;
+public var occupied : boolean;
 
 
 function Awake (){
 	playerHealth = GetComponent (PlayerHealth);
+	occupied = false;
 }
 
 function OnCollisionEnter( col : Collision ){
@@ -22,21 +24,24 @@ function OnCollisionEnter( col : Collision ){
 		if(col.collider.transform.root.name != gameObject.name){
 
 			if(col.relativeVelocity.magnitude>6){
-				playerHealth.TakeDamage(col.relativeVelocity.magnitude*.5);
+				//playerHealth.TakeDamage(col.relativeVelocity.magnitude*.5);
 			}
 			
 			handCollision = true;
+			
+			
 
 
 		}
 
-	}
-	
-	if(col.collider.name=="DespawnPlane"){
-		Destroy (this.gameObject);
+	}	
+		
+		
+		if(col.collider.name=="DespawnPlane"){
+			Destroy (this.gameObject);
+		}
 	}
 
-}
 
 function OnCollisionExit( col : Collision ){
  
@@ -51,7 +56,8 @@ function OnCollisionExit( col : Collision ){
             }
     }
 }
- 
+
+/*
 function FixedUpdate(){
     
     if((GameObject.Find("Player1").transform.position - GameObject.Find("Player2").transform.position).magnitude <20){
@@ -81,4 +87,4 @@ function FixedUpdate(){
                }
             }
         }
-    }   
+    }   */

@@ -15,6 +15,7 @@ private var activeArm : String;
 
 public var leftHand : GameObject;
 public var rightHand : GameObject;
+public var dragButton : boolean;
 
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
 
@@ -53,6 +54,8 @@ function FixedUpdate ()
 
 		hV = Input.GetAxisRaw ("Horizontal2");
 		vV = Input.GetAxisRaw ("Vertical2");
+		
+		dragButton = Input.GetKey(KeyCode.E);
 
 
 	}else if(currentGameController == "Keyboard2"){
@@ -115,8 +118,10 @@ function FixedUpdate ()
       Move(h, v, hV, vV);
     }
     else {
-      playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
-      playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
+    	if(!this.gameObject.GetComponent(PlayerCollider).occupied){
+	      playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
+	      playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
+      }
     }
 }
 
@@ -161,7 +166,7 @@ function Move (h : float, v : float, hV : float, vV : float) {
 
     // Normalise the movement vector and make it proportional to the speed per second.
     movement = movement.normalized * speed * Time.deltaTime;
-    var newRotation : Quaternion = Quaternion.LookRotation (movement);
+	    var newRotation : Quaternion = Quaternion.LookRotation (movement);
 
     // Move the player to it's current position plus the movement.
     //playerRigidbody.MoveRotation (newRotation);
