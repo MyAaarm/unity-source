@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-var cameraSpeed : float = 5f;        // The speed with which the camera will be following.
+var cameraSpeed : float = .5f;        // The speed with which the camera will be following.
 var height : float = 10f;
 var zOffset : float = 20f;  
 
@@ -41,9 +41,9 @@ function FixedUpdate ()
  	}
 	zOffset = Mathf.Lerp(zOffset,newZOffset,Time.deltaTime*cameraSpeed);
 	
-	var newXpos = Mathf.Lerp(transform.position.x, avgDistance.x, Time.deltaTime*cameraSpeed);
+	var newXpos : float = Mathf.Lerp(transform.position.x, avgDistance.x, Time.deltaTime*cameraSpeed);
 	
-	var newZpos = Mathf.Lerp(transform.position.z, avgDistance.z  - zOffset, Time.deltaTime*cameraSpeed);
+	var newZpos : float = Mathf.Lerp(transform.position.z, avgDistance.z  - zOffset, Time.deltaTime*cameraSpeed);
 				
 	transform.position.x = newXpos;
  
@@ -51,10 +51,11 @@ function FixedUpdate ()
 
 	transform.position.y = height;
 	
+	var oldRot : Quaternion = transform.rotation ;
+	transform.LookAt (avgDistance) ;
+	var newRot : Quaternion = transform.rotation ;
+	transform.rotation = Quaternion.Lerp ( oldRot , newRot, Time.deltaTime*cameraSpeed ) ;
 	
-	
-	transform.LookAt(avgDistance);	
-
 }
 
 function returnLargestDifference(){

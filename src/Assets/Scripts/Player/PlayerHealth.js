@@ -1,11 +1,14 @@
 ﻿#pragma strict
 
-var startingHealth : int = 10;                             // The amount of health the player starts the game with.
+var startingHealth : int = 100;                             // The amount of health the player starts the game with.
+var currentHealth : int;  
+var regenFactor : int = 2;                                  // The current health the player has.
+var regenHealth : int = 30;
 
-public var currentHealth : int;                                    // The current health the player has.
-public var isDead : boolean;                                                // Whether the player is dead.
-
-private var damaged : boolean;                                               // True when the player gets damaged.
+private var isDead : boolean;                                                // Whether the player is dead.
+private var damaged : boolean;  
+private var lastDamaged : float = Time.time;   
+private var healthAdder : float = 0;                                          // True when the player gets damaged.
 
 private var GameController:GameController;
 
@@ -20,42 +23,55 @@ function Start () {
 }
 
 
-function Update () {
-  // If the player has just been damaged...
-  if(damaged) {
-      //Make player look damaged
-  }
-  // Otherwise...
-  else {
-  	//Make player look not damaged (duh)
-  }
-
-  // Reset the damaged flag.
-  damaged = false;
+function Update ()
+{
+    // If the player has just been damaged...
+    if(damaged)
+    {
+        //Make player look damaged
+    }
+    // Otherwise...
+    else
+    {
+    	//Make player look not damaged (duh)
+    }
+	
+	if(Time.time-lastDamaged>3&&currentHealth<regenHealth){
+		healthAdder += regenFactor*Time.deltaTime;
+		if(healthAdder>=1){
+			healthAdder = 0;
+			currentHealth += 1;
+			GameController.PlayerHurt(this);
+		}
+	}
+	
+	
+    // Reset the damaged flag.
+    damaged = false;
 }
 
 
-public function TakeDamage (amount : int) {
-  if(isDead) {
-    return;
-  }
-  // Set the damaged flag
-  damaged = true;
-
-  // Reduce the current health by the damage amount.
-  currentHealth -= amount;
-
-  // If the player has lost all it's health and the death flag hasn't been set yet...
-  if(currentHealth <= 0) {
-    // ... it should die a horrible horrible (and possibly humiliating) death.
-    Death ();
-  }
-  else {
-    GameController.PlayerHurt(this);
-  }
-  //Debug.Log("Damage taken, Current health for " + this.name + ": "+ currentHealth);
-
-
+public function TakeDamage (amount : int)
+{	
+	if(isDead) {
+    	return;
+  	}
+	
+    // Set the damaged flag 
+    damaged = true;
+	
+	lastDamaged = Time.time;
+	
+    // Reduce the current health by the damage amount.
+    currentHealth -= amount;
+    
+    if(currentHealth <= 0) {
+    	// ... it should die a horrible horrible (and possibly humiliating) death.
+    	Death ();
+	}else {
+		GameController.PlayerHurt(this);
+	}
+    
 }
 
 

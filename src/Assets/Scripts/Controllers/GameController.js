@@ -2,17 +2,22 @@
 
 static var numberOfPlayers : int = 2;
 static var HUD:HUDController;
+static var PauseMenu:PauseController;
 static var numberOfPlayersPlaying: int;
 
 public var Player : GameObject;
 
 static var players : GameObject[];
-static var playerControllers = ['X360PC', 'X360PC','',''];
 //static var playerControllers = ['Keyboard','','',''];
-//static var playerControllers = ['PS3OSX', 'X360OSX', 'X360OSX', 'PS3OSX'];
+static var playerControllers = ['Keyboard', 'X360OSX', 'X360OSX', 'PS3OSX'];
+
+function Awake () {
+  DontDestroyOnLoad(this);
+}
 
 function Start () {
-  HUD = GetComponent(HUDController);
+  HUD = FindObjectOfType(HUDController);
+  PauseMenu = FindObjectOfType(PauseController);
 
   if(Application.loadedLevel == 1){
     addPlayers();
@@ -21,7 +26,7 @@ function Start () {
 
 function addPlayers() {
   for(var i  = 0; i < numberOfPlayers; i++) {
-    var playerObject = GameObject.Instantiate(Player, Vector3(-10 + 5*i , 4.6, 0), Quaternion.identity) as GameObject;
+    var playerObject = GameObject.Instantiate(Player, Vector3(-20 + 10*i , 4.6, 0), Quaternion.identity) as GameObject;
     Debug.Log('Added player ' + i);
     playerObject.name = 'Player' + (i + 1);
     playerObject.GetComponent(PlayerMovement).playerNumber = i + 1;
@@ -43,10 +48,6 @@ function StartTheGame() {
   addPlayers();
 }
 
-function Awake () {
-  DontDestroyOnLoad(this);
-}
-
 static function SetNumberOfPlayers (integer) {
   numberOfPlayers = integer;
 }
@@ -61,8 +62,7 @@ static function PlayerDied (player) {
   HUD.SetPlayerToDead(player);
 
   if(numberOfPlayersPlaying == 1) {
-    HUD.ShowWonMessage(players[0]);
-    //yield WaitForSeconds(3);
-    Application.LoadLevel('Play');
+    HUD.Hide();
+    PauseMenu.ShowWonMessage(players[0]);
   }
 }
