@@ -55,10 +55,10 @@ function CheckInput() {
     UpdateMenu(-1);
   }
 
-  else if(Input.GetAxisRaw("PS3LeftJoystickYOSX1") < 0 && isChanging == false) {
+  else if(Input.GetAxisRaw("LeftJoystickY1") < 0 && isChanging == false) {
     UpdateMenu(1);
   }
-  else if(Input.GetAxisRaw("PS3LeftJoystickYOSX1") > 0 && isChanging == false) {
+  else if(Input.GetAxisRaw("LeftJoystickY1") > 0 && isChanging == false) {
     UpdateMenu(-1);
   }
 }
