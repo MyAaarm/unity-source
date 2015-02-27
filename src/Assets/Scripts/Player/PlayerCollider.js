@@ -10,6 +10,7 @@ private var pullF : float;
 private var handCollision : boolean;
 private var otherBody : Rigidbody;
 public var occupied : boolean;
+public var onGround : boolean;
 
 
 function Awake (){
@@ -40,6 +41,11 @@ function OnCollisionEnter( col : Collision ){
 		GameController.PlayerDied(this);
         Destroy (this.gameObject);
 	}
+	
+	if(col.collider.transform.root.name=="SpawnedChunks"){
+		onGround = true;
+	}
+	
 }
 
 function OnCollisionExit( col : Collision ){
@@ -54,6 +60,10 @@ function OnCollisionExit( col : Collision ){
 
             }
     }
+    
+    if(col.collider.transform.root.name=="SpawnedChunks"){
+		onGround = false;
+	}
 }
 
 /*

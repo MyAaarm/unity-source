@@ -13,9 +13,13 @@ private var camRayLength : float = 100f;          // The length of the ray from 
 
 private var activeArm : String;
 
+
+
 public var leftHand : GameObject;
 public var rightHand : GameObject;
 public var dragButton : boolean;
+public var jumpForce : float = 50f;
+public var numberOfJumps : int = 0;
 
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
 
@@ -43,8 +47,7 @@ function FixedUpdate ()
     var v : float;
     var hV : float;
     var vV : float;
-    var leftBumperPressed;
-    var rightBumperPressed;
+    var jumpButtonPressed : boolean;
 
 	UpdateGameController (); //Check if controller should be changed
 
@@ -93,7 +96,9 @@ function FixedUpdate ()
     	vV  = Input.GetAxisRaw ("360RightJoystickYPC"+playerNumber);
     	
     	dragButton = Input.GetButton('360RightBumperPC'+playerNumber);
-
+		
+		jumpButtonPressed =  Input.GetButtonDown('X360AButtonPC'+playerNumber);
+						
     	//leftBumperPressed = Input.GetButtonDown('360LeftBumperPC'+playerNumber);
     	//rightBumperPressed = Input.GetButtonDown('360RightBumperPC'+playerNumber);
     }
@@ -122,11 +127,16 @@ function FixedUpdate ()
       Move(h, v, hV, vV);
     }
     else {
-    	if(!this.gameObject.GetComponent(PlayerCollider).occupied){
+    	if(!this.gameObject.GetComponent(PlayerCollider).occupied&&this.gameObject.GetComponent(PlayerCollider).onGround){
 	      playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
 	      playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
       }
     }
+    
+    if(jumpButtonPressed){
+    	Jump();
+    }
+    
 }
 
 function UpdateGameController ()
@@ -175,5 +185,20 @@ function Move (h : float, v : float, hV : float, vV : float) {
     // Move the player to it's current position plus the movement.
     //playerRigidbody.MoveRotation (newRotation);
     //playerRigidbody.MovePosition (transform.position + movement);
+
+}
+
+
+function Jump(){
+	
+	if(this.gameObject.GetComponent(PlayerCollider).onGround){
+		numberOfJumps = 0;
+	}
+	
+	var jumpVector : Vector3 = new Vector3(0f, jumpForce, 0f);
+	if(numberOfJumps<2){
+		playerRigidbody.AddForce(jumpVector, ForceMode.Impulse);
+		numberOfJumps++;
+	}
 
 }
