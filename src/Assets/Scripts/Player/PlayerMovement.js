@@ -66,28 +66,28 @@ function FixedUpdate ()
 
 	}else if(currentGameController == "PS3OSX"){
 
-		h = Input.GetAxisRaw ("PS3LeftJoystickXOSX"+playerNumber);
-		v = Input.GetAxisRaw ("PS3LeftJoystickYOSX"+playerNumber);
+		h = Input.GetAxisRaw ("LeftJoystickX"+playerNumber);
+		v = Input.GetAxisRaw ("LeftJoystickY"+playerNumber);
 
-		hV = Input.GetAxisRaw ("PS3RightJoystickXOSX"+playerNumber);
-	    vV = Input.GetAxisRaw ("PS3RightJoystickYOSX"+playerNumber);
+		hV = Input.GetAxisRaw ("RightJoystickXOSX"+playerNumber);
+	    vV = Input.GetAxisRaw ("RightJoystickYOSX"+playerNumber);
 
 
 	}else if (currentGameController == "X360OSX"){
 
-		h = Input.GetAxisRaw ("360LeftJoystickX"+playerNumber);
-		v = Input.GetAxisRaw ("360LeftJoystickY"+playerNumber);
+		h = Input.GetAxisRaw ("LeftJoystickX"+playerNumber);
+		v = Input.GetAxisRaw ("LeftJoystickY"+playerNumber);
 
-		hV  = Input.GetAxisRaw ("360RightJoystickXOSX"+playerNumber);
-    	vV  = Input.GetAxisRaw ("360RightJoystickYOSX"+playerNumber);
+		hV  = Input.GetAxisRaw ("RightJoystickXOSX"+playerNumber);
+    	vV  = Input.GetAxisRaw ("RightJoystickYOSX"+playerNumber);
     	
     	dragButton = Input.GetButton('X360AButtonOSX'+playerNumber);
 
     }//Check if the game is running on PC with Xbox360 controller
 	else if (currentGameController == "X360PC"){
 
-		h = Input.GetAxisRaw ("360LeftJoystickX"+playerNumber);
-		v = Input.GetAxisRaw ("360LeftJoystickY"+playerNumber);
+		h = Input.GetAxisRaw ("LeftJoystickX"+playerNumber);
+		v = Input.GetAxisRaw ("LeftJoystickY"+playerNumber);
 
 		hV  = Input.GetAxisRaw ("360RightJoystickXPC"+playerNumber);
     	vV  = Input.GetAxisRaw ("360RightJoystickYPC"+playerNumber);
