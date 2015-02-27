@@ -24,9 +24,12 @@ function OnCollisionEnter( col : Collision ){
 		/*for (var contact : ContactPoint in col.contacts) {
 					print(contact.thisCollider.name + " hit " + contact.otherCollider.name);
 		}*/
-		cld = col;
-		handCollision = true;
-		collisionTimer = 100;
+		
+		if(col.collider.gameObject.transform.root.tag=="Player"){	
+			cld = col;			
+			handCollision = true;
+			collisionTimer = 100;
+		}
 }
  
 function FixedUpdate(){
@@ -38,7 +41,13 @@ function FixedUpdate(){
 		for (var joint : HingeJoint in hingeJoints) {
 			Destroy(joint);
 		}
+		
 	}
+	
+	hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
+	if(hingeJoints.Length==0&&cld!=null){	
+    	cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = false;   
+    } 
     
     if(collisionTimer > 0  && handCollision){
     	
@@ -52,16 +61,20 @@ function FixedUpdate(){
     	//Debug.Log("THIS =====" + this.transform.root.name);
     	//Debug.Log("NOT THIS =====" + cld.collider.gameObject.transform.root.name);
     	// && this.transform.root.GetComponent(PlayerCollider).occupied != true
-    	if((cld.collider.gameObject.transform.root.name != this.transform.root.name)){
+    	if(cld.collider.gameObject.transform.root.name != this.transform.root.name){
         	if(this.transform.root.GetComponent(PlayerMovement).dragButton){
         	//if(Input.GetButton("X360AButtonPC")||Input.GetButton("X360AButtonOSX")||Input.GetKey(KeyCode.E)){
         		
-        		Debug.Log("Collided"); 
+        		//Debug.Log("Collided"); 
         		var hJ : Component[];
 				hJ = this.gameObject.GetComponentsInChildren(HingeJoint);
 				if(hJ.Length == 0){
         		this.gameObject.AddComponent(HingeJoint); 
         		var otherBody = cld.collider.gameObject.gameObject.rigidbody; 
+        		if(otherBody==null){
+        			otherBody = cld.collider.transform.root.gameObject.rigidbody;
+        		}
+        		Debug.Log(otherBody.name);
         		hingeJoint.breakForce = 45; 
         		hingeJoint.breakTorque = 45; 
         		hingeJoint.connectedBody = otherBody;} 
@@ -100,20 +113,13 @@ function FixedUpdate(){
                  //GameObject.Find("Player 2").rigidbody.velocity += pullDir*(pullF * Time.deltaTime); */
                //}
             }
-        } else {
-        	//var hingeJoints : Component[];
-			hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
-			for (var joint : HingeJoint in hingeJoints) {
-				Destroy(joint);
-			}
-        }
-        
+        } 
+                
         if(collisionTimer == 0){ 
-    	handCollision = false; 
-    	//cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = false;
+    	handCollision = false;         		
     	cld = null;
     	}
     	
-        }
-    }
+	}
+}
    
