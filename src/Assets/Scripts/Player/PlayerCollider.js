@@ -25,6 +25,8 @@ function OnCollisionEnter( col : Collision ){
 
 			if(col.relativeVelocity.magnitude>6){
 				playerHealth.TakeDamage(col.relativeVelocity.magnitude*.5);
+				gameObject.transform.Find("Nose").particleSystem.enableEmission = true;
+				gameObject.transform.Find("Nose").particleSystem.Play();
 				
 				//this.rigidbody.constraints = RigidbodyConstraints.None;
 				
