@@ -23,8 +23,8 @@ function OnCollisionEnter( col : Collision ){
 
 		if(col.collider.transform.root.name != gameObject.name){
 
-			if(col.relativeVelocity.magnitude>6){
-				//playerHealth.TakeDamage(col.relativeVelocity.magnitude*.5);
+			if(col.relativeVelocity.magnitude>25){
+				playerHealth.TakeDamage(col.relativeVelocity.magnitude*.5);
 			}
 
 			handCollision = true;
