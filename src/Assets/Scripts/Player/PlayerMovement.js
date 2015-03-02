@@ -18,7 +18,7 @@ private var activeArm : String;
 public var leftHand : GameObject;
 public var rightHand : GameObject;
 public var dragButton : boolean;
-public var jumpForce : float = 50f;
+public var jumpForce : float = 80f;
 public var numberOfJumps : int = 0;
 
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
