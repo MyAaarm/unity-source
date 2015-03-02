@@ -57,7 +57,7 @@ function FixedUpdate ()
     var hV : float;
     var vV : float;
     var jumpButtonPressed : boolean;
-
+    
 	UpdateGameController (); //Check if controller should be changed
 
 	if(currentGameController == "Keyboard"){
@@ -142,10 +142,16 @@ function FixedUpdate ()
     	Jump();
     }
     
+    if(playerRigidbody.velocity.y>jumpForce){
+		playerRigidbody.velocity.y = jumpForce;
+	}
+    
+    Debug.Log(playerRigidbody.velocity.y);
+    
     if (h == 0 && v == 0 && hV == 0 && vV == 0){
 		leftLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
 		rightLeg.transform.rotation = Quaternion.Euler(0, 0, 0);	
-	}r
+	}
 }
 
 function UpdateGameController ()
@@ -190,7 +196,9 @@ function Jump(){
 	
 	var jumpVector : Vector3 = new Vector3(0f, jumpForce, 0f);
 	if(numberOfJumps<2){
-		playerRigidbody.AddForce(jumpVector, ForceMode.Impulse);
+		//playerRigidbody.AddForce(jumpVector, ForceMode.Impulse);
+		playerRigidbody.velocity = jumpVector;
+		
 		numberOfJumps++;
 	}
 }
