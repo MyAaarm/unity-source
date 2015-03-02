@@ -25,8 +25,15 @@ function OnCollisionEnter( col : Collision ){
 
 			if(col.relativeVelocity.magnitude>6){
 				playerHealth.TakeDamage(col.relativeVelocity.magnitude*.5);
-				gameObject.transform.Find("Nose").particleSystem.enableEmission = true;
-				gameObject.transform.Find("Nose").particleSystem.Play();
+				
+				Debug.Log("damage = " + col.relativeVelocity.magnitude);
+				if(col.relativeVelocity.magnitude > 15){
+					gameObject.particleSystem.transform.position = col.transform.position;
+					gameObject.particleSystem.transform.rotation = col.transform.rotation;
+					gameObject.particleSystem.enableEmission = true;
+					gameObject.particleSystem.Simulate(0.005f, true);
+					gameObject.particleSystem.Play();
+				}
 				
 				//this.rigidbody.constraints = RigidbodyConstraints.None;
 				
