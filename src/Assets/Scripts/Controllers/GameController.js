@@ -26,7 +26,7 @@ function Start () {
 
 function addPlayers() {
   for(var i  = 0; i < numberOfPlayers; i++) {
-    var playerObject = GameObject.Instantiate(Player, Vector3(-20 + 10*i , 4.6, 0), Quaternion.identity) as GameObject;
+    var playerObject = GameObject.Instantiate(Player, Vector3(-20 + 10*i , 8, 0), Quaternion.identity) as GameObject;
     Debug.Log('Added player ' + i);
     playerObject.name = 'Player' + (i + 1);
     playerObject.GetComponent(PlayerMovement).playerNumber = i + 1;

@@ -17,15 +17,24 @@ private var activeArm : String;
 
 public var leftHand : GameObject;
 public var rightHand : GameObject;
+private var leftLeg : GameObject;
+private var rightLeg : GameObject;
+private var legs : GameObject;
+
 public var dragButton : boolean;
 public var jumpForce : float = 80f;
 public var numberOfJumps : int = 0;
+private var newRotation : Quaternion;
+private var old : int; 
+
 
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
 
 function Awake ()
 {
-
+	legs = this.transform.Find("Legs").gameObject;
+    leftLeg = this.transform.Find("Legs/leftLeg").gameObject;
+    rightLeg = this.transform.Find("Legs/rightLeg").gameObject;   
 }
 
 function Start () {
@@ -105,26 +114,22 @@ function FixedUpdate ()
 
 
     // Move the player around the scene.
-    var shouldMove = false;
+    var shouldMove = false;   
 
     if(h != 0 || v != 0) {
       shouldMove = true;
       LeftArm(h, v);
-    } else {
-      //leftHand.rigidbody.constraints = RigidbodyConstraints.FrezeeAll;
-    }
-    // Turn the player to face the mouse cursor.
-
+      MoveLegs(h, v, hV, vV);	
+    } 
+   
     if(hV != 0 || vV != 0) {
       shouldMove = true;
       RightArm(hV, vV);
-    } else {
-      //rightHand.rigidbody.constraints = RigidbodyConstraints.FrezeeAll;
+      MoveLegs(h, v, hV, vV);	
     }
 
     if(shouldMove){
-      playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ ;
-      Move(h, v, hV, vV);
+	playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
     else {
     	if(!this.gameObject.GetComponent(PlayerCollider).occupied&&this.gameObject.GetComponent(PlayerCollider).onGround){
@@ -137,6 +142,10 @@ function FixedUpdate ()
     	Jump();
     }
     
+    if (h == 0 && v == 0 && hV == 0 && vV == 0){
+		leftLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
+		rightLeg.transform.rotation = Quaternion.Euler(0, 0, 0);	
+	}r
 }
 
 function UpdateGameController ()
@@ -162,7 +171,7 @@ function LeftArm (h: float, v : float) {
      // Set the movement vector based on the axis input.
     movementLeftArm.Set(h, 0f, v);
     //leftHandRigidBody.constraints = RigidbodyConstraints.FreezePositionY;
-    leftHand.rigidbody.AddForce(movementLeftArm*1f, ForceMode.Impulse);
+    leftHand.rigidbody.AddForce(movementLeftArm*2.5f, ForceMode.Impulse);
 }
 
 
@@ -170,24 +179,8 @@ function RightArm (hV : float, vV : float) {
 
     movementRightArm.Set(hV, 0f, vV);
     //rightHand.rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
-    rightHand.rigidbody.AddForce (movementRightArm*1f, ForceMode.Impulse);
+    rightHand.rigidbody.AddForce (movementRightArm*2.5f, ForceMode.Impulse);
 }
-
-
-function Move (h : float, v : float, hV : float, vV : float) {
-    // Set the movement vector based on the axis input.
-    movement = new Vector3(h, 0f, v) + new Vector3(hV, 0f, vV);
-
-    // Normalise the movement vector and make it proportional to the speed per second.
-    movement = movement.normalized * speed * Time.deltaTime;
-	    var newRotation : Quaternion = Quaternion.LookRotation (movement);
-
-    // Move the player to it's current position plus the movement.
-    //playerRigidbody.MoveRotation (newRotation);
-    //playerRigidbody.MovePosition (transform.position + movement);
-
-}
-
 
 function Jump(){
 	
@@ -200,5 +193,20 @@ function Jump(){
 		playerRigidbody.AddForce(jumpVector, ForceMode.Impulse);
 		numberOfJumps++;
 	}
+}
 
+function MoveLegs(h : float, v : float, hV : float, vV : float) {
+	
+	//get rigidbody velocity vector
+	movement = rigidbody.velocity;
+	//remove velocity in y axis
+	movement.y = 0f;
+    
+    //find the forward rotation based on this and rotate parent leg object towards this vector
+    newRotation = Quaternion.LookRotation(movement);
+	legs.transform.rotation=newRotation;
+	
+	//also use sin function to rotate legs and apply same rotation to them. :)
+	leftLeg.transform.rotation = newRotation * Quaternion.Euler(-Mathf.Sin(Time.realtimeSinceStartup*5) * 50, 0, 0);
+	rightLeg.transform.rotation = newRotation * Quaternion.Euler(Mathf.Sin(Time.realtimeSinceStartup*5) * 50, 0, 0);	
 }
