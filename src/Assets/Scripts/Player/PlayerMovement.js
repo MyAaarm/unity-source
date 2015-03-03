@@ -22,7 +22,7 @@ private var rightLeg : GameObject;
 private var legs : GameObject;
 
 public var dragButton : boolean;
-public var jumpForce : float = 80f;
+public var jumpForce : float;
 public var numberOfJumps : int = 0;
 private var newRotation : Quaternion;
 private var old : int; 
@@ -34,7 +34,8 @@ function Awake ()
 {
 	legs = this.transform.Find("Legs").gameObject;
     leftLeg = this.transform.Find("Legs/leftLeg").gameObject;
-    rightLeg = this.transform.Find("Legs/rightLeg").gameObject;   
+    rightLeg = this.transform.Find("Legs/rightLeg").gameObject; 
+    jumpForce = 250f;  
 }
 
 function Start () {
@@ -146,7 +147,7 @@ function FixedUpdate ()
 		playerRigidbody.velocity.y = jumpForce;
 	}
     
-    Debug.Log(playerRigidbody.velocity.y);
+    //Debug.Log(playerRigidbody.velocity.y);
     
     if (h == 0 && v == 0 && hV == 0 && vV == 0){
 		leftLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -198,7 +199,7 @@ function Jump(){
 	if(numberOfJumps<2){
 		//playerRigidbody.AddForce(jumpVector, ForceMode.Impulse);
 		playerRigidbody.velocity = jumpVector;
-		
+		Debug.Log(playerRigidbody.velocity.y);
 		numberOfJumps++;
 	}
 }
