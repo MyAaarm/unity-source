@@ -27,7 +27,7 @@ public var numberOfJumps : int = 0;
 private var newRotation : Quaternion;
 private var old : int; 
 private var isJumping : boolean;
-
+public var isFallen : boolean;
 
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
 
@@ -141,7 +141,7 @@ function FixedUpdate ()
     }
     else {
     	if(!this.gameObject.GetComponent(PlayerCollider).occupied&&this.gameObject.GetComponent(PlayerCollider).onGround){
-	      playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
+	      playerRigidbody.constraints = ~RigidbodyConstraints.FreezeAll;
 	      playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
       }
     }
@@ -156,14 +156,14 @@ function FixedUpdate ()
     	isJumping = true;
     }
     
-    if(isJumping){
+    if(isJumping || isFallen){
     	playerRigidbody.constraints =  RigidbodyConstraints.None;
     }else{
     	transform.rotation.x = 0;
     	transform.rotation.z = 0;
     }
     
-    if(jumpButtonPressed){
+    if(jumpButtonPressed && !isFallen){
     	Jump();
     }
     
@@ -176,6 +176,20 @@ function FixedUpdate ()
     if (h == 0 && v == 0 && hV == 0 && vV == 0){
 		leftLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
 		rightLeg.transform.rotation = Quaternion.Euler(0, 0, 0);	
+	}
+	
+	if(isFallen){
+		if(Input.GetKey(KeyCode.E)){
+			if(Mathf.Abs(this.transform.rotation.x) > Mathf.Abs(this.transform.rotation.z)){
+				if(this.transform.rotation.x > 0) { this.transform.rotation.x = this.transform.rotation.x - 0.07; }
+				else { this.transform.rotation.x = this.transform.rotation.x + 0.07;
+				}
+			} else {
+				if(this.transform.rotation.z > 0) { this.transform.rotation.z = this.transform.rotation.z - 0.07; }
+				else { this.transform.rotation.z = this.transform.rotation.z + 0.07;
+				}
+			}
+		}
 	}
 }
 
@@ -202,7 +216,11 @@ function LeftArm (h: float, v : float) {
      // Set the movement vector based on the axis input.
     movementLeftArm.Set(h, 0f, v);
     //leftHandRigidBody.constraints = RigidbodyConstraints.FreezePositionY;
-    leftHand.rigidbody.AddForce(movementLeftArm*2.5f, ForceMode.Impulse);
+    if(!isFallen){
+    	leftHand.rigidbody.AddForce(movementLeftArm*2.5f, ForceMode.Impulse);
+    } else {
+    	leftHand.rigidbody.AddForce(movementLeftArm, ForceMode.Impulse);
+    }
 }
 
 
@@ -210,7 +228,11 @@ function RightArm (hV : float, vV : float) {
 
     movementRightArm.Set(hV, 0f, vV);
     //rightHand.rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
-    rightHand.rigidbody.AddForce (movementRightArm*2.5f, ForceMode.Impulse);
+    if(!isFallen){
+    	rightHand.rigidbody.AddForce (movementRightArm*2.5f, ForceMode.Impulse);
+    } else {
+    	rightHand.rigidbody.AddForce(movementRightArm, ForceMode.Impulse);
+    }
 }
 
 function Jump(){
