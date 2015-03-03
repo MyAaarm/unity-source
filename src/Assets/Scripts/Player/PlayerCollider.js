@@ -28,11 +28,11 @@ function OnCollisionEnter( col : Collision ){
 				
 				Debug.Log("damage = " + col.relativeVelocity.magnitude);
 				if(col.relativeVelocity.magnitude > 15){
-					gameObject.particleSystem.transform.position = col.transform.position;
-					gameObject.particleSystem.transform.rotation = col.transform.rotation;
-					gameObject.particleSystem.enableEmission = true;
-					gameObject.particleSystem.Simulate(0.005f, true);
-					gameObject.particleSystem.Play();
+					gameObject.transform.Find("Blood").particleSystem.transform.position = col.transform.position;
+					gameObject.transform.Find("Blood").particleSystem.transform.rotation = col.transform.rotation;
+					gameObject.transform.Find("Blood").particleSystem.enableEmission = true;
+					gameObject.transform.Find("Blood").particleSystem.Simulate(0.005f, true);
+					gameObject.transform.Find("Blood").particleSystem.Play();
 				}
 				
 				//this.rigidbody.constraints = RigidbodyConstraints.None;
