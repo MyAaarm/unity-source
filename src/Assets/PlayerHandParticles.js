@@ -3,7 +3,7 @@
 
 function OnCollisionEnter( col : Collision ){
 	
-	if(col.collider.transform.root.name != gameObject.transform.root.name){
+	if(col.collider.transform.root.name != gameObject.transform.root.name && col.relativeVelocity.magnitude > 6){
 			Debug.Log(transform.gameObject.name);
 			transform.gameObject.particleSystem.enableEmission = true; 
 			transform.gameObject.particleSystem.startSpeed = col.relativeVelocity.magnitude*0.25;

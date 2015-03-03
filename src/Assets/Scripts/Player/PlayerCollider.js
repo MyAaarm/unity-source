@@ -45,7 +45,7 @@ function OnCollisionEnter( col : Collision ){
 				//var forceDirection = col.gameObject.transform.position - this.transform.position;
 				//forceDirection = forceDirection.normalized;
 				var forceDirection = -col.rigidbody.velocity.normalized;
-				this.rigidbody.AddForce(forceDirection*col.relativeVelocity.magnitude*2, ForceMode.Acceleration);
+				this.rigidbody.AddForce(forceDirection*col.relativeVelocity.magnitude*5, ForceMode.Impulse);
 			}
 
 			handCollision = true;
