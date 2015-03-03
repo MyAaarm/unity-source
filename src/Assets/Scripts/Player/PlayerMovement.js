@@ -27,6 +27,8 @@ public var numberOfJumps : int = 0;
 private var newRotation : Quaternion;
 private var old : int; 
 private var isJumping : boolean;
+private var jumpButtonDown : boolean;
+private var jumpFwdForce : float;
 
 
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
@@ -114,7 +116,9 @@ function FixedUpdate ()
     	
     	dragButton = Input.GetButton('360LeftBumperPC'+playerNumber);
 		
-		jumpButtonPressed =  Input.GetButtonDown('360RightBumperPC'+playerNumber);
+		jumpButtonPressed =  Input.GetButtonUp('360RightBumperPC'+playerNumber);
+		
+		jumpButtonDown = Input.GetButton('360RightBumperPC'+playerNumber);
 						
     	//leftBumperPressed = Input.GetButtonDown('360LeftBumperPC'+playerNumber);
     	//rightBumperPressed = Input.GetButtonDown('360RightBumperPC'+playerNumber);
@@ -163,6 +167,16 @@ function FixedUpdate ()
     	transform.rotation.z = 0;
     }
     
+    if(jumpButtonDown){
+    	jumpFwdForce += Time.deltaTime;
+    	if(jumpFwdForce>2){
+    		jumpFwdForce = 5;
+    		leftHand.transform.position = transform.forward;
+    		Debug.Log("fwd");
+    	}
+    }
+    
+        
     if(jumpButtonPressed){
     	Jump();
     }
@@ -217,13 +231,18 @@ function Jump(){
 	
 	
 	var jumpVector : Vector3 = new Vector3(0f, jumpForce, 0f);
+	
+	jumpVector+= transform.forward*jumpForce*jumpFwdForce;
+	
 	if(numberOfJumps<2){
 		//playerRigidbody.AddForce(jumpVector, ForceMode.Impulse);
 		playerRigidbody.velocity = jumpVector;
-		Debug.Log(playerRigidbody.velocity.y);
+		transform.position.y+=0.1;
+		Debug.Log(jumpFwdForce);
 		numberOfJumps++;
 		isJumping = true;
 	}
+	jumpFwdForce = 0;
 }
 
 function MoveLegs(h : float, v : float, hV : float, vV : float) {
