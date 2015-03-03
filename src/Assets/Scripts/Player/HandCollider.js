@@ -79,15 +79,14 @@ function FixedUpdate(){
         		hingeJoint.breakTorque = 45; 
         		hingeJoint.connectedBody = otherBody;} 
         		cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = true;
-      			cld.collider.gameObject.transform.root.rigidbody.constraints &=  ~RigidbodyConstraints.FreezePositionX;
-      			cld.collider.gameObject.transform.root.rigidbody.constraints &=  ~RigidbodyConstraints.FreezePositionZ;
-        		/*D = this.transform.root.transform.position - cld.collider.gameObject.transform.root.transform.position; // line from crate to player
+      			cld.collider.gameObject.transform.root.rigidbody.constraints =  RigidbodyConstraints.None;
+        		D = this.transform.root.transform.position - cld.collider.gameObject.transform.root.transform.position; // line from crate to player
                 pullF = 10;
                 dist = D.magnitude;
                 pullDir = D.normalized;
-                Debug.Log(pullDir*(pullF * Time.deltaTime)*100f);
+                //Debug.Log(pullDir*(pullF * Time.deltaTime)*100f);
         		cld.collider.gameObject.transform.root.rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*100f, ForceMode.Impulse);
-                */ 
+                 
         		
         		
         		/*//Debug.Log("WIN " + collisionTimer);
