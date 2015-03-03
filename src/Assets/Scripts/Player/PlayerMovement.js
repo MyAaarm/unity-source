@@ -28,6 +28,7 @@ private var newRotation : Quaternion;
 private var old : int; 
 private var isJumping : boolean;
 public var isFallen : boolean;
+private var riseButtonDown : boolean;
 
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
 
@@ -70,6 +71,7 @@ function FixedUpdate ()
 		vV = Input.GetAxisRaw ("Vertical2");
 		
 		dragButton = Input.GetKey(KeyCode.E);
+		riseButtonDown = Input.GetKey(KeyCode.R);
 
 
 	}else if(currentGameController == "Keyboard2"){
@@ -115,6 +117,8 @@ function FixedUpdate ()
     	dragButton = Input.GetButton('360LeftBumperPC'+playerNumber);
 		
 		jumpButtonPressed =  Input.GetButtonDown('360RightBumperPC'+playerNumber);
+		
+		riseButtonDown = Input.GetButtonUp('X360AButtonPC'+playerNumber);
 						
     	//leftBumperPressed = Input.GetButtonDown('360LeftBumperPC'+playerNumber);
     	//rightBumperPressed = Input.GetButtonDown('360RightBumperPC'+playerNumber);
@@ -179,14 +183,14 @@ function FixedUpdate ()
 	}
 	
 	if(isFallen){
-		if(Input.GetKey(KeyCode.E)){
+		if(riseButtonDown){
 			if(Mathf.Abs(this.transform.rotation.x) > Mathf.Abs(this.transform.rotation.z)){
-				if(this.transform.rotation.x > 0) { this.transform.rotation.x = this.transform.rotation.x - 0.07; }
-				else { this.transform.rotation.x = this.transform.rotation.x + 0.07;
+				if(this.transform.rotation.x > 0) { this.transform.rotation.x = this.transform.rotation.x - 0.22; }
+				else { this.transform.rotation.x = this.transform.rotation.x + 0.22;
 				}
 			} else {
-				if(this.transform.rotation.z > 0) { this.transform.rotation.z = this.transform.rotation.z - 0.07; }
-				else { this.transform.rotation.z = this.transform.rotation.z + 0.07;
+				if(this.transform.rotation.z > 0) { this.transform.rotation.z = this.transform.rotation.z - 0.22; }
+				else { this.transform.rotation.z = this.transform.rotation.z + 0.22;
 				}
 			}
 		}
