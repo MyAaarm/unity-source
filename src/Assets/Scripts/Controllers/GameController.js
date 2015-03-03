@@ -9,7 +9,7 @@ public var Player : GameObject;
 
 static var players : GameObject[];
 //static var playerControllers = ['Keyboard','','',''];
-static var playerControllers = ['X360PC', 'Keyboard', 'X360OSX', 'PS3OSX'];
+static var playerControllers = ['PS3OSX', 'Keyboard', 'X360OSX', 'PS3OSX'];
 
 function Awake () {
   DontDestroyOnLoad(this);
@@ -31,7 +31,7 @@ function addPlayers() {
     playerObject.name = 'Player' + (i + 1);
     playerObject.GetComponent(PlayerMovement).playerNumber = i + 1;
     playerObject.GetComponent(PlayerMovement).currentGameController = playerControllers[i];
-    
+
  //   var hingeJoints : HingeJoint[];
 //	hingeJoints = playerObject.GetComponentsInChildren(HingeJoint);
 //	for (var joint : HingeJoint in hingeJoints) {
