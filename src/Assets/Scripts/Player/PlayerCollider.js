@@ -26,8 +26,8 @@ function OnCollisionEnter( col : Collision ){
 
 		if(col.collider.transform.root.name != gameObject.name){
 
-			if(col.relativeVelocity.magnitude>25){
-				playerHealth.TakeDamage(col.relativeVelocity.magnitude*.5);
+			if(col.relativeVelocity.magnitude>100){
+				playerHealth.TakeDamage(col.relativeVelocity.magnitude*.05);
 				
 				Debug.Log("damage = " + col.relativeVelocity.magnitude);
 				if(col.relativeVelocity.magnitude > 15){
