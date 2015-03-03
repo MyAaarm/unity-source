@@ -35,7 +35,7 @@ function Awake ()
 	legs = this.transform.Find("Legs").gameObject;
     leftLeg = this.transform.Find("Legs/leftLeg").gameObject;
     rightLeg = this.transform.Find("Legs/rightLeg").gameObject; 
-    jumpForce = 250f;  
+    jumpForce = 200f;  
 }
 
 function Start () {
@@ -105,9 +105,9 @@ function FixedUpdate ()
 		hV  = Input.GetAxisRaw ("360RightJoystickXPC"+playerNumber);
     	vV  = Input.GetAxisRaw ("360RightJoystickYPC"+playerNumber);
     	
-    	dragButton = Input.GetButton('360RightBumperPC'+playerNumber);
+    	dragButton = Input.GetButton('360LeftBumperPC'+playerNumber);
 		
-		jumpButtonPressed =  Input.GetButtonDown('X360AButtonPC'+playerNumber);
+		jumpButtonPressed =  Input.GetButtonDown('360RightBumperPC'+playerNumber);
 						
     	//leftBumperPressed = Input.GetButtonDown('360LeftBumperPC'+playerNumber);
     	//rightBumperPressed = Input.GetButtonDown('360RightBumperPC'+playerNumber);
