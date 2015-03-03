@@ -12,6 +12,7 @@ GameObject:
   - 199: {fileID: 19980930}
   - 82: {fileID: 8231646}
   - 114: {fileID: 11430260}
+  - 114: {fileID: 11495204}
   m_Layer: 0
   m_Name: FireExplosion
   m_TagString: Untagged
@@ -98,6 +99,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d14ef25c49221746ae4926cc6223f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11495204
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2180aa31f5e8f63409c0756dca0ee63a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!198 &19880930
@@ -257,7 +269,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 1.5
+      scalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:

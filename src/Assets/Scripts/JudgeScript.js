@@ -4,9 +4,7 @@
 
 public static var theTarget : GameObject;
 private var timer: float; 			// set duration time in seconds in the Inspector
-private var targetTimer: float; 			// set duration time in seconds in the Inspector
 private var seeker : GameObject;
-private var Aa : GameObject; 
 //The calculated pat
 private var path : Path;
 //Speed
@@ -16,22 +14,19 @@ public var currentWaypoint : int;
 //The max distance from the AI to a waypoint for it to continue to the next waypoint
 public var nextWaypointDistance : float;
 public var myTarget : Vector3;//GameObject;
-public var controller : CharacterController;
+public var frac : float;
 
 function Awake ()
 {
     // Set up the references.
-    seeker = GameObject.Find("Seeker");
-    Aa = GameObject.Find("A*");
-    speed = 500;
+    seeker = GameObject.Find("A*");
+    speed = 10f;
     currentWaypoint = 0;
-    nextWaypointDistance  = 3;
-    targetTimer = 0;
-    controller = GetComponent(CharacterController); 
-    //Aa.BroadcastMessage("Scan");
+    nextWaypointDistance  = 10;
+    frac = 0.1f;
 }
 
-function FixedUpdate () { 
+function FixedUpdate () {
 	var targets = gameObject.FindGameObjectsWithTag("Player");
 	var minDist = Number.MaxValue;
 	if (theTarget == null || timer <= 0){
@@ -63,46 +58,34 @@ function FixedUpdate () {
 	}
 	//Look at the target
 	transform.LookAt(myTarget);
-	if (targetTimer >= 1){// PlayerDetection.playerDetected == false &&){
-		var vectors = [transform.position, myTarget];
-		seeker.BroadcastMessage("StartPath", vectors);	
-		targetTimer = 0;	
-//		var vectors = [transform.position, myTarget];
-//		seeker.BroadcastMessage("StartPath", vectors);
-	}
-        	
-		if (path != null && currentWaypoint < path.vectorPath.Count) {
+	
+	seeker.BroadcastMessage("IsDoneMod", "Judge");
+	
+		if (path != null && currentWaypoint < path.vectorPath.Count && Mathf.RoundToInt(Vector3.Distance(transform.position,myTarget)) > nextWaypointDistance){
             //Direction to the next waypoint
         	var dir : Vector3 = (path.vectorPath[currentWaypoint]-transform.position).normalized;
-        	dir *= speed * Time.fixedDeltaTime;
-        	dir.y += 3;
-        	controller.SimpleMove(dir);
+        	dir *= speed * Time.deltaTime;
+        	transform.position += dir;
         	
-        	Debug.Log(Vector3.Distance(transform.position,path.vectorPath[currentWaypoint]) + " " + path.vectorPath[currentWaypoint] + " " + nextWaypointDistance);
-        		
-        	if (Vector3.Distance(transform.position,path.vectorPath[currentWaypoint]) < nextWaypointDistance) {
+        	//transform.rigidbody.MovePosition(Vector3.Lerp(transform.position, path.vectorPath[currentWaypoint], frac));
+        	//transform.position = Vector3.Lerp(transform.position, path.vectorPath[currentWaypoint], frac);
+        	//transform.rigidbody.MovePosition(Vector3.Lerp(startPos, path.vectorPath[currentWaypoint], frac));
+      		
+      		
+        	if (Vector3.Distance(transform.position, myTarget) > nextWaypointDistance){//Vector3.Distance (transform.position, myTarget) > nextWaypointDistance) {
             	currentWaypoint++;
         	}
         }
-//		var direction : Vector3 = (myTarget - transform.position).normalized;
-//		direction *= speed * Time.fixedDeltaTime;//fixedDeltaTime; 
-//		controller.SimpleMove(direction);
-
-		//rigidbody.MovePosition((transform.position + direction)*Time.deltaTime);
-		//transform.position += (transform.forward * speed * Time.deltaTime);
-		//rigidbody.MovePosition
-		//nav.SetDestination (myTarget);
-//		var vectors = [transform.position, myTarget];
-//		seeker.BroadcastMessage("StartPath", vectors);
-		//Seeker.StartPath (transform.position,myTarget);
-	
 	timer -= Time.deltaTime;
-	targetTimer += Time.deltaTime;
+}
+
+function setTarget(){
+	var vectors = [transform.position, myTarget];
+	seeker.BroadcastMessage("StartPath", vectors);
 }
 
 function OnPathComplete (p : Path) {
 	//Debug.Log ("Yay, we got a path back. Did it have an error? "+p.error);
-	//Debug.Log(p.vectorPath.Count);
 	if (!p.error) {
     	path = p;
         //Reset the waypoint counter

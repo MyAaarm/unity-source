@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d9af35244fac844a6e36d07d9855b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tinySkeleton: {fileID: 151480, guid: 63f0c5eadae2e664b8015f755810a863, type: 2}
+  explosion: {fileID: 180930, guid: dde94e6ab86db1d4087dac5375a6a0d1, type: 2}
   judge: {fileID: 120052, guid: 7fea62840de72104d92681a6563667ca, type: 2}
 --- !u!122 &12230268
 Halo:
@@ -109,7 +109,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.70000005
+  m_Radius: 2.1500001
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

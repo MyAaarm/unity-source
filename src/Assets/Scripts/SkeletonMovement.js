@@ -4,18 +4,29 @@ public var explosion : GameObject;
 private var player : Transform;               // Reference to the player's position.
 //private var playerHealth : PlayerHealth;      // Reference to the player's health.
 //private var enemyHealth : EnemyHealth;        // Reference to this enemy's health.
-private var nav : NavMeshAgent;               // Reference to the nav mesh agent.
 private var anim : Animator;                      // Reference to the animator component.
 private var timer: float = 30; 			// set duration time in seconds in the Inspector
 public var force : float = 10.0f;
+public var currentWaypoint : int;
+private var seeker : Seeker;
+public var nextWaypointDistance : float;
+//The calculated pat
+private var path : Path;
+//Speed
+public var speed : float;
+//The current target
+public var myTarget : Vector3;
 
 function Awake ()
 {
     // Set up the references.
 //    playerHealth = player.GetComponent (PlayerHealth);
 //    enemyHealth = GetComponent (EnemyHealth);
-    nav = GetComponent (NavMeshAgent);
+	currentWaypoint = 0;
+    seeker = GetComponent(Seeker);
    	anim = GetComponent (Animator);
+   	nextWaypointDistance = 0;
+   	speed = 10f;
 }
 
 function OnTriggerEnter (other : Collider) {
@@ -31,7 +42,6 @@ function OnTriggerEnter (other : Collider) {
 
 function Update ()
 {
-
 	var targets = gameObject.FindGameObjectsWithTag("Player");
 	var minDist = Number.MaxValue;
 	
@@ -45,22 +55,25 @@ function Update ()
      		myTarget = enemy;
      	}      
 	}
-    // If the enemy and the player have health left...
-    //if(enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
-   // {
-        // ... set the destination of the nav mesh agent to the player.
-      // }
-    if(nav.enabled == true && timer <= 28){
-    	nav.SetDestination (myTarget.transform.position);
+	
+    seeker.BroadcastMessage("IsDoneMod2");
+    
+    if(timer <= 28 && path != null && currentWaypoint < path.vectorPath.Count){
     	anim.SetTrigger("Run");
+    	var dir : Vector3 = (path.vectorPath[currentWaypoint]-transform.position).normalized;
+        	dir *= speed * Time.smoothDeltaTime;
+        	transform.position += dir;
+        	
+        	//transform.rigidbody.MovePosition(Vector3.Lerp(transform.position, path.vectorPath[currentWaypoint], frac));
+        	//transform.position = Vector3.Lerp(transform.position, path.vectorPath[currentWaypoint], frac);
+        	//transform.rigidbody.MovePosition(Vector3.Lerp(startPos, path.vectorPath[currentWaypoint], frac));
+      			
+        if (Vector3.Distance(transform.position, myTarget.transform.position) > nextWaypointDistance){
+           	currentWaypoint++;
+        }
     }
-   // else
-   // {
-        // ... disable the nav mesh agent.
-   //     nav.enabled = false;
-   // }
-  EnemyTimer();
-  
+	   
+  	EnemyTimer();
 }
 
 function EnemyTimer (){
@@ -69,8 +82,21 @@ function EnemyTimer (){
          SkeletonDeath();
   }
 }
+function setTarget(){
+	Debug.Log("DETFUNKAR5");
+	var vectors = [transform.position, Vector3(myTarget.x, myTarget.y, myTarget.z)];
+	seeker.BroadcastMessage("StartPath", vectors);
+}
+
+function OnPathComplete (p : Path) {
+	//Debug.Log ("Yay, we got a path back. Did it have an error? "+p.error);
+	if (!p.error) {
+    	path = p;
+        //Reset the waypoint counter
+        currentWaypoint = 0;
+ 	}
+ }
 function SkeletonDeath (){
 	Instantiate (explosion, Vector3(transform.position.x, (transform.position.y)+0.5,transform.position.z), Quaternion.identity);
 	Destroy(this.gameObject);
-	nav.enabled = false;
 }

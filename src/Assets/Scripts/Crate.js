@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-public var tinySkeleton : GameObject;
+public var explosion : GameObject;
 public var judge : GameObject;
 private var timer: float = 30;
 
@@ -29,6 +29,6 @@ function OnTriggerEnter (other : Collider) {
 	if(other.tag == "Player"){
 		DestroyCrate();
 		//Instantiate (judge, transform.position, Quaternion.identity);
-		Instantiate (tinySkeleton, transform.position, Quaternion.identity);
+		Instantiate (explosion, transform.position, Quaternion.identity);
 	}
 }

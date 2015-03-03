@@ -39,6 +39,9 @@ public class AstarPath : MonoBehaviour {
 	
 	/** The version number for the A* %Pathfinding Project
 	 */
+	private float scanTimer = 0;
+	private bool scanned = false;
+
 	public static System.Version Version {
 		get {
 			return new System.Version (3,6);
@@ -195,7 +198,7 @@ public class AstarPath : MonoBehaviour {
 	 * If you disable this, you will have to call \link Scan AstarPath.active.Scan () \endlink yourself to enable pathfinding,
 	 * alternatively you could load a saved graph from a file.
 	 */
-	public bool scanOnStartup = true;
+	public bool scanOnStartup = false;
 	
 	/** Do a full GetNearest search for all graphs.
 	 * Additinal searches will normally only be done on the graph which in the first, fast searches proved to have the closest node.
@@ -803,6 +806,10 @@ public class AstarPath : MonoBehaviour {
 		} else {
 			//Debug.Log (debug);
 		}
+
+		GameObject ums = GameObject.Find ("Judge");
+		ums.BroadcastMessage ("OnPathComplete", p);
+
 	}
 	
 	
@@ -838,6 +845,14 @@ public class AstarPath : MonoBehaviour {
 	 * \see CallThreadSafeCallbacks
 	 */
 	private void Update () {
+		if (scanTimer >= 1 && scanned == false) {
+			AstarPath.active.Scan ();
+			scanned = true;
+		}
+		else{
+			scanTimer += Time.deltaTime;
+		}
+
 		PerformBlockingActions();
 		
 		//Process paths
@@ -1874,7 +1889,7 @@ public class AstarPath : MonoBehaviour {
 	 * \see graph-updates
 	  */
 	public void Scan () {
-		print ("Scanning");
+		
 		ScanLoop (null);
 	}
 	
@@ -2229,6 +2244,7 @@ AstarPath.RegisterSafeUpdate (delegate () {
 	  * If too many paths are put in the front of the queue often, this can lead to normal paths having to wait a very long time before being calculated.
 	  */
 	public static void StartPath (Path p, bool pushToFront = false) {
+		
 		if (System.Object.ReferenceEquals (active, null)) {
 			Debug.LogError ("There is no AstarPath object in the scene");
 			return;
@@ -2465,6 +2481,7 @@ AstarPath.RegisterSafeUpdate (delegate () {
 				
 				//Log path results
 				astar.LogPathResults (p);
+
 				
 				if ( p.immediateCallback != null ) p.immediateCallback (p);
 

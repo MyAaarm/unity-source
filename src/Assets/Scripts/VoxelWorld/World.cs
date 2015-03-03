@@ -10,7 +10,6 @@ public class World : MonoBehaviour {
 
     void Start()
     {
-
 		for (int x = -2; x < 2; x++)
 		{
 			for (int y = 0; y < 2; y++)

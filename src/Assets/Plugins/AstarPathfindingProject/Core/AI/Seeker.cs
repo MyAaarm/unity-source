@@ -244,6 +244,26 @@ public class Seeker : MonoBehaviour {
 	 * \since Added in 3.0.8
 	 * \version Behaviour changed in 3.2
 	 * */
+	public bool IsDoneMod2 () {
+		GameObject ums = GameObject.Find ("TinySkeleton");
+		//print (ums.tag);
+		//ums.BroadcastMessage(
+		if (path == null || path.GetState() >= PathState.Returned) {
+			//ums.GetComponents
+			ums.BroadcastMessage ("setTarget");
+			print ("DET FUNKAR4");
+		}
+		return path == null || path.GetState() >= PathState.Returned;
+	}
+
+	public bool IsDoneMod (string name) {
+		GameObject ums = GameObject.Find (name);
+		if (path == null || path.GetState() >= PathState.Returned) {
+			ums.BroadcastMessage ("setTarget");
+		}
+		return path == null || path.GetState() >= PathState.Returned;
+	}
+
 	public bool IsDone () {
 		return path == null || path.GetState() >= PathState.Returned;
 	}
@@ -366,7 +386,6 @@ public class Seeker : MonoBehaviour {
 	public ABPath GetNewPath (Vector3 start, Vector3 end) {
 		//Construct a path with start and end points
 		ABPath p = ABPath.Construct (start, end, null);
-		
 		return p;
 	}
 	
@@ -376,15 +395,13 @@ public class Seeker : MonoBehaviour {
 	 */
 	public Path StartPath (Vector3[] vectors) {
 		Path p = StartPath (vectors[0], vectors[1],null,-1);
-		GameObject ums = GameObject.Find ("Judge");
-		ums.BroadcastMessage ("OnPathComplete", p);
 		return p;
 	}
 
 	public Path StartPath (Vector3 start, Vector3 end) {
-		return StartPath (start, end, null,-1);
+		return StartPath (start, end, null, -1);
 	}
-
+	
 	/** Call this function to start calculating a path.
 	 * \param start		The start point of the path
 	 * \param end		The end point of the path
@@ -463,6 +480,7 @@ public class Seeker : MonoBehaviour {
 		
 		return path;
 	}
+	
 	
 	public IEnumerator DelayPathStart (Path p) {
 		yield return null;
