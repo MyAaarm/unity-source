@@ -26,6 +26,7 @@ public var jumpForce : float;
 public var numberOfJumps : int = 0;
 private var newRotation : Quaternion;
 private var old : int; 
+private var isJumping : boolean;
 
 
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
@@ -145,7 +146,17 @@ function FixedUpdate ()
       }
     }
     
-    if(!this.gameObject.GetComponent(PlayerCollider).onGround){
+    if(this.gameObject.GetComponent(PlayerCollider).onGround){
+    	//playerRigidbody.constraints =  RigidbodyConstraints.None;
+    	isJumping = false;
+    	numberOfJumps = 0;
+    }
+    
+    if(numberOfJumps>0&&!this.gameObject.GetComponent(PlayerCollider).onGround){
+    	isJumping = true;
+    }
+    
+    if(isJumping){
     	playerRigidbody.constraints =  RigidbodyConstraints.None;
     }else{
     	transform.rotation.x = 0;
@@ -204,9 +215,6 @@ function RightArm (hV : float, vV : float) {
 
 function Jump(){
 	
-	if(this.gameObject.GetComponent(PlayerCollider).onGround){
-		numberOfJumps = 0;
-	}
 	
 	var jumpVector : Vector3 = new Vector3(0f, jumpForce, 0f);
 	if(numberOfJumps<2){
@@ -214,6 +222,7 @@ function Jump(){
 		playerRigidbody.velocity = jumpVector;
 		Debug.Log(playerRigidbody.velocity.y);
 		numberOfJumps++;
+		isJumping = true;
 	}
 }
 
