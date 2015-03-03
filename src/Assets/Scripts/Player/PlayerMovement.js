@@ -145,6 +145,13 @@ function FixedUpdate ()
       }
     }
     
+    if(!this.gameObject.GetComponent(PlayerCollider).onGround){
+    	playerRigidbody.constraints =  RigidbodyConstraints.None;
+    }else{
+    	transform.rotation.x = 0;
+    	transform.rotation.z = 0;
+    }
+    
     if(jumpButtonPressed){
     	Jump();
     }
