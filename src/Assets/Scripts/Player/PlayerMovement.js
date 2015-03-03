@@ -84,6 +84,10 @@ function FixedUpdate ()
 
 		hV = Input.GetAxisRaw ("RightJoystickXOSX"+playerNumber);
 	    vV = Input.GetAxisRaw ("RightJoystickYOSX"+playerNumber);
+	    
+	    dragButton = Input.GetButton('PS3LeftBumperOSX'+playerNumber);
+		
+		jumpButtonPressed =  Input.GetButtonDown('PS3RightBumperOSX'+playerNumber);
 
 
 	}else if (currentGameController == "X360OSX"){
@@ -94,7 +98,9 @@ function FixedUpdate ()
 		hV  = Input.GetAxisRaw ("RightJoystickXOSX"+playerNumber);
     	vV  = Input.GetAxisRaw ("RightJoystickYOSX"+playerNumber);
     	
-    	dragButton = Input.GetButton('X360AButtonOSX'+playerNumber);
+    	dragButton = Input.GetButton('360LeftBumperOSX'+playerNumber);
+		
+		jumpButtonPressed =  Input.GetButtonDown('360RightBumperOSX'+playerNumber);
 
     }//Check if the game is running on PC with Xbox360 controller
 	else if (currentGameController == "X360PC"){
