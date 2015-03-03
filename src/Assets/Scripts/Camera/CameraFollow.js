@@ -30,14 +30,14 @@ function FixedUpdate ()
 								
 	var newHeight = largestDifference;
 	
-	if(newHeight <15f){
-		newHeight = 15f;
+	if(newHeight <20f){
+		newHeight = 20f;
  	}
 	height = Mathf.Lerp(height,newHeight,Time.deltaTime*cameraSpeed);
 	
 	var newZOffset = Mathf.Log(largestDifference)*6;
-	if(newZOffset<24f){
-		newZOffset = 24f;
+	if(newZOffset<30f){
+		newZOffset = 30f;
  	}
 	zOffset = Mathf.Lerp(zOffset,newZOffset,Time.deltaTime*cameraSpeed);
 	
