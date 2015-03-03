@@ -3,7 +3,23 @@ using System.Collections;
 
 public class TerrainGen : MonoBehaviour {
 
+	/*
+	 * ******** HILL WORLD *********/
 	float stoneBaseHeight = 1;
+	float stoneBaseNoise = 0.05f;
+	float stoneBaseNoiseHeight = 4;
+	
+	float stoneMountainHeight = 15;
+	float stoneMountainFrequency = 0.008f;
+	float stoneMinHeight = -12;
+	
+	float dirtBaseHeight = 3;
+	float dirtNoise = 0.04f;
+	float dirtNoiseHeight = 1;
+
+	/*
+	 * ******** FLAT WORLD ********
+	 * float stoneBaseHeight = 1;
 	float stoneBaseNoise = 0f;
 	float stoneBaseNoiseHeight = 0;
 	
@@ -13,7 +29,7 @@ public class TerrainGen : MonoBehaviour {
 	
 	float dirtBaseHeight = 3;
 	float dirtNoise = 0.04f;
-	float dirtNoiseHeight = 1;
+	float dirtNoiseHeight = 1;*/ 
 
 	public Chunk ChunkGen(Chunk chunk)
 	{
