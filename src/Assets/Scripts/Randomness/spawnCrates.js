@@ -12,7 +12,7 @@ function Update () {
 }
 
 function setTimer(){
-	if (nbrOfCrates == 0){ //If no crates available - count down the timer
+	if (nbrOfCrates <= 0){ //If no crates available - count down the timer
 		timer -= Time.deltaTime;
 		if(timer <= 0){
 			timeOk = Time.realtimeSinceStartup > 2; //To not spawn crates directly
