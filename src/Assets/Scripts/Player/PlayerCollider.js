@@ -38,12 +38,12 @@ function OnCollisionEnter( col : Collision ){
 					gameObject.transform.Find("Blood").particleSystem.Play();
 				}
 				
-				//this.rigidbody.constraints = RigidbodyConstraints.None;
+				this.rigidbody.constraints = RigidbodyConstraints.None;
 				
-				this.rigidbody.constraints =  RigidbodyConstraints.FreezeAll;
-      			this.rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
-				this.rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionZ;
-				this.rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionX;
+				//this.rigidbody.constraints =  RigidbodyConstraints.FreezeAll;
+      			//this.rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
+				//this.rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionZ;
+				//this.rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionX;
 				isHit = true;
 				//var forceDirection = col.gameObject.transform.position - this.transform.position;
 				//forceDirection = forceDirection.normalized;

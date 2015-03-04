@@ -142,8 +142,8 @@ function FixedUpdate ()
 
     // Move the player around the scene.
     var shouldMove = false;
-    Debug.Log("left: " + leftHand.transform.position.x + " right:" + rightHand.transform.position.x);
-    Debug.Log(leftHand.transform.position.x > rightHand.transform.position.x);
+  //  Debug.Log("left: " + leftHand.transform.position.x + " right:" + rightHand.transform.position.x);
+//    Debug.Log(leftHand.transform.position.x > rightHand.transform.position.x);
 
     if(!isMoving){
       if(leftHand.transform.position.x > rightHand.transform.position.x){
