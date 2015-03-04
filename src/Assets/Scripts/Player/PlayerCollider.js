@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+var isHit : boolean;
+
 private var playerHealth : PlayerHealth;
 private var thingToPull : Transform;
 private var D : Vector3;
@@ -19,13 +21,34 @@ function Awake (){
 }
 
 function OnCollisionEnter( col : Collision ){
-
+	isHit = false;
 	if(col.collider.transform.parent != null && (col.collider.transform.parent.name == "Arms" || col.collider.transform.parent.name == "Hands")) {
 
 		if(col.collider.transform.root.name != gameObject.name){
 
-			if(col.relativeVelocity.magnitude>25){
-				playerHealth.TakeDamage(col.relativeVelocity.magnitude*.5);
+			if(col.relativeVelocity.magnitude>100){
+				playerHealth.TakeDamage(col.relativeVelocity.magnitude*.05);
+				
+				Debug.Log("damage = " + col.relativeVelocity.magnitude);
+				if(col.relativeVelocity.magnitude > 15){
+					gameObject.transform.Find("Blood").particleSystem.transform.position = col.transform.position;
+					gameObject.transform.Find("Blood").particleSystem.transform.rotation = col.transform.rotation;
+					gameObject.transform.Find("Blood").particleSystem.enableEmission = true;
+					gameObject.transform.Find("Blood").particleSystem.Simulate(0.005f, true);
+					gameObject.transform.Find("Blood").particleSystem.Play();
+				}
+				
+				//this.rigidbody.constraints = RigidbodyConstraints.None;
+				
+				this.rigidbody.constraints =  RigidbodyConstraints.FreezeAll;
+      			this.rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
+				this.rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionZ;
+				this.rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionX;
+				isHit = true;
+				//var forceDirection = col.gameObject.transform.position - this.transform.position;
+				//forceDirection = forceDirection.normalized;
+				var forceDirection = -col.rigidbody.velocity.normalized;
+				this.rigidbody.AddForce(forceDirection*col.relativeVelocity.magnitude*5, ForceMode.Impulse);
 			}
 
 			handCollision = true;
@@ -49,11 +72,11 @@ function OnCollisionEnter( col : Collision ){
 }
 
 function OnCollisionExit( col : Collision ){
-
+	
     if(col.collider.transform.parent != null && (col.collider.transform.parent.name == "Arms" || col.collider.transform.parent.name == "Hands")) {
 
         if(col.collider.transform.root.name != gameObject.name){
-
+			
             handCollision = false;
 
             //hingeJoint.connectedBody = null;

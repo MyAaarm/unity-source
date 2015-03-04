@@ -31,7 +31,7 @@ function addPlayers() {
     playerObject.name = 'Player' + (i + 1);
     playerObject.GetComponent(PlayerMovement).playerNumber = i + 1;
     playerObject.GetComponent(PlayerMovement).currentGameController = playerControllers[i];
-    
+
  //   var hingeJoints : HingeJoint[];
 //	hingeJoints = playerObject.GetComponentsInChildren(HingeJoint);
 //	for (var joint : HingeJoint in hingeJoints) {
