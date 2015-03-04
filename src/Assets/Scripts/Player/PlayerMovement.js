@@ -178,13 +178,14 @@ function FixedUpdate ()
       rightArm.transform.localScale.y = scaleRightArm.y;
     }
 
-    if(shouldMove){
+    if(shouldMove && !this.gameObject.GetComponent(PlayerCollider).isHit && !this.gameObject.GetComponent(PlayerCollider).occupied){
       playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
       MoveLegs(h, v, hV, vV);
     }else if(!this.gameObject.GetComponent(PlayerCollider).isHit&&!this.gameObject.GetComponent(PlayerCollider).isHit&&!this.gameObject.GetComponent(PlayerCollider).occupied&&this.gameObject.GetComponent(PlayerCollider).onGround){
 	      playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
-
-      }
+	} else {
+		playerRigidbody.constraints = RigidbodyConstraints.None;
+	}
 
       playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
       isMoving = false;
@@ -199,7 +200,7 @@ function FixedUpdate ()
     	isJumping = true;
     }
     
-    if(isJumping || isFallen){
+    if(isJumping || isFallen || this.gameObject.GetComponent(PlayerCollider).isHit || this.gameObject.GetComponent(PlayerCollider).occupied){
     	playerRigidbody.constraints =  RigidbodyConstraints.None;
     }else{
     	transform.rotation.x = 0;

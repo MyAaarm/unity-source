@@ -8,8 +8,8 @@ static var numberOfPlayersPlaying: int;
 public var Player : GameObject;
 
 static var players : GameObject[];
-//static var playerControllers = ['Keyboard','','',''];
-static var playerControllers = ['X360PC', 'X360PC', 'X360OSX', 'PS3OSX'];
+static var playerControllers = ['Keyboard','','',''];
+//static var playerControllers = ['X360PC', 'X360PC', 'X360OSX', 'PS3OSX'];
 
 function Awake () {
   DontDestroyOnLoad(this);
