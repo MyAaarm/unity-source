@@ -10,11 +10,11 @@ public class World : MonoBehaviour {
     void Start()
     {
 
-		for (int x = -4; x < 4; x++)
+		for (int x = -3; x < 4; x++)
 		{
-			for (int y = -1; y < 3; y++)
+			for (int y = 0; y < 2; y++)
 			{
-				for (int z = -4; z < 4; z++)
+				for (int z = -3; z < 4; z++)
 				{
 					CreateChunk(x * 16, y * 16, z * 16);
 				}

@@ -35,8 +35,12 @@ public class TerrainGen : MonoBehaviour {
 	{
 		for (int x = chunk.pos.x; x < chunk.pos.x + Chunk.chunkSize; x++)
 		{
+			
+
 			for (int z = chunk.pos.z; z < chunk.pos.z + Chunk.chunkSize; z++)
-			{
+			{	
+				//Debug.Log (" x == " + (((Mathf.Acos((x)/(Mathf.Sqrt(Mathf.Pow(x,2)+Mathf.Pow (z,2))))) > (Mathf.PI/3)) && ((Mathf.Acos((x)/(Mathf.Sqrt(Mathf.Pow(x,2)+Mathf.Pow (z,2))))) < (Mathf.PI/6))));
+
 				chunk = ChunkColumnGen(chunk, x, z);
 			}
 		}
@@ -60,19 +64,26 @@ public class TerrainGen : MonoBehaviour {
 		
 		int dirtHeight = stoneHeight + Mathf.FloorToInt(dirtBaseHeight);
 		dirtHeight += GetNoise(x, 100, z, dirtNoise, Mathf.FloorToInt(dirtNoiseHeight));
-		
 		for (int y = chunk.pos.y; y < chunk.pos.y + Chunk.chunkSize; y++)
-		{
-			if (y <= stoneHeight)
-			{
-				chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new Block());
-			}
-			else if (y <= dirtHeight)
-			{
-				chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockGrass());
-			}
-			else
-			{
+		{	
+			if(!(Mathf.Abs(x-z) < 3)){
+				if (y <= stoneHeight)
+				{
+					if(y == chunk.pos.y-2) Debug.Log (" x == " + (x - chunk.pos.x));
+					chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new Block());
+				}
+				else if (y <= dirtHeight)
+				{
+					if(y == chunk.pos.y-2) Debug.Log (" x == " + (x - chunk.pos.x));
+					chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockGrass());
+				}
+				else
+				{
+					if(y == chunk.pos.y-2) Debug.Log (" x == " + (x - chunk.pos.x));
+					chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockAir());
+				}
+			} else {
+				Debug.Log ("BANANATIME");
 				chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockAir());
 			}
 			
