@@ -12,9 +12,9 @@ GameObject:
   - 64: {fileID: 6450422}
   - 23: {fileID: 2350422}
   - 114: {fileID: 11450422}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: chunkPrefab
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

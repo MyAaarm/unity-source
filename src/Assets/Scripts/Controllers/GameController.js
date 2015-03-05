@@ -7,9 +7,11 @@ static var numberOfPlayersPlaying: int;
 
 public var Player : GameObject;
 
+public var Judge : GameObject;
+
 static var players : GameObject[];
-//static var playerControllers = ['Keyboard','','',''];
-static var playerControllers = ['X360PC', 'Keyboard', 'X360OSX', 'PS3OSX'];
+static var playerControllers = ['Keyboard','','',''];
+//static var playerControllers = ['X360PC', 'X360PC', 'X360OSX', 'PS3OSX'];
 
 function Awake () {
   DontDestroyOnLoad(this);
@@ -18,9 +20,10 @@ function Awake () {
 function Start () {
   HUD = FindObjectOfType(HUDController);
   PauseMenu = FindObjectOfType(PauseController);
-
+	
   if(Application.loadedLevel == 1){
     addPlayers();
+    Instantiate(Judge, Vector3(-20 + 10*5 , 20, 0), Quaternion.identity);
   }
 }
 
@@ -31,7 +34,7 @@ function addPlayers() {
     playerObject.name = 'Player' + (i + 1);
     playerObject.GetComponent(PlayerMovement).playerNumber = i + 1;
     playerObject.GetComponent(PlayerMovement).currentGameController = playerControllers[i];
-    
+
  //   var hingeJoints : HingeJoint[];
 //	hingeJoints = playerObject.GetComponentsInChildren(HingeJoint);
 //	for (var joint : HingeJoint in hingeJoints) {
