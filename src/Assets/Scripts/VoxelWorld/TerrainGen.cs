@@ -9,13 +9,15 @@ public class TerrainGen : MonoBehaviour {
 	float stoneBaseNoise = 0.05f;
 	float stoneBaseNoiseHeight = 4;
 	
-	float stoneMountainHeight = 15;
+	float stoneMountainHeight = 1;
 	float stoneMountainFrequency = 0.008f;
 	float stoneMinHeight = -12;
 	
 	float dirtBaseHeight = 3;
 	float dirtNoise = 0.04f;
 	float dirtNoiseHeight = 1;
+
+	int l = 1;
 
 	/*
 	 * ******** FLAT WORLD ********
@@ -64,26 +66,35 @@ public class TerrainGen : MonoBehaviour {
 		
 		int dirtHeight = stoneHeight + Mathf.FloorToInt(dirtBaseHeight);
 		dirtHeight += GetNoise(x, 100, z, dirtNoise, Mathf.FloorToInt(dirtNoiseHeight));
+		int k = 0;
+		int p = 0;
 		for (int y = chunk.pos.y; y < chunk.pos.y + Chunk.chunkSize; y++)
 		{	
-			if(!(Mathf.Abs(x-z) < 3)){
+			k = k + Random.Range(-1,1);
+
+			/*if(p > 120){ 
+				l = l + 1;
+				if(l>3) l = 0;
+				p = 0;
+			}
+			
+			p++;*/
+
+			if(!(((x-(z)) <= (18+k)*2) && ((x-(z)) >= (10+k)*2))){
+			//if(!(((x-(z)*(1/l)) <= (18+k)*2) && ((x-(z)*(1/l)) >= (10+k)*2))){
 				if (y <= stoneHeight)
 				{
-					if(y == chunk.pos.y-2) Debug.Log (" x == " + (x - chunk.pos.x));
 					chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new Block());
 				}
 				else if (y <= dirtHeight)
 				{
-					if(y == chunk.pos.y-2) Debug.Log (" x == " + (x - chunk.pos.x));
 					chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockGrass());
 				}
 				else
 				{
-					if(y == chunk.pos.y-2) Debug.Log (" x == " + (x - chunk.pos.x));
 					chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockAir());
 				}
 			} else {
-				Debug.Log ("BANANATIME");
 				chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockAir());
 			}
 			
