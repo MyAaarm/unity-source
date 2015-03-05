@@ -132,7 +132,7 @@ function FixedUpdate ()
     vV  = Input.GetAxisRaw ("360RightJoystickYPC"+playerNumber);
 
   	dragButton = Input.GetButton('360LeftBumperPC'+playerNumber);
-		jumpButtonPressed =  Input.GetButtonDown('360RightBumperPC'+playerNumber);
+		jumpButtonPressed =  Input.GetButtonUp('360RightBumperPC'+playerNumber);
 		
 		riseButtonDown = Input.GetButtonUp('X360AButtonPC'+playerNumber);
 		
@@ -211,10 +211,11 @@ function FixedUpdate ()
     
     if(jumpButtonDown){
     	jumpFwdForce += Time.deltaTime;
-    	if(jumpFwdForce>2){
+    	if(jumpFwdForce>4){
     		jumpFwdForce = 5;
-    		leftHand.transform.position = transform.forward;
-    		Debug.Log("fwd");
+    		//leftHand.transform.position = transform.forward;
+    		//leftArm.transform.position  = transform.forward;
+    		Debug.Log("Fully charged");
     	}
     }
     
@@ -325,9 +326,9 @@ function Jump(){
 		numberOfJumps = 0;
 	}
 
-	var jumpVector : Vector3 = new Vector3(0f, jumpForce, 0f);
+	var jumpVector : Vector3 = new Vector3(0f, jumpForce*Mathf.Max(jumpFwdForce*0.5f,1), 0f);
 	
-	jumpVector+= transform.forward*jumpForce*jumpFwdForce;
+	jumpVector+= transform.forward*jumpForce*jumpFwdForce*3;
 	
 	if(numberOfJumps<2){
 		//playerRigidbody.AddForce(jumpVector, ForceMode.Impulse);
