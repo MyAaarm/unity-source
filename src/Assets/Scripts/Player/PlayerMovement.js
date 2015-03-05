@@ -99,7 +99,8 @@ function FixedUpdate ()
     
 	dragButton = Input.GetKey(KeyCode.E);
 	riseButtonDown = Input.GetKey(KeyCode.R);
-
+	jumpButtonPressed =  Input.GetKeyUp(KeyCode.Q);
+	jumpButtonDown = Input.GetKey(KeyCode.Q);
 
   }
   else {
