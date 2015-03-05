@@ -46,12 +46,14 @@ private var jumpFwdForce : float;
 public var isFallen : boolean;
 private var riseButtonDown : boolean;
 
+private var bodySize : float;
 
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
 
 
 function Awake () {
     jumpForce = 200f;
+    bodySize = this.transform.Find("body").gameObject.transform.localScale.y;
 }
 
 function Start () {
@@ -217,6 +219,7 @@ function FixedUpdate ()
     		//leftHand.transform.position = transform.forward;
     		//leftArm.transform.position  = transform.forward;
     		Debug.Log("Fully charged");
+    		//this.transform.Find("body").gameObject.transform.localScale.y = bodySize*0.8f;
     	}
     }
     
@@ -340,6 +343,7 @@ function Jump(){
 		isJumping = true;
 	}
 	jumpFwdForce = 0;
+	this.transform.Find("body").gameObject.transform.localScale.y = bodySize;
 }
 
 function MoveLegs(h : float, v : float, hV : float, vV : float) {
