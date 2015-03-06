@@ -26,14 +26,14 @@ public class Debris : MonoBehaviour {
 		0, -1, +1,
 		0,  +1, -1, 
 		0, +1, +1};
-
+	
 	
 	public void destroyBlocks(int x, int y, int z, int impactSize, Chunk c, World w){
 		chunk = c;
 		world = w;
 		int dx; int dy; int dz;
-		for (int i = 0; i < impactSize*3; i = i+3) {
-			dx = blockCoordinates[i]; dy = blockCoordinates[i+1]; dz = blockCoordinates[i+2];
+		for (int i = 0; i < impactSize+1; i++) {
+			dx = blockCoordinates[i*3]; dy = blockCoordinates[i*3+1]; dz = blockCoordinates[i*3+2];
 			//Debug.Log ("i value == " + i + " bloockcoordinates x,y,z = " + blockCoordinates[impactSize] + blockCoordinates[impactSize+1] + blockCoordinates[impactSize+2]);
 			//Debug.Log (blockCoordinates[impactSize]);Debug.Log (blockCoordinates[impactSize+1]);Debug.Log (blockCoordinates[impactSize+2]);
 			Block bx = chunk.world.GetBlock (x + dx, y + dy, z + dz);
