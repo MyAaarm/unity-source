@@ -66,6 +66,17 @@ function OnCollisionEnter( col : Collision ){
 	}
 	
 	if(col.collider.transform.root.name=="SpawnedChunks"){
+		
+		if(transform.gameObject.GetComponent(PlayerMovement).isJumping){
+			
+			
+			var ums = GameObject.Find( "CraterController" );	
+			ums.BroadcastMessage( "handleOuterImpacts", col.contacts[0].point );
+			
+			
+			
+		}
+		
 		onGround = true;
 	}
 	

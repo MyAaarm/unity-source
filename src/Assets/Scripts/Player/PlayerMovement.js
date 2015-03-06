@@ -40,7 +40,7 @@ public var jumpForce : float;
 public var numberOfJumps : int = 0;
 private var newRotation : Quaternion;
 private var old : int; 
-private var isJumping : boolean;
+public var isJumping : boolean;
 private var jumpButtonDown : boolean;
 private var jumpFwdForce : float;
 public var isFallen : boolean;
