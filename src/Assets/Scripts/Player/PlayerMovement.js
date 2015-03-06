@@ -41,15 +41,19 @@ public var numberOfJumps : int = 0;
 private var newRotation : Quaternion;
 private var old : int; 
 private var isJumping : boolean;
+private var jumpButtonDown : boolean;
+private var jumpFwdForce : float;
 public var isFallen : boolean;
 private var riseButtonDown : boolean;
 
+private var bodySize : float;
 
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
 
 
 function Awake () {
-    jumpForce = 200f;
+    jumpForce = 100f;
+    bodySize = this.transform.Find("body").gameObject.transform.localScale.y;
 }
 
 function Start () {
@@ -97,7 +101,8 @@ function FixedUpdate ()
     
 	dragButton = Input.GetKey(KeyCode.E);
 	riseButtonDown = Input.GetKey(KeyCode.R);
-
+	jumpButtonPressed =  Input.GetKeyUp(KeyCode.Q);
+	jumpButtonDown = Input.GetKey(KeyCode.Q);
 
   }
   else {
@@ -130,9 +135,11 @@ function FixedUpdate ()
     vV  = Input.GetAxisRaw ("360RightJoystickYPC"+playerNumber);
 
   	dragButton = Input.GetButton('360LeftBumperPC'+playerNumber);
-		jumpButtonPressed =  Input.GetButtonDown('360RightBumperPC'+playerNumber);
+		jumpButtonPressed =  Input.GetButtonUp('360RightBumperPC'+playerNumber);
 		
 		riseButtonDown = Input.GetButtonUp('X360AButtonPC'+playerNumber);
+		
+		jumpButtonDown = Input.GetButton('360RightBumperPC'+playerNumber);
 						
     	//leftBumperPressed = Input.GetButtonDown('360LeftBumperPC'+playerNumber);
     	//rightBumperPressed = Input.GetButtonDown('360RightBumperPC'+playerNumber);   
@@ -205,6 +212,18 @@ function FixedUpdate ()
     	transform.rotation.z = 0;
     }
     
+    if(jumpButtonDown){
+    	jumpFwdForce += Time.deltaTime;
+    	if(jumpFwdForce>3){
+    		jumpFwdForce = 3;
+    		//leftHand.transform.position = transform.forward;
+    		//leftArm.transform.position  = transform.forward;
+    		Debug.Log("Fully charged");
+    		this.transform.Find("body").gameObject.transform.localScale.y = bodySize*0.8f;
+    	}
+    }
+    
+
     if(jumpButtonPressed && !isFallen){
     	Jump();
     }
@@ -312,13 +331,21 @@ function Jump(){
 	}
 
 	var jumpVector : Vector3 = new Vector3(0f, jumpForce, 0f);
+	
+	var jumpVectorFWD : Vector3  = transform.forward*jumpForce*jumpFwdForce*0.2f;
+	
 	if(numberOfJumps<2){
-		//playerRigidbody.AddForce(jumpVector, ForceMode.Impulse);
-		playerRigidbody.velocity = jumpVector;
-		Debug.Log(playerRigidbody.velocity.y);
+		playerRigidbody.AddForce(jumpVector, ForceMode.Impulse);
+		rightHand.rigidbody.AddForce(jumpVectorFWD, ForceMode.Impulse);
+		leftHand.rigidbody.AddForce(jumpVectorFWD, ForceMode.Impulse);
+		//playerRigidbody.velocity = jumpVector;
+		transform.position.y+=0.1;
+		Debug.Log(jumpFwdForce);
 		numberOfJumps++;
 		isJumping = true;
 	}
+	jumpFwdForce = 0;
+	this.transform.Find("body").gameObject.transform.localScale.y = bodySize;
 }
 
 function MoveLegs(h : float, v : float, hV : float, vV : float) {
