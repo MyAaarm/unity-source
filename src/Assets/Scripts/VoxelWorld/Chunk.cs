@@ -23,6 +23,7 @@ public class Chunk : MonoBehaviour
     {
         filter = gameObject.GetComponent<MeshFilter>();
         coll = gameObject.GetComponent<MeshCollider>();
+		coll.smoothSphereCollisions = true;
 		this.gameObject.transform.parent = GameObject.Find ("SpawnedChunks").transform;
     }
 
@@ -35,6 +36,14 @@ public class Chunk : MonoBehaviour
             UpdateChunk();
         }
     }
+
+	void OnCollisionEnter(Collision collision) {
+		//Debug.Log ("valp");
+		if (collision.collider.gameObject == GameObject.Find("Sphere")) {
+					//Debug.Log ("valp");
+				}
+		
+	}
 
     public Block GetBlock(int x, int y, int z)
     {

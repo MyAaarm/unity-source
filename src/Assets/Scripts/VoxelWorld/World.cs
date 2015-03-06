@@ -118,6 +118,14 @@ public class World : MonoBehaviour {
 
     }
 
+	void OnCollisionEnter(Collision collision) {
+		Debug.Log ("valpearth");
+		if (collision.collider.gameObject == GameObject.Find("Sphere")) {
+			Debug.Log ("valp");
+		}
+		
+	}
+
     public void SetBlock(int x, int y, int z, Block block)
     {
         Chunk chunk = GetChunk(x, y, z);

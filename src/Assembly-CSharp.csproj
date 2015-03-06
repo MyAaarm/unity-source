@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\VoxelWorld\NewStonePoolerScript.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Noise.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\PolygonGenerator.cs" />
+     <Compile Include="Assets\Scripts\VoxelWorld\SphereExpander.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Terrain.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\TerrainGen.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\World.cs" />

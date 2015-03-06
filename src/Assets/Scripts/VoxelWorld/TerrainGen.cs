@@ -82,17 +82,27 @@ public class TerrainGen : MonoBehaviour {
 			
 			if(!(((x-(z)) <= (18+k)*2) && ((x-(z)) >= (10+k)*2))){
 				//if(!(((x-(z)*(1/l)) <= (18+k)*2) && ((x-(z)*(1/l)) >= (10+k)*2))){
-				if (y <= stoneHeight)
+				if (y <= stoneHeight && !onEdge (x,z))
 				{
 					chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new Block());
 				}
-				else if (y <= dirtHeight)
+				else if (y <= dirtHeight && !onEdge (x,z))
 				{
 					chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockGrass());
 				}
-				else
+				else if (!onEdge (x,z))
 				{
 					chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockAir());
+				} else {
+					int yh = edgeVal(x,z);
+						if(y < 2 && y <= stoneHeight && y <= yh) {
+							chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new Block());
+						} else if (y < 8 &&  y <= yh){
+							chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockGrass());
+						} else {
+							chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockAir());
+						}
+
 				}
 			} else {
 				chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockAir());
@@ -102,5 +112,11 @@ public class TerrainGen : MonoBehaviour {
 		
 		return chunk;
 	}
-	
+
+	private bool onEdge(int xE, int zE){
+		return (xE < -45 || xE > 60 || zE < -61 || zE > 60);
+	}
+	private int edgeVal(int xE, int zE){
+		return Mathf.Min (Mathf.Abs (xE - (-48)), Mathf.Abs (xE - 63), Mathf.Abs (zE - (-64)), Mathf.Abs (zE - 63));
+	}
 }

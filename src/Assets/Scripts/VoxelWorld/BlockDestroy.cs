@@ -4,7 +4,7 @@ using System.Collections;
 public class BlockDestroy : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col){
-		if (col.gameObject.name == "DespawnPlane") Invoke ("Destroy", 2f);
+		if (col.gameObject.name == "DespawnPlane") Invoke ("Destroy", 1f);
 		}
 
 	void Destroy()

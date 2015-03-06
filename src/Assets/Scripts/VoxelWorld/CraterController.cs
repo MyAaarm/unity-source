@@ -24,9 +24,13 @@ public class CraterController : MonoBehaviour {
 		Block b = Terrain.GetBlock (hit);
 		chunk = hit.collider.GetComponent<Chunk>();
 		pos = Terrain.GetBlockPos (hit, false);
+		//Debug.Log ("x  == " + pos.x);
+		//Debug.Log ("y  == " + pos.y);
+		//Debug.Log ("z  == " + pos.z);
+
 		
 		if (force > 50) {
-			d.destroyBlocks(pos.x, pos.y, pos.z, 18, chunk, world);
+			d.destroyBlocks(pos.x, pos.y, pos.z, 1, chunk, world);
 		}
 		/*	
 		dynamicBlock = Instantiate(Resources.Load("BlockDynamic"), new Vector3(pos.x, pos.y, pos.z), Quaternion.identity) as GameObject;
