@@ -29,7 +29,7 @@ function OnCollisionEnter( col : Collision ){
 			if(col.relativeVelocity.magnitude>100){
 				playerHealth.TakeDamage(col.relativeVelocity.magnitude*.05);
 				
-				Debug.Log("damage = " + col.relativeVelocity.magnitude);
+//				Debug.Log("damage = " + col.relativeVelocity.magnitude);
 				if(col.relativeVelocity.magnitude > 15){
 					gameObject.transform.Find("Blood").particleSystem.transform.position = col.transform.position;
 					gameObject.transform.Find("Blood").particleSystem.transform.rotation = col.transform.rotation;

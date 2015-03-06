@@ -10,9 +10,9 @@ public class World : MonoBehaviour {
     void Start()
     {
 
-		for (int x = -4; x < 4; x++)
+		for (int x = -3; x < 4; x++)
 		{
-			for (int y = -1; y < 3; y++)
+			for (int y = 0; y < 3; y++)
 			{
 				for (int z = -4; z < 4; z++)
 				{
