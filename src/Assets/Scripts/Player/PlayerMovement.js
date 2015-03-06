@@ -52,7 +52,7 @@ private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor 
 
 
 function Awake () {
-    jumpForce = 200f;
+    jumpForce = 100f;
     bodySize = this.transform.Find("body").gameObject.transform.localScale.y;
 }
 
@@ -214,12 +214,12 @@ function FixedUpdate ()
     
     if(jumpButtonDown){
     	jumpFwdForce += Time.deltaTime;
-    	if(jumpFwdForce>4){
-    		jumpFwdForce = 5;
+    	if(jumpFwdForce>3){
+    		jumpFwdForce = 3;
     		//leftHand.transform.position = transform.forward;
     		//leftArm.transform.position  = transform.forward;
     		Debug.Log("Fully charged");
-    		//this.transform.Find("body").gameObject.transform.localScale.y = bodySize*0.8f;
+    		this.transform.Find("body").gameObject.transform.localScale.y = bodySize*0.8f;
     	}
     }
     
@@ -330,13 +330,15 @@ function Jump(){
 		numberOfJumps = 0;
 	}
 
-	var jumpVector : Vector3 = new Vector3(0f, jumpForce*Mathf.Max(jumpFwdForce*0.5f,1), 0f);
+	var jumpVector : Vector3 = new Vector3(0f, jumpForce, 0f);
 	
-	jumpVector+= transform.forward*jumpForce*jumpFwdForce*3;
+	var jumpVectorFWD : Vector3  = transform.forward*jumpForce*jumpFwdForce*0.2f;
 	
 	if(numberOfJumps<2){
-		//playerRigidbody.AddForce(jumpVector, ForceMode.Impulse);
-		playerRigidbody.velocity = jumpVector;
+		playerRigidbody.AddForce(jumpVector, ForceMode.Impulse);
+		rightHand.rigidbody.AddForce(jumpVectorFWD, ForceMode.Impulse);
+		leftHand.rigidbody.AddForce(jumpVectorFWD, ForceMode.Impulse);
+		//playerRigidbody.velocity = jumpVector;
 		transform.position.y+=0.1;
 		Debug.Log(jumpFwdForce);
 		numberOfJumps++;
