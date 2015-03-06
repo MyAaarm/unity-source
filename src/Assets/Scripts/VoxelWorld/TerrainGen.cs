@@ -82,17 +82,22 @@ public class TerrainGen : MonoBehaviour {
 			
 			if(!(((x-(z)) <= (18+k)*2) && ((x-(z)) >= (10+k)*2))){
 				//if(!(((x-(z)*(1/l)) <= (18+k)*2) && ((x-(z)*(1/l)) >= (10+k)*2))){
-				if (y <= stoneHeight)
+				if (y <= stoneHeight && !atEdge(x,z))
 				{
 					chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new Block());
 				}
-				else if (y <= dirtHeight)
+				else if (y <= dirtHeight && !atEdge(x,z))
 				{
 					chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockGrass());
 				}
-				else
+				else if(!atEdge(x,z))
 				{
 					chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockAir());
+				}else {
+					if(y == chunk.pos.y) { chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new Block());
+					} else {
+						chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockAir());
+					}
 				}
 			} else {
 				chunk.SetBlock(x - chunk.pos.x, y - chunk.pos.y, z - chunk.pos.z, new BlockAir());
@@ -102,5 +107,11 @@ public class TerrainGen : MonoBehaviour {
 		
 		return chunk;
 	}
-	
+
+	private bool atEdge(int xVal, int zVal){
+				if (xVal == 0) {
+						return true;
+				} else {
+			return false;}
+		}
 }
