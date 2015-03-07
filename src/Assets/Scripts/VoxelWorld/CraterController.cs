@@ -30,15 +30,16 @@ public class CraterController : MonoBehaviour {
 
 		
 		if (force > 50) {
-			//d.destroyBlocks(pos.x, pos.y, pos.z, 1, chunk, world);
-			//GameObject obj = NewSpherePoolerScript.current.GetPooledObject ();
-			//obj.SetActive (true);
-			//obj.transform.position = new Vector3(pos.x, pos.y, pos.z);
-			Collider[] hitColliders = Physics.OverlapSphere(new Vector3(pos.x, pos.y, pos.z), 1f);
+			//d.destroyBlocks(pos.x, pos.y, pos.z, 19, chunk, world);
+			GameObject obj = NewSpherePoolerScript.current.GetPooledObject ();
+			obj.SetActive (true);
+			obj.transform.position = new Vector3(pos.x, pos.y, pos.z);
+			d.destroyBlocks(pos.x, pos.y, pos.z, 1, chunk, world);
+			//Collider[] hitColliders = Physics.OverlapSphere(new Vector3(pos.x, pos.y, pos.z), 1f);
 			//int i = 0;
 			//while (i < hitColliders.Length) {
-			Debug.Log (hitColliders[0].name + " 0 " + hitColliders[0]);
-			Debug.Log (hitColliders[1].name + " 1 " + hitColliders[1].gameObject.transform.position);
+			//Debug.Log (hitColliders[0].name + " 0 " + hitColliders[0]);
+			//Debug.Log (hitColliders[1].name + " 1 " + hitColliders[1].gameObject.transform.position);
 			//}
 		}
 		/*	

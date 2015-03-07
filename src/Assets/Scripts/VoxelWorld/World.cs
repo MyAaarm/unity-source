@@ -100,31 +100,20 @@ public class World : MonoBehaviour {
 
     public Block GetBlock(int x, int y, int z)
     {
-        Chunk containerChunk = GetChunk(x, y, z);
+				Chunk containerChunk = GetChunk (x, y, z);
 
-        if (containerChunk != null)
-        {
-            Block block = containerChunk.GetBlock(
+				if (containerChunk != null) {
+						Block block = containerChunk.GetBlock (
                 x - containerChunk.pos.x,
                 y - containerChunk.pos.y,
                 z - containerChunk.pos.z);
 
-            return block;
-        }
-        else
-        {
-            return new BlockAir();
-        }
+						return block;
+				} else {
+						return new BlockAir ();
+				}
 
-    }
-
-	void OnCollisionEnter(Collision collision) {
-		Debug.Log ("valpearth");
-		if (collision.collider.gameObject == GameObject.Find("Sphere")) {
-			Debug.Log ("valp");
 		}
-		
-	}
 
     public void SetBlock(int x, int y, int z, Block block)
     {

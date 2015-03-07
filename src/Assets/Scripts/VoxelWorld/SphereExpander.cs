@@ -10,6 +10,7 @@ public class SphereExpander : MonoBehaviour {
 	public World world;
 	private int expC;
 	public NewSpherePoolerScript SpherePooler;
+	CraterController cc;
 	
 	void Awake(){
 		myCollider = transform.GetComponent<SphereCollider>();
@@ -19,11 +20,12 @@ public class SphereExpander : MonoBehaviour {
 	}
 
 	void OnEnable(){
+		cc = new CraterController();
 		myCollider.radius = 0.5f; 
 		this.transform.localScale = new Vector3(1,1,1);
 		expanding = true;
 	}
-	void OnTriggerStay(Collider other) {	
+	/*void OnTriggerStay(Collider other) {	
 		chunk = other.GetComponent<Chunk>();
 
 		//Debug.Log ("valpvalp" + col.collider.name + " " + col.contacts [1].point);
@@ -40,25 +42,48 @@ public class SphereExpander : MonoBehaviour {
 		}
 		this.gameObject.SetActive (false);
 		
-	}
-	/*void OnCollisionEnter(Collision col){
-		chunk = col.collider.GetComponent<Chunk>();
+	}*/
+	void OnCollisionEnter(Collision col){
+	foreach (ContactPoint cp in col.contacts) {
+						RaycastHit hit;
+						float rayLength = 0.1f;
+						Ray ray = new Ray (cp.point - cp.normal * rayLength * 0.5f, cp.normal);
+
+						if (cp.otherCollider.Raycast (ray, out hit, rayLength)) {
+								Terrain.SetBlock(hit, new BlockAir());
+								cc.Impact (hit, 100);
+								// Instantiate your effect and
+								// use the color C
+						}
+				}
+		/*expanding = false;
+		RaycastHit hit;
+		col.contacts [0].otherCollider.Raycast (new Ray(col.contacts[1].point, -Vector3.up), out hit, 1f);
+		if (!(this.transform.localScale.x > 9)) cc.Impact (hit, 100);
+		/*chunk = col.collider.GetComponent<Chunk>();
 		//Debug.Log ("valpvalp" + col.collider.name + " " + col.contacts [1].point);
-		chunk.world.SetBlock((int)col.contacts [0].point.x, (int)col.contacts [0].point.y,(int) col.contacts [0].point.z, new BlockAir());
+		WorldPos blockPos = new WorldPos(
+			Mathf.RoundToInt(col.contacts [0].point.x),
+			Mathf.RoundToInt(col.contacts [0].point.y),
+			Mathf.RoundToInt(col.contacts [0].point.z)
+			);
+		chunk.world.SetBlock(blockPos.x, blockPos.y,blockPos.z, new BlockAir());
 		//d.destroyBlocks((int)col.contacts [0].otherCollider.transform.position.x, (int)col.contacts [0].otherCollider.transform.position.y, (int)col.contacts [0].otherCollider.transform.position.z, 1, chunk, world);
 		//d.destroyBlocks(pos.x, pos.y, pos.z, 1, chunk, world);
 		expanding = false;
+		Vector3 pos = this.transform.position;
 		if (!(this.transform.localScale.x > 9)) {
 						this.gameObject.SetActive (false);
-						GameObject obj = NewSpherePoolerScript.current.GetPooledObject ();
-						obj.SetActive (true);
-						obj.transform.position = new Vector3((int)col.contacts [0].point.x, (int)col.contacts [0].point.y, (int)col.contacts [0].point.z);
+						GameObject xobj = NewSpherePoolerScript.current.GetPooledObject ();
+						xobj.SetActive (true);
+						Debug.Log ("bananatime");
+			xobj.transform.position = pos;//new Vector3((int)col.contacts [0].point.x, (int)col.contacts [0].point.y+7, (int)col.contacts [0].point.z);
 			                                     
 		}
 		this.gameObject.SetActive (false);
-		if (col.gameObject.name == "DespawnPlane") Invoke ("Destroy", 1f);
+		if (col.gameObject.name == "DespawnPlane") Invoke ("Destroy", 1f);*/
 	}
-	*/
+
 	void Update()
 	{
 		if (expanding) {
