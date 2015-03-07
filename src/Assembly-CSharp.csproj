@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\VoxelWorld\MeshData.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Modify.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\NewGrassPoolerScript.cs" />
+     <Compile Include="Assets\Scripts\VoxelWorld\NewSpherePoolerScript.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\NewStonePoolerScript.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\Noise.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\PolygonGenerator.cs" />
