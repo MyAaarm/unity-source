@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class CraterController : MonoBehaviour {
+public class CraterController {
 	Chunk chunk;
 	public World world;
 	WorldPos pos;
@@ -11,13 +11,13 @@ public class CraterController : MonoBehaviour {
 	private Debris d = new Debris();
 	
 	
-	public void handleOuterImpacts(Vector3 pos){
+/*	public void handleOuterImpacts(Vector3 pos){
 		Debug.Log ("Impact");
 		RaycastHit hit;
 		Physics.Raycast (pos, -transform.up, out hit, 100);
 		this.Impact (hit, 450);
 
-	}
+	}*/
 	
 	
 	public void Impact (RaycastHit hit, int force) {
@@ -34,7 +34,7 @@ public class CraterController : MonoBehaviour {
 			GameObject obj = NewSpherePoolerScript.current.GetPooledObject ();
 			obj.SetActive (true);
 			obj.transform.position = new Vector3(pos.x, pos.y, pos.z);
-			d.destroyBlocks(pos.x, pos.y, pos.z, 1, chunk, world);
+			//d.destroyBlocks(pos.x, pos.y, pos.z, 1, chunk, world);
 			//Collider[] hitColliders = Physics.OverlapSphere(new Vector3(pos.x, pos.y, pos.z), 1f);
 			//int i = 0;
 			//while (i < hitColliders.Length) {
@@ -58,7 +58,7 @@ public class CraterController : MonoBehaviour {
 	}
 	
 	
-	private void Impact (List<Block> blockList, int force) {
+	/*private void Impact (List<Block> blockList, int force) {
 		foreach (Block bls in blockList) {
 			//world.SetBlock(nbPos[bls.ToString].FindIndex(0), nbPos[bls.ToString].FindIndex(1), nbPos[bls.ToString].FindIndex(2), new BlockAir());
 		}
@@ -182,19 +182,18 @@ public class CraterController : MonoBehaviour {
 		nbPosTemp.Add (pos.x); nbPosTemp.Add (pos.y); nbPosTemp.Add (pos.z + 1);
 		nbPos.Add (chunk.world.GetBlock(pos.x, pos.y, pos.z + 1).ToString ,nbPosTemp);
 		nbPosTemp.Clear();
-		*/
+
 		
 		return neighbours;
 		
 	}
 }
 
-/*
 	private int[] xArray;
 	private int[] yArray;
 	private int[] zArray;
 	private 
 	void Start()
 	{
-	}
 	*/
+	}

@@ -10,7 +10,7 @@ public class SphereExpander : MonoBehaviour {
 	public World world;
 	private int expC;
 	public NewSpherePoolerScript SpherePooler;
-	CraterController cc;
+	public CraterController cc;
 	
 	void Awake(){
 		myCollider = transform.GetComponent<SphereCollider>();
@@ -20,7 +20,6 @@ public class SphereExpander : MonoBehaviour {
 	}
 
 	void OnEnable(){
-		cc = new CraterController();
 		myCollider.radius = 0.5f; 
 		this.transform.localScale = new Vector3(1,1,1);
 		expanding = true;
@@ -44,17 +43,24 @@ public class SphereExpander : MonoBehaviour {
 		
 	}*/
 	void OnCollisionEnter(Collision col){
-	foreach (ContactPoint cp in col.contacts) {
+		expanding = false;
+			foreach (ContactPoint cp in col.contacts) {
 						RaycastHit hit;
 						float rayLength = 0.1f;
 						Ray ray = new Ray (cp.point - cp.normal * rayLength * 0.5f, cp.normal);
 
 						if (cp.otherCollider.Raycast (ray, out hit, rayLength)) {
-								Terrain.SetBlock(hit, new BlockAir());
+								//Terrain.SetBlock(hit, new BlockAir());
 								cc.Impact (hit, 100);
 								// Instantiate your effect and
 								// use the color C
 						}
+			if (!(this.transform.localScale.x > 4)) {
+					this.gameObject.SetActive (false);
+					GameObject xobj = NewSpherePoolerScript.current.GetPooledObject ();
+					xobj.SetActive (true);
+			}
+					//this.gameObject.SetActive (false);
 				}
 		/*expanding = false;
 		RaycastHit hit;
@@ -89,7 +95,7 @@ public class SphereExpander : MonoBehaviour {
 		if (expanding) {
 						//myCollider.radius = myCollider.radius + (1);
 			if(expC == 1){
-				this.transform.localScale += new Vector3(0.25f,0.25f,0.25f);
+				this.transform.localScale += new Vector3(0.75f,0.75f,0.75f);
 				expC = 0;
 						} else {
 							this.transform.localScale += new Vector3(-0.15f,-0.15f,-0.15f);
@@ -98,7 +104,7 @@ public class SphereExpander : MonoBehaviour {
 				}
 		
 		//if (myCollider.radius > 10) {
-		if(this.transform.localScale.x > 9){
+		if(this.transform.localScale.x > 4){
 			expanding = false;
 			this.gameObject.SetActive (false);
 		}
