@@ -65,7 +65,7 @@ public class World : MonoBehaviour {
             }
         }
         */
-		var terrainGen = new TerrainGen();
+		var terrainGen = (TerrainGen)gameObject.AddComponent("TerrainGen");
 		newChunk = terrainGen.ChunkGen(newChunk);
 		
 		//newChunk.SetBlocksUnmodified();

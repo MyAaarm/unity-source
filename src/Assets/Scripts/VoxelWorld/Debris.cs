@@ -33,13 +33,17 @@ public class Debris : MonoBehaviour {
 		world = w;
 		int dx; int dy; int dz;
 		for (int i = 0; i < impactSize+1; i++) {
-			dx = blockCoordinates[i*3]; dy = blockCoordinates[i*3+1]; dz = blockCoordinates[i*3+2];
-			//Debug.Log ("i value == " + i + " bloockcoordinates x,y,z = " + blockCoordinates[impactSize] + blockCoordinates[impactSize+1] + blockCoordinates[impactSize+2]);
-			//Debug.Log (blockCoordinates[impactSize]);Debug.Log (blockCoordinates[impactSize+1]);Debug.Log (blockCoordinates[impactSize+2]);
-			Block bx = chunk.world.GetBlock (x + dx, y + dy, z + dz);
-			chunk.world.SetBlock(x + dx, y + dy, z + dz, new BlockAir());
-			spawnDebris(x + blockCoordinates[i], y + blockCoordinates[i+1], z + blockCoordinates[i+2], bx, debrisAngle(dx, dy, dz));
-		}
+						dx = blockCoordinates [i * 3];
+						dy = blockCoordinates [i * 3 + 1];
+						dz = blockCoordinates [i * 3 + 2];
+						//Debug.Log ("i value == " + i + " bloockcoordinates x,y,z = " + blockCoordinates[impactSize] + blockCoordinates[impactSize+1] + blockCoordinates[impactSize+2]);
+						//Debug.Log (blockCoordinates[impactSize]);Debug.Log (blockCoordinates[impactSize+1]);Debug.Log (blockCoordinates[impactSize+2]);
+						if (chunk.world.GetBlock (x + dx, y + dy, z + dz) != null) {
+								Block bx = chunk.world.GetBlock (x + dx, y + dy, z + dz);
+								chunk.world.SetBlock (x + dx, y + dy, z + dz, new BlockAir ());
+								spawnDebris (x + blockCoordinates [i], y + blockCoordinates [i + 1], z + blockCoordinates [i + 2], bx, debrisAngle (dx, dy, dz));
+						}
+				}
 	}
 	
 	private void spawnDebris(int x, int y, int z, Block bt, int[] da){

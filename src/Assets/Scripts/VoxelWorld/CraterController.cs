@@ -34,7 +34,35 @@ public class CraterController {
 			GameObject obj = NewSpherePoolerScript.current.GetPooledObject ();
 			obj.SetActive (true);
 			obj.transform.position = new Vector3(pos.x, pos.y, pos.z);
-			//d.destroyBlocks(pos.x, pos.y, pos.z, 1, chunk, world);
+			obj = NewSpherePoolerScript.current.GetPooledObject ();
+			obj.SetActive (true);
+			obj.transform.position = new Vector3(pos.x, pos.y-1, pos.z);
+			obj = NewSpherePoolerScript.current.GetPooledObject ();
+			obj.SetActive (true);
+			obj.transform.position = new Vector3(pos.x-1, pos.y-1, pos.z);
+			obj = NewSpherePoolerScript.current.GetPooledObject ();
+			obj.SetActive (true);
+			obj.transform.position = new Vector3(pos.x-1, pos.y-2, pos.z);
+			obj = NewSpherePoolerScript.current.GetPooledObject ();
+			obj.SetActive (true);
+			obj.transform.position = new Vector3(pos.x+1, pos.y-1, pos.z);
+			obj = NewSpherePoolerScript.current.GetPooledObject ();
+			obj.SetActive (true);
+			obj.transform.position = new Vector3(pos.x+2, pos.y, pos.z);
+			obj = NewSpherePoolerScript.current.GetPooledObject ();
+			obj.SetActive (true);
+			obj.transform.position = new Vector3(pos.x, pos.y-1, pos.z-1);
+			obj = NewSpherePoolerScript.current.GetPooledObject ();
+			obj.SetActive (true);
+			obj.transform.position = new Vector3(pos.x, pos.y-1, pos.z-2);
+			obj = NewSpherePoolerScript.current.GetPooledObject ();
+			obj.SetActive (true);
+			obj.transform.position = new Vector3(pos.x, pos.y-2, pos.z-1);
+			obj = NewSpherePoolerScript.current.GetPooledObject ();
+			obj.SetActive (true);
+			obj.transform.position = new Vector3(pos.x, pos.y-2, pos.z-2);
+			d.destroyBlocks(pos.x, pos.y, pos.z, 1, chunk, world);
+
 			//Collider[] hitColliders = Physics.OverlapSphere(new Vector3(pos.x, pos.y, pos.z), 1f);
 			//int i = 0;
 			//while (i < hitColliders.Length) {

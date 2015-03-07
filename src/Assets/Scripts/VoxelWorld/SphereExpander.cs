@@ -13,6 +13,7 @@ public class SphereExpander : MonoBehaviour {
 	public CraterController cc;
 	
 	void Awake(){
+		cc = (CraterController) gameObject.AddComponent("CraterController");
 		myCollider = transform.GetComponent<SphereCollider>();
 		//myCollider.radius = 0.1f; 
 		//expanding = true;
@@ -95,7 +96,7 @@ public class SphereExpander : MonoBehaviour {
 		if (expanding) {
 						//myCollider.radius = myCollider.radius + (1);
 			if(expC == 1){
-				this.transform.localScale += new Vector3(0.75f,0.75f,0.75f);
+				this.transform.localScale += new Vector3(0.8f,0.8f,0.8f);
 				expC = 0;
 						} else {
 							this.transform.localScale += new Vector3(-0.15f,-0.15f,-0.15f);

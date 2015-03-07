@@ -16,7 +16,7 @@ public class Modify : MonoBehaviour
 			RaycastHit hit;
 			if (Physics.Raycast(transform.position, transform.forward,out hit, 100 ))
 			{
-				cc.Impact(hit, 150);
+				for(int i = 0; i <3; i++) cc.Impact(hit, 150);
 				//Terrain.SetBlock(hit, new BlockAir());
 			}
 		}
