@@ -151,6 +151,7 @@ GameObject:
   - 114: {fileID: 11487766}
   - 114: {fileID: 11487768}
   - 114: {fileID: 11414724}
+  - 114: {fileID: 11441978}
   m_Layer: 9
   m_Name: PlayerWithLegsEpic2
   m_TagString: Player
@@ -923,6 +924,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a267303d96d15f54aae0719886e75213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11441978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a0a3f60c84a474581928c98ff1c567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11487764
