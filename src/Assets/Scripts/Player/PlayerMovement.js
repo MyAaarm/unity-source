@@ -233,11 +233,7 @@ function FixedUpdate ()
     if(!jumpButtonDown && jumpFwdForce>0 && !isFallen){
     	Jump();
     }
-	
-	if(!jumpButtonDown){
-		Debug.Log("Jump button released");
-	}
-	
+		
     if(playerRigidbody.velocity.y>jumpForce){
 		  playerRigidbody.velocity.y = jumpForce;
     }
