@@ -4,14 +4,19 @@ import System;
 private var rotationAmount : float = 0.01;
 public var burst : GameObject;
 static var player : Collider;
+private var tempPlayer : Collider;
 
 function Awake(){
 	transform.Rotate(Vector3(-90, 0, 0));
 	//ADD SPEED HERE
 }
 function Update () { 
+	if(player != null){
 	transform.position = Vector3(player.gameObject.transform.position.x, player.gameObject.transform.position.y+7, player.gameObject.transform.position.z);
-	//transform.position = Vector3(20, 20, 20));
+	}
+	else{
+		transform.position = Vector3(tempPlayer.gameObject.transform.position.x, tempPlayer.gameObject.transform.position.y+7, tempPlayer.gameObject.transform.position.z);	
+	}
 	rotationAmount += 5;
 	transform.Rotate(Vector3(0,0,rotationAmount*Time.deltaTime));
 	if(rotationAmount >= 1000){
