@@ -24,7 +24,7 @@ public class World : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
     public void CreateChunk(int x, int y, int z)
@@ -67,9 +67,9 @@ public class World : MonoBehaviour {
         */
 		var terrainGen = new TerrainGen();
 		newChunk = terrainGen.ChunkGen(newChunk);
-		
+
 		//newChunk.SetBlocksUnmodified();
-		
+
 		//bool loaded = Serialization.Load(newChunk);
     }
 
