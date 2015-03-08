@@ -123,6 +123,7 @@ function FixedUpdate ()
 
     dragButton = Input.GetButton('PS3LeftBumperOSX'+playerNumber);
 		jumpButtonPressed =  Input.GetButtonDown('PS3RightBumperOSX'+playerNumber);
+		riseButtonDown = Input.GetButtonUp('PS3AButtonOSX'+playerNumber);
 
 
   }
@@ -132,7 +133,7 @@ function FixedUpdate ()
 
   	dragButton = Input.GetButton('360LeftBumperOSX'+playerNumber);
 	  jumpButtonPressed =  Input.GetButtonDown('360RightBumperOSX'+playerNumber);
-
+	riseButtonDown = Input.GetButtonUp('X360AButtonOSX'+playerNumber);
 
   } //Check if the game is running on PC with Xbox360 controller
   else if (currentGameController == "X360PC"){
