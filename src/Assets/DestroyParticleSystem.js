@@ -15,6 +15,12 @@ function Start(){
 			hit.transform.root.gameObject.GetComponent(PlayerHealth).TakeDamage(10);
 		}
 	}
+//	var direction : Vector3 = other.transform.position - transform.position;
+//    other.rigidbody.AddForce(direction * 1800,ForceMode.Acceleration);
+//	ums = GameObject.Find( "CraterController" );
+//	Debug.Log(ums);
+//	Debug.Log("explosion");
+//	ums.BroadcastMessage( "handleOuterImpacts", transform.position );
 }
 
 function Update() {

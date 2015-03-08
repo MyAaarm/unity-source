@@ -64,7 +64,15 @@ public function TakeDamage (amount : int)
 	lastDamaged = Time.time;
 
     // Reduce the current health by the damage amount.
-    currentHealth -= amount;
+    if((currentHealth-amount) >= 100){
+    	currentHealth = 100;
+    }
+    else if((currentHealth-amount) <= 0){
+    	currentHealth = 0;
+    }
+    else{
+    	currentHealth -= amount;
+    }
 
     if(currentHealth <= 0) {
     	// ... it should die a horrible horrible (and possibly humiliating) death.

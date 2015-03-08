@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\VoxelWorld\TerrainGen.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\World.cs" />
      <Compile Include="Assets\Scripts\VoxelWorld\WorldPos.cs" />
+     <Compile Include="Assets\SimpleParticlePack\Scripts\ParticleTester.cs" />
      <None Include="Assets\Plugins\AstarPathfindingEditor\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\Plugins\AstarPathfindingProject\Plugins\DotNetZip\License.txt" />
      <None Include="Assets\Plugins\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />

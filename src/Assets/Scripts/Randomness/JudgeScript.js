@@ -15,14 +15,16 @@ public var currentWaypoint : int;
 public var nextWaypointDistance : float;
 public var myTarget : Vector3;//GameObject;
 public var frac : float;
+private var moveLegs : JudgeLegsMovement;
 
 function Awake ()
 {
     // Set up the references.
+    moveLegs = GetComponent(JudgeLegsMovement);
     seeker = GameObject.Find("A*");
     speed = 10f;
     currentWaypoint = 0;
-    nextWaypointDistance  = 10;
+    nextWaypointDistance  = 20;
     frac = 0.1f;
 }
 
@@ -67,14 +69,19 @@ function FixedUpdate () {
 	seeker.BroadcastMessage("IsDone");
 	
 		if (path != null && currentWaypoint < path.vectorPath.Count && Mathf.RoundToInt(Vector3.Distance(transform.position,myTarget)) > nextWaypointDistance){
+            rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionX;
+            rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionZ;
             //Direction to the next waypoint
         	var dir : Vector3 = (path.vectorPath[currentWaypoint]-transform.position).normalized;
         	dir *= speed * Time.deltaTime;
         	transform.position += dir;
-        	      		
+			moveLegs.moveLegs();
         	if (Vector3.Distance(transform.position, myTarget) > nextWaypointDistance){//Vector3.Distance (transform.position, myTarget) > nextWaypointDistance) {
             	currentWaypoint++;
         	}
+        }
+        else{
+        	rigidbody.constraints = RigidbodyConstraints.FreezePositionX && RigidbodyConstraints.FreezePositionZ;
         }
 	timer -= Time.deltaTime;
 }
