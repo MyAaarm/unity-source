@@ -5,7 +5,10 @@ var currentGameController : String;
 private var leftArmMovement : Vector3;                   // The vector to store the direction of the player's leftArmMovement.
 private var rightArmMovement : Vector3;                   // The vector to store the direction of the player's leftArmMovement.
 
-private var playerRigidbody : Rigidbody;          // Reference to the player's rigidbody.
+private var playerMaxVelocity : Vector3;
+private var playerBody : GameObject;          // Reference to the player's rigidbody.\
+private var playerRigidbody : Rigidbody;          // Reference to the player's rigidbody.\
+private var playerCollider : PlayerCollider;          // Reference to the player's rigidbody.
 private var floorMask : int;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 private var camRayLength : float = 100f;          // The length of the ray from the camera into the scene.
 
@@ -52,6 +55,7 @@ private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor 
 
 function Awake () {
     jumpForce = 50f;
+    playerMaxVelocity = new Vector3(20f,20f,20f);
     bodySize = this.transform.Find("body").gameObject.transform.localScale.y;
 }
 
@@ -60,23 +64,25 @@ function Start () {
     floorMask = LayerMask.GetMask ("Floor");
 
     // Set up references.
-    playerRigidbody = GetComponent(Rigidbody);
+    playerBody = this.transform.Find("body").gameObject;
+    playerRigidbody = this.transform.Find("body").GetComponent(Rigidbody);
+    playerCollider = this.transform.Find("body").GetComponent(PlayerCollider);
 
 
 
-    leftArm = this.transform.Find("Arms/left").gameObject;
-    rightArm = this.transform.Find("Arms/right").gameObject;
+    leftArm = this.transform.Find("leftArm").gameObject;
+    rightArm = this.transform.Find("rightArm").gameObject;
 
     leftArmOriginalScale = leftArm.transform.localScale;
     rightArmOriginalScale = rightArm.transform.localScale;
 
-    leftHand = leftArm.transform.Find("Hand/left").gameObject;
-    rightHand = rightArm.transform.Find("Hand/right").gameObject;
+    // leftHand = leftArm.transform.Find("Hand/left").gameObject;
+    // rightHand = rightArm.transform.Find("Hand/right").gameObject;
 
-    leftHandOriginalScale = leftHand.transform.localScale;
-    rightHandOriginalScale = rightHand.transform.localScale;
+    // leftHandOriginalScale = leftHand.transform.localScale;
+    // rightHandOriginalScale = rightHand.transform.localScale;
 
-    legs = this.transform.Find("Legs").gameObject;
+    legs = this.transform.Find("body/Legs").gameObject;
     leftLeg = legs.transform.Find("leftLeg").gameObject;
     rightLeg = legs.transform.Find("rightLeg").gameObject;
 }
@@ -94,6 +100,16 @@ function FixedUpdate ()
     var hV : float;
     var vV : float;
     var jumpButtonPressed : boolean;
+
+    if(playerRigidbody.velocity.magnitude > playerMaxVelocity.magnitude) {
+      playerRigidbody.velocity *= 0.5;
+    }
+
+
+    // Debug.Log('isJumping : ' + isJumping + 'PlayerNumber: ' + playerNumber);
+    // Debug.Log('isFallen : ' + isFallen + 'PlayerNumber: ' + playerNumber);
+    // Debug.Log('playerCollider.isHit : ' + playerCollider.isHit + 'PlayerNumber: ' + playerNumber);
+    // Debug.Log('playerCollider.occupied: ' + playerCollider.occupied+ 'PlayerNumber: ' + playerNumber);
 
 	UpdateGameController (); //Check if controller should be changed
 
@@ -171,21 +187,21 @@ function FixedUpdate ()
         if(shouldInvert) {
           rightArmMovement.Set(h, 0f, v);
           AnimateArm(rightArmMovement, rightArm, rightArmOriginalScale);
-          AnimateHand(rightArmMovement, rightHand, rightHandOriginalScale);
+          //AnimateHand(rightArmMovement, rightHand, rightHandOriginalScale);
         }
         else {
           leftArmMovement.Set(h, 0f, v);
           AnimateArm(leftArmMovement, leftArm, leftArmOriginalScale);
-          AnimateHand(leftArmMovement, leftHand, leftHandOriginalScale);
+          //AnimateHand(leftArmMovement, leftHand, leftHandOriginalScale);
         }
 
     } else {
       if(shouldInvert) {
         rightArm.transform.localScale.y = rightArmOriginalScale.y;
-        rightHand.transform.localScale.x = rightHandOriginalScale.x;
+        //rightHand.transform.localScale.x = rightHandOriginalScale.x;
       } else {
         leftArm.transform.localScale.y = leftArmOriginalScale.y;
-        leftHand.transform.localScale.x = leftHandOriginalScale.x;
+        //leftHand.transform.localScale.x = leftHandOriginalScale.x;
       }
 
     }
@@ -195,23 +211,22 @@ function FixedUpdate ()
 
         if(shouldInvert) {
           leftArmMovement.Set(hV, 0f, vV);
-
           AnimateArm(leftArmMovement, leftArm, leftArmOriginalScale);
-          AnimateHand(leftArmMovement, leftHand, leftHandOriginalScale);
+          //AnimateHand(leftArmMovement, leftHand, leftHandOriginalScale);
         }
         else {
           rightArmMovement.Set(hV, 0f, vV);
 
           AnimateArm(rightArmMovement, rightArm, rightArmOriginalScale);
-          AnimateHand(rightArmMovement, rightHand, rightHandOriginalScale);
+          //AnimateHand(rightArmMovement, rightHand, rightHandOriginalScale);
         }
     } else {
       if(shouldInvert) {
         leftArm.transform.localScale.y = rightArmOriginalScale.y;
-        leftHand.transform.localScale.x = leftHandOriginalScale.x;
+        //leftHand.transform.localScale.x = leftHandOriginalScale.x;
       } else {
         rightArm.transform.localScale.y = rightArmOriginalScale.y;
-        rightHand.transform.localScale.x = rightHandOriginalScale.x;
+        //rightHand.transform.localScale.x = rightHandOriginalScale.x;
       }
     }
 
@@ -221,32 +236,35 @@ function FixedUpdate ()
       isMoving = false;
     }
 
-    if(shouldMove && !this.gameObject.GetComponent(PlayerCollider).isHit && !this.gameObject.GetComponent(PlayerCollider).occupied){
+    if(shouldMove && !playerCollider.isHit && !playerCollider.occupied){
       playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
       AnimateLegs(h, v, hV, vV);
-    }else if(!this.gameObject.GetComponent(PlayerCollider).isHit&&!this.gameObject.GetComponent(PlayerCollider).isHit&&!this.gameObject.GetComponent(PlayerCollider).occupied&&this.gameObject.GetComponent(PlayerCollider).onGround){
-	      playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
-	} else {
-		playerRigidbody.constraints = RigidbodyConstraints.None;
-	}
+    }
+    else if(!playerCollider.isHit&&!playerCollider.occupied&&playerCollider.onGround){
+      playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
+	 } else {
+      playerRigidbody.constraints = RigidbodyConstraints.None;
+	 }
 
       playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
 
-    if(this.gameObject.GetComponent(PlayerCollider).onGround){
-    	//playerRigidbody.constraints =  RigidbodyConstraints.None;
+    if(playerCollider.onGround){
     	isJumping = false;
     	numberOfJumps = 0;
     }
 
-    if(numberOfJumps>0&&!this.gameObject.GetComponent(PlayerCollider).onGround){
+    if(numberOfJumps>0&&!playerCollider.onGround){
     	isJumping = true;
     }
 
-    if(isJumping || isFallen || this.gameObject.GetComponent(PlayerCollider).isHit || this.gameObject.GetComponent(PlayerCollider).occupied){
+
+
+    if(isJumping || isFallen || playerCollider.isHit || playerCollider.occupied){
     	playerRigidbody.constraints =  RigidbodyConstraints.None;
-    }else{
-    	transform.rotation.x = 0;
-    	transform.rotation.z = 0;
+    }
+    else {
+    	playerBody.transform.rotation.x = 0;
+    	playerBody.transform.rotation.z = 0;
     }
 
     if(jumpButtonDown&&!isFallen){
@@ -270,12 +288,11 @@ function FixedUpdate ()
 		  playerRigidbody.velocity.y = jumpForce;
     }
 
-    //Debug.Log(playerRigidbody.velocity.y);
 
     if (h == 0 && v == 0 && hV == 0 && vV == 0){
-		leftLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
-		rightLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
-	}
+  		leftLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
+  		rightLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
+  	}
 
 	if(isFallen){
 		if(riseButtonDown){
@@ -313,7 +330,7 @@ function UpdateGameController ()
 function AnimateArm (movement : Vector3, armObject: GameObject, originalScale: Vector3) {
   isMoving = (movement.sqrMagnitude > 0.95);
 
-  var forceVector = isFallen ? 2f : (isMoving ? 2f : 1f);
+  var forceVector = isFallen ? 2.5f : (isMoving ? 2f : 1f);
 
   armObject.rigidbody.AddForce(movement*forceVector, ForceMode.Impulse);
 
@@ -323,7 +340,7 @@ function AnimateArm (movement : Vector3, armObject: GameObject, originalScale: V
   //Om vi vill ha en ekvation mellan 0 - 1
   //http://www.wolframalpha.com/input/?i=-%28%282x+-1%29%5E2+%29+%2B+1
 
-  armObject.transform.localScale.y = originalScale.y + originalScale.y * movement.magnitude*2;
+  armObject.transform.localScale.y = originalScale.y + originalScale.y * movement.magnitude*3;
 }
 
 function AnimateHand (movement : Vector3, handObject: GameObject, originalScale : Vector3) {
@@ -332,7 +349,7 @@ function AnimateHand (movement : Vector3, handObject: GameObject, originalScale 
 
 function AnimateLegs(h : float, v : float, hV : float, vV : float) {
   //get rigidbody velocity vector
-  movement = rigidbody.velocity;
+  movement = playerRigidbody.velocity;
   //remove velocity in y axis
   leftArmMovement.y = 0f;
 
@@ -347,24 +364,18 @@ function AnimateLegs(h : float, v : float, hV : float, vV : float) {
 
 function Jump(){
 
-  if(this.gameObject.GetComponent(PlayerCollider).onGround){
+  if(playerCollider.onGround){
     numberOfJumps = 0;
   }
 
-  var jumpVector : Vector3 = new Vector3(0f, jumpForce, 0f);
-  //var jumpVectorFWD : Vector3  = transform.forward*jumpForce*jumpFwdForce*5.5f;
 
   if(numberOfJumps<2){
-  //   leftArm.transform.position = transform.forward;
-  //   rightArm.transform.localScale = rightArmOriginalScale.y * transform.forward;
-    leftArm.rigidbody.AddForce(jumpVector, ForceMode.Impulse);
-    rightArm.rigidbody.AddForce(jumpVector, ForceMode.Impulse);
-    //playerRigidbody.AddForce(jumpVector+jumpVectorFWD, ForceMode.Impulse);
-    //rightArm.rigidbody.AddForce(jumpVectorFWD, ForceMode.Impulse);
-    //leftArm.rigidbody.AddForce(jumpVectorFWD, ForceMode.Impulse);
-    //playerRigidbody.velocity = jumpVector;
-    //transform.position.y+=0.1;
-    Debug.Log(jumpFwdForce);
+    var jumpVector : Vector3 = new Vector3(0f, jumpForce, 0f);
+    var jumpVectorFWD : Vector3 = playerBody.transform.forward*jumpForce*jumpFwdForce*5f;
+
+    playerRigidbody.AddForce(jumpVector+jumpVectorFWD, ForceMode.Impulse);
+    playerBody.transform.position.y+=0.1;
+
     numberOfJumps++;
     isJumping = true;
   }

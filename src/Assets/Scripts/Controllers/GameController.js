@@ -65,6 +65,14 @@ static function PlayerDied (player) {
 
   if(numberOfPlayersPlaying == 1) {
     HUD.Hide();
-    PauseMenu.ShowWonMessage(players[0]);
+    for(p in players){
+
+      if(!p.GetComponentInParent(PlayerHealth).isDead) {
+        PauseMenu.ShowWonMessage(p);
+      }
+    }
   }
+
+  var gameObject = player as GameObject;
+  Destroy(gameObject);
 }
