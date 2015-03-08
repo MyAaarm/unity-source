@@ -81,7 +81,12 @@ function Start () {
 }
 
 function FixedUpdate ()
-{
+{	
+
+	if(playerNumber==0){
+		return;
+	}
+	
     // Store the input axes.
     var h : float;
     var v : float;
