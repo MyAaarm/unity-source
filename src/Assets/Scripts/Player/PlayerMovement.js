@@ -106,7 +106,6 @@ function FixedUpdate ()
     
 	dragButton = Input.GetKey(KeyCode.E);
 	riseButtonDown = Input.GetKey(KeyCode.R);
-	jumpButtonPressed =  Input.GetKeyUp(KeyCode.Q);
 	jumpButtonDown = Input.GetKey(KeyCode.Q);
 
   }
@@ -132,8 +131,9 @@ function FixedUpdate ()
   	vV  = Input.GetAxisRaw ("RightJoystickYOSX"+playerNumber);
 
   	dragButton = Input.GetButton('360LeftBumperOSX'+playerNumber);
-	  jumpButtonPressed =  Input.GetButtonDown('360RightBumperOSX'+playerNumber);
+	 
 	riseButtonDown = Input.GetButtonUp('X360AButtonOSX'+playerNumber);
+	jumpButtonDown = Input.GetButton('360RightBumperPC'+playerNumber);
 
   } //Check if the game is running on PC with Xbox360 controller
   else if (currentGameController == "X360PC"){
@@ -141,7 +141,7 @@ function FixedUpdate ()
     vV  = Input.GetAxisRaw ("360RightJoystickYPC"+playerNumber);
 
   	dragButton = Input.GetButton('360LeftBumperPC'+playerNumber);
-		jumpButtonPressed =  Input.GetButtonUp('360RightBumperPC'+playerNumber);
+	
 		
 		riseButtonDown = Input.GetButtonUp('X360AButtonPC'+playerNumber);
 		
@@ -218,7 +218,7 @@ function FixedUpdate ()
     	transform.rotation.z = 0;
     }
     
-    if(jumpButtonDown){
+    if(jumpButtonDown&&!isFallen){
     	jumpFwdForce += Time.deltaTime;
     	if(jumpFwdForce>3){
     		jumpFwdForce = 3;
@@ -230,10 +230,14 @@ function FixedUpdate ()
     }
     
 
-    if(jumpButtonPressed && !isFallen){
+    if(!jumpButtonDown && jumpFwdForce>0 && !isFallen){
     	Jump();
     }
-
+	
+	if(!jumpButtonDown){
+		Debug.Log("Jump button released");
+	}
+	
     if(playerRigidbody.velocity.y>jumpForce){
 		  playerRigidbody.velocity.y = jumpForce;
     }
