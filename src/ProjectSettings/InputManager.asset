@@ -806,11 +806,59 @@ InputManager:
     axis: 4
     joyNum: 1
   - serializedVersion: 3
+    m_Name: PS3AButtonOSX1
+    descriptiveName: Right Trigger on  PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 1 button 14
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: .00100000005
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 0
+    axis: 4
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: PS3AButtonOSX2
+    descriptiveName: Right Trigger on  PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 2 button 14
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: .00100000005
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 0
+    axis: 4
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: PS3AButtonOSX3
+    descriptiveName: Right Trigger on  PS3 controller for OSX
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 3 button 14
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: .00100000005
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 0
+    axis: 4
+    joyNum: 1
+  - serializedVersion: 3
     m_Name: PS3AButtonOSX4
     descriptiveName: Right Trigger on  PS3 controller for OSX
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 4 button 16
+    positiveButton: joystick 4 button 14
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

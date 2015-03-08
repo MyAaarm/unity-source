@@ -34,6 +34,7 @@ GameObject:
   - 114: {fileID: 11426728}
   - 114: {fileID: 11426730}
   - 114: {fileID: 11416994}
+  - 114: {fileID: 11489292}
   m_Layer: 9
   m_Name: PlayerWithLegsEpic
   m_TagString: Player
@@ -638,8 +639,8 @@ Rigidbody:
   m_GameObject: {fileID: 126708}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 10
-  m_AngularDrag: 200
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -897,7 +898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  playerNumber: 1
+  playerNumber: 0
   currentGameController: PS3OSX
   leftArm: {fileID: 0}
   rightArm: {fileID: 0}
@@ -980,6 +981,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a267303d96d15f54aae0719886e75213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11489292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a0a3f60c84a474581928c98ff1c567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &13526730
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1035,7 +1047,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: .5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.620000005, y: 1.14999998, z: .390000045}
+  m_ConnectedAnchor: {x: -.620000064, y: 1.14999998, z: .389999986}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -20
@@ -1070,7 +1082,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: .5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .620000005, y: 1.14999998, z: .390000045}
+  m_ConnectedAnchor: {x: .620000005, y: 1.14999998, z: .389999986}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -20

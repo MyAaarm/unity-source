@@ -2053,6 +2053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 126708, guid: 5157f7ca64fdf4152b704c1a5a0d3980, type: 2}
+  Judge: {fileID: 0}
 --- !u!4 &371579423
 Transform:
   m_ObjectHideFlags: 0
