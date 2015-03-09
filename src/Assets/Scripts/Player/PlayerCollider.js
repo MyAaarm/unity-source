@@ -79,7 +79,7 @@ function OnCollisionEnter( col : Collision ){
 	
 	if(col.collider.transform.root.name=="SpawnedChunks" || col.collider.transform.root.name=="Floor"){
 		
-		if(transform.gameObject.GetComponent(PlayerMovement).isJumping){
+		if(this.transform.parent.gameObject.GetComponent(PlayerMovement).isJumping){
 			
 			
 			var ums = GameObject.Find( "CraterController" );	
