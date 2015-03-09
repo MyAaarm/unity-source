@@ -65,7 +65,7 @@ function FixedUpdate(){
         	//if(Input.GetButton("X360AButtonPC")||Input.GetButton("X360AButtonOSX")||Input.GetKey(KeyCode.E)){
 
         		//Debug.Log("Collided");
-        		var hJ : Component[];
+        		var hJ : Component[];	
 				hJ = this.gameObject.GetComponentsInChildren(HingeJoint);
 				if(hJ.Length == 0){
         				this.gameObject.AddComponent(HingeJoint);
@@ -73,23 +73,22 @@ function FixedUpdate(){
         			if(otherBody==null){
         				otherBody = cld.collider.transform.root.gameObject.rigidbody;
         			}
-		        		Debug.Log(otherBody.name);
+		        		//Debug.Log(otherBody.name);
 		        		hingeJoint.breakForce = 45;
 		        		hingeJoint.breakTorque = 45;
 		        		hingeJoint.connectedBody = otherBody;		
 		        }
         		cld.collider.gameObject.transform.root.GetComponent(PlayerMovement).occupied = true;
-      			cld.collider.gameObject.transform.root.rigidbody.constraints =  RigidbodyConstraints.None;
       			cld.collider.gameObject.transform.root.Find("body").rigidbody.constraints =  RigidbodyConstraints.None;
         		D = this.transform.root.transform.position - cld.collider.gameObject.transform.root.transform.position; 
-                pullF = 1000;
+                pullF = 25;
                 dist = D.magnitude;
                 pullDir = D.normalized;
                 //Debug.Log(pullDir*(pullF * Time.deltaTime)*100f);
-        		cld.collider.gameObject.transform.root.rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*300f, ForceMode.Impulse);
-
-
-
+        		//cld.collider.gameObject.transform.root.Find("body").rigidbody.AddForceAtPosition (pullDir*(pullF * Time.deltaTime)*50f,cld.contacts[1].point, ForceMode.Impulse);
+				cld.collider.gameObject.transform.root.Find("body").rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*50f, ForceMode.Acceleration);
+	
+	
         		/*//Debug.Log("WIN " + collisionTimer);
         		cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = true;
         		cld.collider.gameObject.transform.root.rigidbody.constraints =  RigidbodyConstraints.None;
