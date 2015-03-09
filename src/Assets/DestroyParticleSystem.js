@@ -15,6 +15,8 @@ function Start(){
 			hit.transform.root.gameObject.GetComponent(PlayerHealth).TakeDamage(10);
 		}
 	}
+	var ums = GameObject.Find( "CraterController" );
+	ums.BroadcastMessage( "handleOuterImpacts", transform.position );
 }
 
 function Update() {

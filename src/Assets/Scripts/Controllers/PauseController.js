@@ -88,7 +88,7 @@ function HandleMenuClick() {
 }
 
 function ShowWonMessage(player) {
-  var playerNumber = player.GetComponent(PlayerMovement).playerNumber;
+  var playerNumber = player.GetComponentInParent(PlayerMovement).playerNumber;
 
   won.GetComponent(UI.Text).text = 'player ' + playerNumber + ' won!';
 

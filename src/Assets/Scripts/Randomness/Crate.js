@@ -2,6 +2,9 @@
 
 public var explosion : GameObject;
 private var timer: float = 30;
+public var heart : GameObject;
+public var LightningBolt : GameObject;
+public var weight : GameObject;
 
 //Transforms & Rotates the crate 
 function Update () {
@@ -27,7 +30,31 @@ function DestroyCrate(){
 function OnTriggerEnter (other : Collider) {
 	if(other.tag == "Player"){
 		DestroyCrate();
-		//Instantiate (judge, transform.position, Quaternion.identity);
-		Instantiate (explosion, transform.position, Quaternion.identity);
+		var playerHealth = 100 - other.gameObject.GetComponent(PlayerHealth).currentHealth;
+		if(playerHealth <= 40){
+			playerHealth = 40;
+		}
+		var rand = Random.Range(0, 100);
+		if (rand <= playerHealth){
+			var rand2 = Random.Range(1, 4);
+			Debug.Log(rand2);
+			switch(rand2){
+				case 1:
+					RotateHeart.player = other;
+					Instantiate (heart, Vector3(other.transform.position.x, other.transform.position.y+2, other.transform.position.z), Quaternion.identity);
+					break;
+				case 2:
+					RotateBolt.player = other;
+					Instantiate (LightningBolt, Vector3(other.transform.position.x, other.transform.position.y+2, other.transform.position.z), Quaternion.identity);
+					break;
+				case 3:
+					RotateWeight.player = other;
+					Instantiate (weight, Vector3(other.transform.position.x, other.transform.position.y+2, other.transform.position.z), Quaternion.identity);
+					break;
+			}
+		}
+		else{
+			Instantiate (explosion, transform.position, Quaternion.identity);
+		}	
 	}
 }

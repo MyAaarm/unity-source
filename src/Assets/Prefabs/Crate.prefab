@@ -88,6 +88,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 180930, guid: dde94e6ab86db1d4087dac5375a6a0d1, type: 2}
+  heart: {fileID: 170772, guid: aedf5020e9880084abbeea54b7f59da9, type: 2}
+  LightningBolt: {fileID: 167722, guid: 1fe5d59fd6ffe1e4c9248db3457e38cb, type: 2}
+  weight: {fileID: 148446, guid: 227f9d935a5cd4e47ade4d8fed3444d5, type: 2}
 --- !u!122 &12230268
 Halo:
   m_ObjectHideFlags: 1

@@ -65,7 +65,8 @@ public class Debris : MonoBehaviour {
 							}
 
 				}
-
+		AstarPath.active.Scan ();
+		
 	}
 	
 	private void spawnDebris(int x, int y, int z, Block bt, int[] da){

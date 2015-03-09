@@ -8,19 +8,19 @@ private var reSizingVector : Vector3 = Vector3(0.01,0.01,0.01);
 
 
 function Awake () {
-    leftHand = GameObject.Find("Arms/Hands/left");
-    rightHand = GameObject.Find("Arms/Hands/right");
+    leftHand = GameObject.Find("Arms/left/Hand/left");
+    rightHand = GameObject.Find("Arms/left/Hand/right");
 
     leftHandRigidBody = leftHand.GetComponent(Rigidbody);
     rightHandRigidBody = rightHand.GetComponent(Rigidbody);
 }
 
-function FixedUpdate () { 
+function FixedUpdate () {
     var leftTriggerPressed = Input.GetKey('joystick button 8');
     var rightTriggerPressed = Input.GetKey('joystick button 9');
 
     if(leftTriggerPressed) {
-      
+
       if(rightHand.transform.localScale.x <= 0) return;
 
       leftHand.transform.localScale += reSizingVector;
@@ -28,7 +28,7 @@ function FixedUpdate () {
 
       leftHandRigidBody.mass += 0.01;
       rightHandRigidBody.mass -= 0.01;
-    } 
+    }
 
     if(rightTriggerPressed) {
 
@@ -39,7 +39,7 @@ function FixedUpdate () {
 
       rightHandRigidBody.mass += 0.01;
       leftHandRigidBody.mass -= 0.01;
-    } 
+    }
 
   //  Debug.Log('button 8:' + Input.GetKey('joystick button 8'));
    // Debug.Log('button 9:' + Input.GetKey('joystick button 9'));
