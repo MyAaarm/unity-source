@@ -52,16 +52,16 @@ public class Debris : MonoBehaviour {
 
 				}
 				if (impactSize > 10) {
-						int randDebris = Random.Range (3, 9);
-							for(int i = 0; i < randDebris; i++){
-										int pw = Random.Range (2, 6);
-										int pwx = pw + Random.Range(-1,1); int pwy = pw + Random.Range(-1,1); int pwz = pw + Random.Range(-1,1);
+							for(int i = 0; i < (impactSize)-10; i++){
+										//int pw = Random.Range (2, 6);
+										//int pwx = pw + Random.Range(-1,1); int pwy = pw + Random.Range(-1,1); int pwz = pw + Random.Range(-1,1);
+										int pwx = Random.Range (2, 6); int pwy = Random.Range (2, 3); int pwz = Random.Range (2, 6);
 										int multix = Random.Range(-1,1); int multiy = Random.Range(-1,1); int multiz = Random.Range(-1,1);
-										Block bx = chunk.world.GetBlock (pwx * multix, y, pwz * multiz);
-										chunk.world.SetBlock (x + pwx * multix, y, z + pwz * multiz, new BlockAir ());
+										Block bx = chunk.world.GetBlock (x + pwx * multix, y + pwy * multiy, z + pwz * multiz);
+										chunk.world.SetBlock (x + pwx * multix, y + pwy * multiy, z + pwz * multiz, new BlockAir ());
 										int[] angle = new int[3];
-										angle[0] = pwx; angle[1] = pwy; angle[2] = pwz;
-										spawnDebris (x + pwx * multix, y, z + pwz * multiz, bx, angle);
+										angle[0] = Mathf.Abs(pwx-6)*multix; angle[1] = Mathf.Abs(pwy-6)*multiy; angle[2] = Mathf.Abs(pwz-6)*multiz;
+										spawnDebris (x + pwx * multix, y + pwy * multiy, z + pwz * multiz, bx, angle);
 							}
 
 				}
@@ -86,11 +86,11 @@ public class Debris : MonoBehaviour {
 		int[] da;
 		
 		if (x == 0 && y == 0 && z == 0) {
-			da = new int[]{0, 5, 0};
+			da = new int[]{0, 5*Random.Range (-1,1), 0};
 		} else if ( x != 0 && y != 0){
-			da = new int[]{5, 5, 0};
+			da = new int[]{5*Random.Range (-1,1), 5*Random.Range (-1,1), 0};
 		} else {
-			da = new int[]{0, 5, 5};
+			da = new int[]{0, 5*Random.Range (-1,1), 5*Random.Range (-1,1)};
 		}
 		
 		return da;
