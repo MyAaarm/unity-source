@@ -47,6 +47,7 @@ private var jumpButtonDown : boolean;
 private var jumpFwdForce : float;
 public var isFallen : boolean;
 private var riseButtonDown : boolean;
+public var occupied : boolean;
 
 private var bodySize : float;
 
@@ -57,6 +58,7 @@ function Awake () {
     jumpForce = 50f;
     playerMaxVelocity = new Vector3(20f,20f,20f);
     bodySize = this.transform.Find("body").gameObject.transform.localScale.y;
+	occupied = false;
 }
 
 function Start () {

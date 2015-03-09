@@ -14,7 +14,6 @@ private var otherBody : Rigidbody;
 private var bloodObject : GameObject;
 
 private var playerRigidbody : Rigidbody;          // Reference to the player's rigidbody.
-public var occupied : boolean;
 public var onGround : boolean;
 
 
@@ -23,7 +22,6 @@ function Awake (){
   playerRigidbody = this.transform.GetComponent(Rigidbody);
   bloodObject = gameObject.transform.parent.Find('Blood').gameObject;
 
-	occupied = false;
 }
 
 function OnCollisionEnter( col : Collision ){
@@ -32,34 +30,36 @@ function OnCollisionEnter( col : Collision ){
 
 	if(col.collider.transform.parent != null && (col.collider.transform.name == "leftArm" || col.collider.transform.name == "rightArm")) {
 
-    Debug.Log(col.relativeVelocity.magnitude);
+//    Debug.Log(col.relativeVelocity.magnitude);
 		if(col.collider.transform.root.name != gameObject.name){
 
 			if(col.relativeVelocity.magnitude>3){
 				playerHealth.TakeDamage(col.relativeVelocity.magnitude*0.25);
 
 
-				if(col.relativeVelocity.magnitude > 40){
+				if(col.relativeVelocity.magnitude > 30){
 					bloodObject.particleSystem.transform.position = col.transform.position;
 					bloodObject.particleSystem.transform.rotation = col.transform.rotation;
 					bloodObject.particleSystem.enableEmission = true;
 					bloodObject.particleSystem.Simulate(0.005f, true);
 					bloodObject.particleSystem.Play();
+					var forceDirection = col.rigidbody.velocity.normalized;	
+       		 		var forceMagnitude = Mathf.Min(col.relativeVelocity.magnitude*50, 150f);
+       		 		//playerRigidbody.AddTorque(playerRigidbody.transform.right * 150f);
+
+					playerRigidbody.AddForceAtPosition(forceDirection*forceMagnitude*5,col.rigidbody.transform.position, ForceMode.Impulse);
 				}
 
 				playerRigidbody.constraints = RigidbodyConstraints.None;
 
-				playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
-  			playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
-				playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionZ;
-				playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionX;
+				//playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
+  				//playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
+				//playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionZ;
+				//playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionX;
 				isHit = true;
 
 
-				var forceDirection = col.rigidbody.velocity.normalized;
-        var forceMagnitude = Mathf.Min(col.relativeVelocity.magnitude*10, 50f);
-
-				playerRigidbody.AddForce(forceDirection*forceMagnitude, ForceMode.Impulse);
+				
 
 
 			}
