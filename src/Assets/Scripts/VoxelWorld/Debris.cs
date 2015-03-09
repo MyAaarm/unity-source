@@ -40,6 +40,7 @@ public class Debris : MonoBehaviour {
 			chunk.world.SetBlock(x + dx, y + dy, z + dz, new BlockAir());
 			spawnDebris(x + blockCoordinates[i], y + blockCoordinates[i+1], z + blockCoordinates[i+2], bx, debrisAngle(dx, dy, dz));
 		}
+		AstarPath.active.Scan ();
 	}
 	
 	private void spawnDebris(int x, int y, int z, Block bt, int[] da){
