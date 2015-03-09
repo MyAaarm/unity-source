@@ -95,7 +95,13 @@ function FixedUpdate ()
 	if(playerNumber==0){
 		return;
 	}
-
+	
+	/*if( Time.frameCount%300==0){
+	playerRigidbody.AddForce(new Vector3(100, 20, 20), ForceMode.Impulse);
+	Debug.Log("jump");
+	}
+	return;
+	*/
     // Store the input axes.
     var h : float;
     var v : float;
@@ -103,8 +109,11 @@ function FixedUpdate ()
     var vV : float;
     var jumpButtonPressed : boolean;
 
-    if(playerRigidbody.velocity.magnitude > playerMaxVelocity.magnitude) {
-      playerRigidbody.velocity *= 0.5;
+    if(playerRigidbody.velocity.magnitude > playerMaxVelocity.magnitude&&!isJumping) {
+		var yVel = playerRigidbody.velocity.y;     
+    	playerRigidbody.velocity *= 0.5;
+       playerRigidbody.velocity.y = yVel;
+      
     }
 
 
@@ -242,7 +251,7 @@ function FixedUpdate ()
       playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
       AnimateLegs(h, v, hV, vV);
     }
-    else if(!playerCollider.isHit&&!playerCollider.occupied&&playerCollider.onGround){
+    else if(!playerCollider.isHit&&!playerCollider.occupied&&playerCollider.onGround&&!isJumping){
       playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
 	 } else {
       playerRigidbody.constraints = RigidbodyConstraints.None;
@@ -250,7 +259,7 @@ function FixedUpdate ()
 
       playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
 
-    if(playerCollider.onGround){
+    if(playerCollider.onGround&&playerRigidbody.velocity.y<=0){
     	isJumping = false;
     	numberOfJumps = 0;
     }
@@ -273,7 +282,7 @@ function FixedUpdate ()
 
     	jumpFwdForce += Time.deltaTime;
     	if(jumpFwdForce>1){
-    		jumpFwdForce = 3;
+    		jumpFwdForce = 5;
     		//leftHand.transform.position = transform.forward;
     		//leftArm.transform.position  = transform.forward;
     		Debug.Log("Fully charged");
@@ -287,7 +296,7 @@ function FixedUpdate ()
     }
 
     if(playerRigidbody.velocity.y>jumpForce){
-		  playerRigidbody.velocity.y = jumpForce;
+	  playerRigidbody.velocity.y = jumpForce;
     }
 
 
@@ -308,6 +317,7 @@ function FixedUpdate ()
 				}
 			}
 		}
+		jumpFwdForce = 0;
 	}
 }
 
@@ -330,11 +340,17 @@ function UpdateGameController ()
 
 
 function AnimateArm (movement : Vector3, armObject: GameObject, originalScale: Vector3) {
+  
+  
   isMoving = (movement.sqrMagnitude > 0.95);
 
 
   var forceVector = isFallen ? 2.5f : (isMoving ? 1.5f : 0.5f);
-
+  
+  if(isJumping){
+  	forceVector = 0.25f;
+  }
+  
   armObject.rigidbody.AddForce(movement*forceVector, ForceMode.Impulse);
 
   movement.x = Mathf.Min(movement.x, 0.75f);
@@ -356,7 +372,7 @@ function AnimateLegs(h : float, v : float, hV : float, vV : float) {
   //get rigidbody velocity vector
   movement = playerRigidbody.velocity;
   //remove velocity in y axis
-  leftArmMovement.y = 0f;
+  //leftArmMovement.y = 0f;
 
   //find the forward rotation based on this and rotate parent leg object towards this vector
   newRotation = Quaternion.LookRotation(movement);
@@ -375,11 +391,13 @@ function Jump(){
 
 
   if(numberOfJumps<2){
-    var jumpVector : Vector3 = new Vector3(0f, jumpForce, 0f);
-    var jumpVectorFWD : Vector3 = playerBody.transform.forward*jumpForce*jumpFwdForce*5f;
-
-    playerRigidbody.AddForce(jumpVector+jumpVectorFWD, ForceMode.Impulse);
-    playerBody.transform.position.y+=0.1;
+    var jumpVector : Vector3 = new Vector3(0f, jumpForce*Mathf.Max(jumpFwdForce, 1), 0f);
+    var jumpVectorFWD : Vector3 = playerBody.transform.forward*jumpFwdForce*7f;
+	Debug.Log(jumpFwdForce);
+    playerBody.transform.position.y+=1f;
+   	playerRigidbody.AddForce(jumpVector+jumpVectorFWD, ForceMode.Impulse);
+    //playerRigidbody.velocity = jumpVector+jumpVectorFWD;
+    playerRigidbody.constraints = RigidbodyConstraints.None;
 
     numberOfJumps++;
     isJumping = true;

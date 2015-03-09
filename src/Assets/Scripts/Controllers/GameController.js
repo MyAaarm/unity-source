@@ -20,10 +20,10 @@ function Start () {
   HUD = FindObjectOfType(HUDController);
   PauseMenu = FindObjectOfType(PauseController);
 
-  if(Application.loadedLevel == 1){
+  //if(Application.loadedLevel == 1) {
     addPlayers();
     Instantiate(Judge, Vector3(-20 + 10*5 , 20, 0), Quaternion.identity);
-  }
+  //}
 }
 
 function addPlayers() {
@@ -66,13 +66,12 @@ static function PlayerDied (player) {
   if(numberOfPlayersPlaying == 1) {
     HUD.Hide();
     for(p in players){
+      Debug.Log(p.GetComponentInParent(PlayerHealth).isDead);
+      Debug.Log(p.GetComponentInParent(PlayerMovement).playerNumber);
 
       if(!p.GetComponentInParent(PlayerHealth).isDead) {
         PauseMenu.ShowWonMessage(p);
       }
     }
   }
-
-  var gameObject = player as GameObject;
-  Destroy(gameObject);
 }
