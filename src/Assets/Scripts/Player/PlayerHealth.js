@@ -11,6 +11,8 @@ private var lastDamaged : float = 0;
 private var healthAdder : float = 0;                                          // True when the player gets damaged.
 
 private var GameController:GameController;
+private var nose: GameObject;
+private var noseInitialSize:Vector3;
 
 function Awake () {
   // Set the initial health of the player (Maybe cheat a little and add more health to your character, only an if statement away).
@@ -21,6 +23,9 @@ function Awake () {
 function Start () {
   // Set the initial health of the player (Maybe cheat a little and add more health to your character, only an if statement away).
   GameController = GetComponent('GameController');
+
+  nose = this.transform.Find("body").Find('Nose').gameObject;
+  noseInitialSize = nose.transform.localScale;
 }
 
 
@@ -52,8 +57,7 @@ function Update ()
 }
 
 
-public function TakeDamage (amount : int)
-{
+public function TakeDamage (amount : int) {
 	if(isDead) {
     	return;
   	}
@@ -72,29 +76,34 @@ public function TakeDamage (amount : int)
     }
     else{
     	currentHealth -= amount;
+      UpdateNoseColor();
     }
 
     if(currentHealth <= 0) {
     	// ... it should die a horrible horrible (and possibly humiliating) death.
     	Death ();
-	}else {
+	}
+  else {
 		GameController.PlayerHurt(this);
 	}
 
 }
 
+function ConvertColor (r : int, g : int, b : int) : Color { return Color(r/255.0, g/255.0, b/255.0); }
+function UpdateNoseColor() {
+  var r = 255 * (100 - currentHealth) / 100;
+  var g = (255 * currentHealth) / 100;
+  var b = 0;
+
+  //nose.transform.localScale = noseInitialSize * Mathf.Min(currentHealth/100, 0.25);
+  nose.transform.renderer.material.color = ConvertColor(r,g,b);
+}
+
+
 
 function Death () {
-  // Set the death flag so this function won't be called again (you wouldn't want to die twice would you?).
-  var rigidBody = this.GetComponent(Rigidbody);
-
+  //Implement a knockout here instead
   isDead = true;
   GameController.PlayerDied(this);
-  //lets make the body fly around!
-  rigidBody.constraints = RigidbodyConstraints.None;
-  yield WaitForSeconds(0.1);
-
   Destroy(this.gameObject);
-
-
 }
