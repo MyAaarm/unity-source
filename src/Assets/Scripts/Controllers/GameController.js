@@ -10,8 +10,7 @@ public var Player : GameObject;
 public var Judge : GameObject;
 
 static var players : GameObject[];
-static var playerControllers = ['Keyboard','','',''];
-//static var playerControllers = ['X360PC', 'X360PC', 'X360OSX', 'PS3OSX'];
+static var playerControllers = ['Keyboard', 'X360OSX', 'PS3OSX', 'PS3OSX'];
 
 function Awake () {
   DontDestroyOnLoad(this);
@@ -20,7 +19,7 @@ function Awake () {
 function Start () {
   HUD = FindObjectOfType(HUDController);
   PauseMenu = FindObjectOfType(PauseController);
-	
+
   if(Application.loadedLevel == 1){
     addPlayers();
     Instantiate(Judge, Vector3(-20 + 10*5 , 20, 0), Quaternion.identity);
@@ -66,6 +65,14 @@ static function PlayerDied (player) {
 
   if(numberOfPlayersPlaying == 1) {
     HUD.Hide();
-    PauseMenu.ShowWonMessage(players[0]);
+    for(p in players){
+
+      if(!p.GetComponentInParent(PlayerHealth).isDead) {
+        PauseMenu.ShowWonMessage(p);
+      }
+    }
   }
+
+  var gameObject = player as GameObject;
+  Destroy(gameObject);
 }

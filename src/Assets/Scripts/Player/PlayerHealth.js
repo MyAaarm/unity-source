@@ -5,7 +5,7 @@ var currentHealth : int;
 var regenFactor : int = 2;                                  // The current health the player has.
 var regenHealth : int = 30;
 
-private var isDead : boolean;                                                // Whether the player is dead.
+public var isDead : boolean;                                                // Whether the player is dead.
 private var damaged : boolean;
 private var lastDamaged : float = 0;
 private var healthAdder : float = 0;                                          // True when the player gets damaged.
