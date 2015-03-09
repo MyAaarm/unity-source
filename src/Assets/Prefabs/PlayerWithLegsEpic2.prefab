@@ -321,7 +321,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ae4fdf174f35d6446a8a6c331c5d7820, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -661,7 +661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   playerNumber: 1
-  currentGameController: PS3OSX
+  currentGameController: Keyboard
   dragButton: 0
   jumpForce: 0
   numberOfJumps: 0

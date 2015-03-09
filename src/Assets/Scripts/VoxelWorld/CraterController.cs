@@ -26,7 +26,7 @@ public class CraterController : MonoBehaviour {
 		pos = Terrain.GetBlockPos (hit, false);
 		
 		if (force > 50) {
-			d.destroyBlocks(pos.x, pos.y, pos.z, 18, chunk, world);
+			d.destroyBlocks(pos.x, pos.y, pos.z, impactSize(force), chunk, world);
 		}
 		/*	
 		dynamicBlock = Instantiate(Resources.Load("BlockDynamic"), new Vector3(pos.x, pos.y, pos.z), Quaternion.identity) as GameObject;
@@ -43,7 +43,18 @@ public class CraterController : MonoBehaviour {
 		
 	}
 	
-	
+	private int impactSize(int f){
+			if (f < 100) {
+						return 1;
+				} else if (f < 200) {
+						return 7;
+				} else if (f < 300) {
+						return 12; 
+				} else {
+						return 18;
+				}
+
+		}
 	private void Impact (List<Block> blockList, int force) {
 		foreach (Block bls in blockList) {
 			//world.SetBlock(nbPos[bls.ToString].FindIndex(0), nbPos[bls.ToString].FindIndex(1), nbPos[bls.ToString].FindIndex(2), new BlockAir());

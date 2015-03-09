@@ -24,22 +24,49 @@ public class Debris : MonoBehaviour {
 		+1, 0, -1, 
 		0, -1, -1, 
 		0, -1, +1,
-		0,  +1, -1, 
+		0, +1, -1, 
+		0, +1, +1, 
+		0, +1, +1, 
+		0, +1, +1, 
+		0, +1, +1, 
+		0, +1, +1, 
+		0, +1, +1, 
+		0, +1, +1, 
 		0, +1, +1};
 	
 	
 	public void destroyBlocks(int x, int y, int z, int impactSize, Chunk c, World w){
-		chunk = c;
-		world = w;
-		int dx; int dy; int dz;
-		for (int i = 0; i < impactSize+1; i++) {
-			dx = blockCoordinates[i*3]; dy = blockCoordinates[i*3+1]; dz = blockCoordinates[i*3+2];
-			//Debug.Log ("i value == " + i + " bloockcoordinates x,y,z = " + blockCoordinates[impactSize] + blockCoordinates[impactSize+1] + blockCoordinates[impactSize+2]);
-			//Debug.Log (blockCoordinates[impactSize]);Debug.Log (blockCoordinates[impactSize+1]);Debug.Log (blockCoordinates[impactSize+2]);
-			Block bx = chunk.world.GetBlock (x + dx, y + dy, z + dz);
-			chunk.world.SetBlock(x + dx, y + dy, z + dz, new BlockAir());
-			spawnDebris(x + blockCoordinates[i], y + blockCoordinates[i+1], z + blockCoordinates[i+2], bx, debrisAngle(dx, dy, dz));
-		}
+				chunk = c;
+				world = w;
+				int dx;
+				int dy;
+				int dz;
+				for (int i = 0; i <= impactSize*3; i=i+3) {
+
+						dx = blockCoordinates [i];
+						dy = blockCoordinates [i + 1];
+						dz = blockCoordinates [i + 2];
+						Block bx = chunk.world.GetBlock (x + dx, y + dy, z + dz);
+						chunk.world.SetBlock (x + dx, y + dy, z + dz, new BlockAir ());
+						spawnDebris (x + blockCoordinates [i], y + blockCoordinates [i + 1], z + blockCoordinates [i + 2], bx, debrisAngle (dx, dy, dz));
+
+				}
+				if (impactSize > 10) {
+							for(int i = 0; i < (impactSize)-10; i++){
+										//int pw = Random.Range (2, 6);
+										//int pwx = pw + Random.Range(-1,1); int pwy = pw + Random.Range(-1,1); int pwz = pw + Random.Range(-1,1);
+										int pwx = Random.Range (2, 6); int pwy = Random.Range (2, 3); int pwz = Random.Range (2, 6);
+										int multix = Random.Range(-1,1); int multiy = Random.Range(-1,1); int multiz = Random.Range(-1,1);
+										Block bx = chunk.world.GetBlock (x + pwx * multix, y + pwy * multiy, z + pwz * multiz);
+										chunk.world.SetBlock (x + pwx * multix, y + pwy * multiy, z + pwz * multiz, new BlockAir ());
+										int[] angle = new int[3];
+										angle[0] = Mathf.Abs(pwx-6)*multix; angle[1] = Mathf.Abs(pwy-6)*multiy; angle[2] = Mathf.Abs(pwz-6)*multiz;
+										spawnDebris (x + pwx * multix, y + pwy * multiy, z + pwz * multiz, bx, angle);
+							}
+
+				}
+		AstarPath.active.Scan ();
+		
 	}
 	
 	private void spawnDebris(int x, int y, int z, Block bt, int[] da){
@@ -60,11 +87,11 @@ public class Debris : MonoBehaviour {
 		int[] da;
 		
 		if (x == 0 && y == 0 && z == 0) {
-			da = new int[]{0, 5, 0};
+			da = new int[]{0, 5*Random.Range (-1,1), 0};
 		} else if ( x != 0 && y != 0){
-			da = new int[]{5, 5, 0};
+			da = new int[]{5*Random.Range (-1,1), 5*Random.Range (-1,1), 0};
 		} else {
-			da = new int[]{0, 5, 5};
+			da = new int[]{0, 5*Random.Range (-1,1), 5*Random.Range (-1,1)};
 		}
 		
 		return da;

@@ -1,4 +1,4 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class Modify : MonoBehaviour
@@ -16,7 +16,7 @@ public class Modify : MonoBehaviour
 			RaycastHit hit;
 			if (Physics.Raycast(transform.position, transform.forward,out hit, 100 ))
 			{
-				cc.Impact(hit, 150);
+				cc.Impact(hit, 450);
 				//Terrain.SetBlock(hit, new BlockAir());
 			}
 		}
