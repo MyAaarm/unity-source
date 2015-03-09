@@ -152,7 +152,7 @@ function FixedUpdate ()
   	dragButton = Input.GetButton('360LeftBumperOSX'+playerNumber);
 
 	riseButtonDown = Input.GetButtonUp('X360AButtonOSX'+playerNumber);
-	jumpButtonDown = Input.GetButton('360RightBumperPC'+playerNumber);
+	jumpButtonDown = Input.GetButton('360RightBumperOSX'+playerNumber);
 
   } //Check if the game is running on PC with Xbox360 controller
   else if (currentGameController == "X360PC"){
@@ -296,13 +296,13 @@ function FixedUpdate ()
 
 	if(isFallen){
 		if(riseButtonDown){
-			if(Mathf.Abs(this.transform.rotation.x) > Mathf.Abs(this.transform.rotation.z)){
-				if(this.transform.rotation.x > 0) { this.transform.rotation.x = this.transform.rotation.x - 0.22; }
-				else { this.transform.rotation.x = this.transform.rotation.x + 0.22;
+			if(Mathf.Abs(playerBody.transform.rotation.x) > Mathf.Abs(playerBody.transform.rotation.z)){
+				if(playerBody.transform.rotation.x > 0) { playerBody.transform.rotation.x = playerBody.transform.rotation.x - 0.22; }
+				else { playerBody.transform.rotation.x = playerBody.transform.rotation.x + 0.22;
 				}
 			} else {
-				if(this.transform.rotation.z > 0) { this.transform.rotation.z = this.transform.rotation.z - 0.22; }
-				else { this.transform.rotation.z = this.transform.rotation.z + 0.22;
+				if(playerBody.transform.rotation.z > 0) { playerBody.transform.rotation.z = playerBody.transform.rotation.z - 0.22; }
+				else { playerBody.transform.rotation.z = playerBody.transform.rotation.z + 0.22;
 				}
 			}
 		}
@@ -330,7 +330,8 @@ function UpdateGameController ()
 function AnimateArm (movement : Vector3, armObject: GameObject, originalScale: Vector3) {
   isMoving = (movement.sqrMagnitude > 0.95);
 
-  var forceVector = isFallen ? 2.5f : (isMoving ? 2f : 1f);
+
+  var forceVector = isFallen ? 2.5f : (isMoving ? 1.5f : 0.5f);
 
   armObject.rigidbody.AddForce(movement*forceVector, ForceMode.Impulse);
 
@@ -341,6 +342,8 @@ function AnimateArm (movement : Vector3, armObject: GameObject, originalScale: V
   //http://www.wolframalpha.com/input/?i=-%28%282x+-1%29%5E2+%29+%2B+1
 
   armObject.transform.localScale.y = originalScale.y + originalScale.y * movement.magnitude*3;
+
+
 }
 
 function AnimateHand (movement : Vector3, handObject: GameObject, originalScale : Vector3) {

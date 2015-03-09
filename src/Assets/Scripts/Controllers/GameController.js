@@ -10,7 +10,7 @@ public var Player : GameObject;
 public var Judge : GameObject;
 
 static var players : GameObject[];
-static var playerControllers = ['PS3OSX', 'PS3OSX', 'X360OSX', 'PS3OSX'];
+static var playerControllers = ['X360OSX', 'X360OSX', 'PS3OSX', 'PS3OSX'];
 
 function Awake () {
   DontDestroyOnLoad(this);

@@ -1057,6 +1057,7 @@ MonoBehaviour:
   currentHealth: 0
   regenFactor: 2
   regenHealth: 30
+  isDead: 0
 --- !u!114 &127104258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8872,6 +8873,7 @@ MonoBehaviour:
   currentHealth: 0
   regenFactor: 2
   regenHealth: 30
+  isDead: 0
 --- !u!114 &1131308740
 MonoBehaviour:
   m_ObjectHideFlags: 0
