@@ -315,6 +315,7 @@ function FixedUpdate ()
 				}
 			}
 		}
+		jumpFwdForce = 0;
 	}
 }
 
