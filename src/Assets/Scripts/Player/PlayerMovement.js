@@ -102,7 +102,10 @@ function FixedUpdate ()
     var jumpButtonPressed : boolean;
 
     if(playerRigidbody.velocity.magnitude > playerMaxVelocity.magnitude) {
-      playerRigidbody.velocity *= 0.5;
+		var yVel = playerRigidbody.velocity.y;     
+       playerRigidbody.velocity *= 0.5;
+       playerRigidbody.velocity.y = yVel;
+      
     }
 
 
@@ -285,7 +288,7 @@ function FixedUpdate ()
     }
 
     if(playerRigidbody.velocity.y>jumpForce){
-		  playerRigidbody.velocity.y = jumpForce;
+	  playerRigidbody.velocity.y = jumpForce;
     }
 
 
