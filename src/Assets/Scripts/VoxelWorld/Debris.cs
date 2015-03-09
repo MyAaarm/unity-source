@@ -54,14 +54,14 @@ public class Debris : MonoBehaviour {
 				if (impactSize > 10) {
 						int randDebris = Random.Range (3, 9);
 							for(int i = 0; i < randDebris; i++){
-										int pw = Random.Range (2, 4);
+										int pw = Random.Range (2, 6);
 										int pwx = pw + Random.Range(-1,1); int pwy = pw + Random.Range(-1,1); int pwz = pw + Random.Range(-1,1);
 										int multix = Random.Range(-1,1); int multiy = Random.Range(-1,1); int multiz = Random.Range(-1,1);
-										Block bx = chunk.world.GetBlock (pwx * multix, pwy * multiy, pwz * multiz);
-										chunk.world.SetBlock (pwx * multix, pwy * multiy, pwz * multiz, new BlockAir ());
+										Block bx = chunk.world.GetBlock (pwx * multix, y, pwz * multiz);
+										chunk.world.SetBlock (x + pwx * multix, y, z + pwz * multiz, new BlockAir ());
 										int[] angle = new int[3];
 										angle[0] = pwx; angle[1] = pwy; angle[2] = pwz;
-										spawnDebris (x + pwx * multix, y + pwy * multiy, z + pwz * multiz, bx, angle);
+										spawnDebris (x + pwx * multix, y, z + pwz * multiz, bx, angle);
 							}
 
 				}
