@@ -294,7 +294,6 @@ function FixedUpdate ()
     		jumpFwdForce = 5;
     		//leftHand.transform.position = transform.forward;
     		//leftArm.transform.position  = transform.forward;
-    		Debug.Log("Fully charged");
     		this.transform.Find("body").gameObject.transform.localScale.y = bodySize*0.8f;
     	}
     }
