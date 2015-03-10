@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-var cameraSpeed : float = .5f;        // The speed with which the camera will be following.
+var cameraSpeed : float = 1f;        // The speed with which the camera will be following.
 var height : float = 10f;
 var zOffset : float = 20f;  
 
@@ -35,7 +35,7 @@ function FixedUpdate ()
  	}
 	height = Mathf.Lerp(height,newHeight,Time.deltaTime*cameraSpeed);
 	
-	var newZOffset = Mathf.Log(largestDifference)*6;
+	var newZOffset = Mathf.Log(largestDifference)*8;
 	if(newZOffset<30f){
 		newZOffset = 30f;
  	}
@@ -52,7 +52,9 @@ function FixedUpdate ()
 	transform.position.y = height;
 	
 	var oldRot : Quaternion = transform.rotation ;
-	transform.LookAt (avgDistance) ;
+	var lookAtVector = avgDistance;
+	lookAtVector.z *= 2f;
+	transform.LookAt (lookAtVector) ;
 	var newRot : Quaternion = transform.rotation ;
 	transform.rotation = Quaternion.Lerp ( oldRot , newRot, Time.deltaTime*cameraSpeed ) ;
 	
