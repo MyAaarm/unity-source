@@ -133,9 +133,7 @@ function FixedUpdate ()
     // Debug.Log('playerCollider.isHit : ' + playerCollider.isHit + 'PlayerNumber: ' + playerNumber);
     // Debug.Log('playerCollider.occupied: ' + playerCollider.occupied+ 'PlayerNumber: ' + playerNumber);
 
-	UpdateGameController (); //Check if controller should be changed
-
-
+	
   if(currentGameController == "Keyboard"){
     h = Input.GetAxisRaw ("Horizontal");
     v = Input.GetAxisRaw ("Vertical");
@@ -331,26 +329,6 @@ function FixedUpdate ()
 		jumpFwdForce = 0;
 	}
 }
-
-function UpdateGameController ()
-{
-  if (isOSX){
-  Debug.Log(Input.GetJoystickNames()[0]);
-  Debug.Log(Input.GetJoystickNames()[1]);
-    if(Input.GetKey('joystick '+ playerNumber +' button 9')){
-      currentGameController = "X360OSX";
-    }else if(Input.GetKey('joystick '+ playerNumber +' button 0')){
-      currentGameController = "PS3OSX";
-    }
-  }else{
-
-    if(Input.GetKey('joystick '+ playerNumber +' button 7')){
-      currentGameController = "X360PC";
-      Debug.Log(Input.GetJoystickNames()[0]);
-    }
-  }
-}
-
 
 function AnimateArm (movement : Vector3, armObject: GameObject, originalScale: Vector3) {
 
