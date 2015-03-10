@@ -53,7 +53,7 @@ function FixedUpdate ()
 	
 	var oldRot : Quaternion = transform.rotation ;
 	var lookAtVector = avgDistance;
-	lookAtVector.z *= 2f;
+	lookAtVector.z *= 1f;
 	transform.LookAt (lookAtVector) ;
 	var newRot : Quaternion = transform.rotation ;
 	transform.rotation = Quaternion.Lerp ( oldRot , newRot, Time.deltaTime*cameraSpeed ) ;
