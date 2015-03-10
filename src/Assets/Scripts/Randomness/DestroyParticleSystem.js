@@ -1,9 +1,9 @@
 ﻿#pragma strict
 
-private var timer: float = 3; 
+private var timer: float = 3;
 private var radius = 10.0;
 private	var power = 10000.0;
- 
+
 function Start(){
 	// Applies an explosion force to all nearby rigidbodies
 	var explosionPos : Vector3 = transform.position;
@@ -12,7 +12,11 @@ function Start(){
 		if (hit && hit.rigidbody){
 			hit.rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
 			hit.rigidbody.AddExplosionForce(power, explosionPos, radius, 3.0);
-			hit.transform.root.gameObject.GetComponent(PlayerHealth).TakeDamage(2 * Vector3.Distance(transform.position, hit.gameObject.transform.position));
+			var playerHealth = hit.transform.root.gameObject.GetComponent(PlayerHealth);
+
+			if(playerHealth != null) {
+				playerHealth.TakeDamage(2 * Vector3.Distance(transform.position, hit.gameObject.transform.position));
+			}
 		}
 	}
 	var ums = GameObject.Find( "CraterController" );
