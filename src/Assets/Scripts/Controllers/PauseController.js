@@ -88,9 +88,14 @@ function HandleMenuClick() {
 }
 
 function ShowWonMessage(player) {
-  var playerNumber = player.GetComponentInParent(PlayerMovement).playerNumber;
+  var playerMovement = player.GetComponentInParent(PlayerMovement);
+  if(playerMovement) {
+    won.GetComponent(UI.Text).text = 'player ' + playerMovement.playerNumber + ' won!';
+  }
 
-  won.GetComponent(UI.Text).text = 'player ' + playerNumber + ' won!';
+  else {
+    won.GetComponent(UI.Text).text = 'It\'s a draw!' ;
+  }
 
   ShowMenu();
 }

@@ -82,11 +82,8 @@ static function PlayerDied (player) {
 
   if(numberOfPlayersPlaying == 1) {
     HUD.Hide();
-    for(p in players){
-//      Debug.Log(p.GetComponentInParent(PlayerHealth).isDead);
-  //    Debug.Log(p.GetComponentInParent(PlayerMovement).playerNumber);
-
-      if(!p.GetComponentInParent(PlayerHealth).isDead) {
+    for(p in players) {
+      if(p != null) {
         PauseMenu.ShowWonMessage(p);
       }
     }

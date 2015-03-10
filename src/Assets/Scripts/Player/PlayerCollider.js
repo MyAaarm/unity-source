@@ -42,11 +42,11 @@ function OnCollisionEnter( col : Collision ){
 
 		var forceDirection1 = this.transform.forward;
 		var forceMagnitude1 = 75f;
-		
+
 		col.contacts[0].otherCollider.attachedRigidbody.AddForce(forceDirection1*forceMagnitude1, ForceMode.Impulse);
 
 	}
-	//isHit = false;	
+	//isHit = false;
 
 	if(col.collider.transform.parent != null && (col.collider.transform.name == "leftArm" || col.collider.transform.name == "rightArm")&&!this.transform.root.GetComponent(PlayerMovement).dragButton) {
 
@@ -67,7 +67,7 @@ function OnCollisionEnter( col : Collision ){
 
 				//playerRigidbody.constraints = RigidbodyConstraints.None;
 
-				
+
 
 				if(col.relativeVelocity.magnitude > 15){
 					var forceDirection = col.rigidbody.velocity.normalized;
@@ -89,19 +89,18 @@ function OnCollisionEnter( col : Collision ){
 
 	if(col.collider.name=="DespawnPlane"){
     playerHealth.Death();
-		GameController.PlayerDied(this.transform.parent);
 	}
-	
+
 	if(col.collider.transform.root.name=="SpawnedChunks" || col.collider.transform.root.name=="Floor"){
-		
+
 		if(this.transform.parent.gameObject.GetComponent(PlayerMovement).isJumping&&col.relativeVelocity.magnitude>60){
-			
-			
-			var ums = GameObject.Find( "CraterController" );	
+
+
+			var ums = GameObject.Find( "CraterController" );
 			ums.BroadcastMessage( "handleOuterImpacts", col.contacts[0].point );
-				
-			
-		}		
+
+
+		}
 
 		onGround = true;
 	}
@@ -134,7 +133,7 @@ function FixedUpdate(){
 		hitTimer = 0;
 		isHit = false;
 	}
-	
+
 }
 
 /*

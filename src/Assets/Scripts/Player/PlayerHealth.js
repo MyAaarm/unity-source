@@ -155,6 +155,5 @@ function Death () {
   var deadPlayer = GameObject.Instantiate(DeadPlayer, this.transform.Find("body").transform.position, this.transform.Find("body").transform.rotation) as GameObject;
   deadPlayer.transform.Find("body").transform.renderer.material.color = this.transform.Find("body").transform.renderer.material.color;
 
-
   Destroy(this.gameObject, audioLength);
 }
