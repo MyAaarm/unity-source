@@ -335,16 +335,18 @@ function FixedUpdate ()
 function UpdateGameController ()
 {
   if (isOSX){
-    if(Input.GetKey('joystick button 9')){
+  Debug.Log(Input.GetJoystickNames()[0]);
+  Debug.Log(Input.GetJoystickNames()[1]);
+    if(Input.GetKey('joystick '+ playerNumber +' button 9')){
       currentGameController = "X360OSX";
-    }else if(Input.GetKey('joystick button 0')){
+    }else if(Input.GetKey('joystick '+ playerNumber +' button 0')){
       currentGameController = "PS3OSX";
     }
   }else{
 
-    if(Input.GetKey('joystick button 7')){
+    if(Input.GetKey('joystick '+ playerNumber +' button 7')){
       currentGameController = "X360PC";
-      Debug.Log("stitched controller");
+      Debug.Log(Input.GetJoystickNames()[0]);
     }
   }
 }
