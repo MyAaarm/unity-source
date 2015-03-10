@@ -20,11 +20,11 @@ function Start () {
   HUD = FindObjectOfType(HUDController);
   PauseMenu = FindObjectOfType(PauseController);
 
-  //if(Application.loadedLevel == 1) {
+  if(Application.loadedLevel == 1) {
   setGameControllers();
     addPlayers();
     Instantiate(Judge, Vector3(-20 + 10*5 , 20, 0), Quaternion.identity);
-  //}
+  }
 }
 
 function setGameControllers(){
