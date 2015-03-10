@@ -189,8 +189,7 @@ function FixedUpdate ()
 		rightMap=40+(Mathf.Abs(rightKick)*40);
 	}
 	
-	Debug.Log('leftMap' + leftMap);
-	Debug.Log('rightMap' + rightMap);
+	
   }
   else if (currentGameController == "X360OSX"){
 		hV  = Input.GetAxisRaw ("RightJoystickXOSX"+playerNumber);
@@ -448,7 +447,7 @@ function kickLeg(legObject: GameObject, triggerMap: float, oPosition: Vector3, o
   legObject.transform.localPosition= Vector3.Lerp(oPosition, new Vector3(oPosition.x, 0.15, 1.2), triggerMap/80);
 
 
-  legObject.transform.localScale= Vector3.Lerp(oScale, new Vector3(0.35, 1.4, 0.35), triggerMap/80);
+  legObject.transform.localScale= Vector3.Lerp(oScale, new Vector3(0.35, 1.6, 0.35), triggerMap/80);
 }
 
 function Jump(){

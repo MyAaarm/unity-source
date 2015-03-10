@@ -27,9 +27,25 @@ function Awake (){
 	occupied = false;
 }
 
-function OnCollisionEnter( col : Collision ){
 
-	//isHit = false;
+function OnCollisionEnter( col : Collision ){
+	if((col.contacts[0].thisCollider.name == 'leftLeg' || col.contacts[0].thisCollider.name == 'rightLeg') && col.contacts[0].otherCollider.name == 'body'){
+
+		playerHealth.TakeDamage(10);
+
+		bloodObject.particleSystem.transform.position = col.transform.position;
+		bloodObject.particleSystem.transform.rotation = col.transform.rotation;
+		bloodObject.particleSystem.enableEmission = true;
+		bloodObject.particleSystem.Simulate(0.005f, true);
+		bloodObject.particleSystem.Play();
+
+		var forceDirection1 = this.transform.forward;
+		var forceMagnitude1 = 75f;
+		
+		col.contacts[0].otherCollider.attachedRigidbody.AddForce(forceDirection1*forceMagnitude1, ForceMode.Impulse);
+
+	}
+	//isHit = false;	
 
 	if(col.collider.transform.parent != null && (col.collider.transform.name == "leftArm" || col.collider.transform.name == "rightArm")&&!this.transform.root.GetComponent(PlayerMovement).dragButton) {
 
