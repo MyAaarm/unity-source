@@ -1,9 +1,10 @@
 ﻿#pragma strict
 
-var startingHealth : int = 100;                             // The amount of health the player starts the game with.
+private var startingHealth : int = 10;                             // The amount of health the player starts the game with.
 static var currentHealth : int;
 var regenFactor : int = 2;                                  // The current health the player has.
 var regenHealth : int = 30;
+var DeadPlayer: GameObject;
 
 public var isDead : boolean;                                                // Whether the player is dead.
 private var damaged : boolean;
@@ -138,7 +139,15 @@ function UpdateNoseColor() {
 function Death () {
   //Implement a knockout here instead
   isDead = true;
-  var audioLength = PlayDeathSound();
   GameController.PlayerDied(this);
+
+  var audioLength = PlayDeathSound();
+
+  this.transform.gameObject.active = false;
+
+  var deadPlayer = GameObject.Instantiate(DeadPlayer, this.transform.Find("body").transform.position, this.transform.Find("body").transform.rotation) as GameObject;
+  deadPlayer.transform.Find("body").transform.renderer.material.color = this.transform.Find("body").transform.renderer.material.color;
+
+
   Destroy(this.gameObject, audioLength);
 }
