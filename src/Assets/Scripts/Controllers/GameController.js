@@ -21,9 +21,26 @@ function Start () {
   PauseMenu = FindObjectOfType(PauseController);
 
   //if(Application.loadedLevel == 1) {
+  setGameControllers();
     addPlayers();
     Instantiate(Judge, Vector3(-20 + 10*5 , 20, 0), Quaternion.identity);
   //}
+}
+
+function setGameControllers(){
+	var gameControllers : String[] = Input.GetJoystickNames();
+	for(var i = 0; i < numberOfPlayers; i++){
+		Debug.Log(gameControllers[i]);
+		if(gameControllers[i]=="XBOX 360 For Windows (Controller)"){
+			playerControllers[i] = "X360PC";
+		}else if(gameControllers[i]=="©Microsoft Corporation Xbox 360 Wired Controller"){
+			playerControllers[i] = "X360OSX";
+		}else if(gameControllers[i]=="Unknown Wireless Controller"){
+			playerControllers[i] = "PS3OSX";
+		}else if(gameControllers[i]=="Sony PLAYSTATION(R)3 Controller"){
+			playerControllers[i] = "PS3OSX";
+		}
+	}
 }
 
 function addPlayers() {
