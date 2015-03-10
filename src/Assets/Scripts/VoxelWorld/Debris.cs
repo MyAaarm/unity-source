@@ -72,11 +72,11 @@ public class Debris : MonoBehaviour {
 			/*dynamicBlock = Instantiate (Resources.Load ("BlockStoneDynamic"), new Vector3 (x, y, z), Quaternion.identity) as GameObject;
 			dynamicBlock.rigidbody.AddForce (150*da[0], 150*da[1], 150*da[2])*/
 			dynamicBlock = bh.SpawnBlock(new Vector3 (x, y, z), Quaternion.identity, "Grass");
-			dynamicBlock.rigidbody.AddForce (250*da[0], 250*da[1], 250*da[2]);
+			dynamicBlock.rigidbody.AddForce (250*da[0], 350*da[1], 250*da[2]);
 		} else if (bt is BlockAir) {
 		} else {
 			dynamicBlock = bh.SpawnBlock(new Vector3 (x, y, z), Quaternion.identity, "Stone");
-			dynamicBlock.rigidbody.AddForce (250*da[0], 250*da[1], 250*da[2]);
+			dynamicBlock.rigidbody.AddForce (250*da[0], 350*da[1], 250*da[2]);
 		}
 	}
 
@@ -84,11 +84,11 @@ public class Debris : MonoBehaviour {
 		int[] da;
 
 		if (x == 0 && y == 0 && z == 0) {
-			da = new int[]{0, 5*Random.Range (-1,1), 0};
+			da = new int[]{0, 5, 0};
 		} else if ( x != 0 && y != 0){
-			da = new int[]{5*Random.Range (-1,1), 5*Random.Range (-1,1), 0};
+			da = new int[]{5*Random.Range (-1,1), 5, 0};
 		} else {
-			da = new int[]{0, 5*Random.Range (-1,1), 5*Random.Range (-1,1)};
+			da = new int[]{0, 5, 5*Random.Range (-1,1)};
 		}
 
 		return da;
