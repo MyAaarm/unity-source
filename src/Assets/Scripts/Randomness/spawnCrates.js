@@ -17,7 +17,6 @@ function Update () {
 
 function setTimer(){
 	var nbrOfCrates = GameObject.FindGameObjectsWithTag("Crate");
-	Debug.Log(nbrOfCrates.Length);
 	if (nbrOfCrates.Length <= 3){ //If no crates available - count down the timer
 		timer -= Time.deltaTime;
 		if(timer <= 0){

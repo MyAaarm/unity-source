@@ -10,7 +10,7 @@ public var Player : GameObject;
 public var Judge : GameObject;
 
 static var players : GameObject[];
-static var playerControllers = ['Keyboard', 'X360OSX', 'PS3OSX', 'PS3OSX'];
+static var playerControllers = ['Keyboard', 'Keyboard', 'Keyboard', 'PS3OSX'];
 
 function Awake () {
   DontDestroyOnLoad(this);
@@ -20,10 +20,27 @@ function Start () {
   HUD = FindObjectOfType(HUDController);
   PauseMenu = FindObjectOfType(PauseController);
 
-  //if(Application.loadedLevel == 1) {
+  if(Application.loadedLevel == 1) {
+  setGameControllers();
     addPlayers();
     Instantiate(Judge, Vector3(-20 + 10*5 , 20, 0), Quaternion.identity);
-  //}
+  }
+}
+
+function setGameControllers(){
+	var gameControllers : String[] = Input.GetJoystickNames();
+	for(var i = 0; i < gameControllers.Length; i++){
+
+		if(gameControllers[i]=="XBOX 360 For Windows (Controller)"){
+			playerControllers[i] = "X360PC";
+		}else if(gameControllers[i]=="©Microsoft Corporation Xbox 360 Wired Controller"){
+			playerControllers[i] = "X360OSX";
+		}else if(gameControllers[i]=="Unknown Wireless Controller"){
+			playerControllers[i] = "PS3OSX";
+		}else if(gameControllers[i]=="Sony PLAYSTATION(R)3 Controller"){
+			playerControllers[i] = "PS3OSX";
+		}
+	}
 }
 
 function addPlayers() {
@@ -66,8 +83,8 @@ static function PlayerDied (player) {
   if(numberOfPlayersPlaying == 1) {
     HUD.Hide();
     for(p in players){
-      Debug.Log(p.GetComponentInParent(PlayerHealth).isDead);
-      Debug.Log(p.GetComponentInParent(PlayerMovement).playerNumber);
+//      Debug.Log(p.GetComponentInParent(PlayerHealth).isDead);
+  //    Debug.Log(p.GetComponentInParent(PlayerMovement).playerNumber);
 
       if(!p.GetComponentInParent(PlayerHealth).isDead) {
         PauseMenu.ShowWonMessage(p);

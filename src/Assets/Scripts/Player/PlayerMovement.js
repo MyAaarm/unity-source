@@ -31,13 +31,6 @@ private var rightHand : GameObject;
 private var leftHandOriginalScale : Vector3;
 private var rightHandOriginalScale : Vector3;
 
-private var legs : GameObject;
-private var leftLeg : GameObject;
-private var rightLeg : GameObject;
-
-private var leftSide = {};
-private var rightSide = {};
-
 public var dragButton : boolean;
 public var jumpForce : float;
 public var numberOfJumps : int = 0;
@@ -48,6 +41,24 @@ private var jumpButtonDown : boolean;
 private var jumpFwdForce : float;
 public var isFallen : boolean;
 private var riseButtonDown : boolean;
+public var isDragging : boolean;
+
+private var isKicking : boolean = false;
+private var legs : GameObject;
+private var leftLeg : GameObject;
+private var rightLeg : GameObject;
+
+private var leftKick: float;
+private var rightKick : float;
+private var leftMap : float;
+private var rightMap : float;
+
+private var leftOriginalPosition : Vector3;
+private var rightOriginalPosition : Vector3;
+private var leftOriginalScale : Vector3;
+private var rightOriginalScale : Vector3;
+private var leftOriginalRotation : Quaternion;
+private var rightOriginalRotation : Quaternion;
 
 private var bodySize : float;
 
@@ -87,15 +98,18 @@ function Start () {
     leftArmOriginalScale = leftArm.transform.localScale;
     rightArmOriginalScale = rightArm.transform.localScale;
 
-    // leftHand = leftArm.transform.Find("Hand/left").gameObject;
-    // rightHand = rightArm.transform.Find("Hand/right").gameObject;
-
-    // leftHandOriginalScale = leftHand.transform.localScale;
-    // rightHandOriginalScale = rightHand.transform.localScale;
-
     legs = this.transform.Find("body/Legs").gameObject;
     leftLeg = legs.transform.Find("leftLeg").gameObject;
     rightLeg = legs.transform.Find("rightLeg").gameObject;
+
+
+   leftOriginalPosition = leftLeg.transform.localPosition;
+   leftOriginalScale = leftLeg.transform.localScale;
+   leftOriginalRotation = leftLeg.transform.localRotation;
+   rightOriginalPosition = rightLeg.transform.localPosition;
+   rightOriginalScale = rightLeg.transform.localScale;
+   rightOriginalRotation = rightLeg.transform.localRotation;
+
 
     jumpSounds.push(jump1);
     jumpSounds.push(jump2);
@@ -110,6 +124,7 @@ function FixedUpdate ()
 		return;
 	}
 
+
 	/*if( Time.frameCount%300==0){
 	playerRigidbody.AddForce(new Vector3(100, 20, 20), ForceMode.Impulse);
 	Debug.Log("jump");
@@ -117,6 +132,7 @@ function FixedUpdate ()
 	return;
 	*/
     // Store the input axes.
+
     var h : float;
     var v : float;
     var hV : float;
@@ -129,14 +145,6 @@ function FixedUpdate ()
        playerRigidbody.velocity.y = yVel;
 
     }
-
-
-    // Debug.Log('isJumping : ' + isJumping + 'PlayerNumber: ' + playerNumber);
-    // Debug.Log('isFallen : ' + isFallen + 'PlayerNumber: ' + playerNumber);
-    // Debug.Log('playerCollider.isHit : ' + playerCollider.isHit + 'PlayerNumber: ' + playerNumber);
-    // Debug.Log('playerCollider.occupied: ' + playerCollider.occupied+ 'PlayerNumber: ' + playerNumber);
-
-	UpdateGameController (); //Check if controller should be changed
 
 
   if(currentGameController == "Keyboard"){
@@ -168,7 +176,22 @@ function FixedUpdate ()
 		jumpButtonPressed =  Input.GetButtonUp('PS3RightBumperOSX'+playerNumber);
     jumpButtonDown = Input.GetButton('PS3RightBumperOSX'+playerNumber);
 
+    leftKick = Input.GetAxisRaw("PS3LeftLowerBumperAxisOSX"+playerNumber);
+    rightKick = Input.GetAxisRaw("PS3RightLowerBumperAxisOSX"+playerNumber);
+    
 
+    if(leftKick>0){
+  		leftMap=(1-leftKick)*40;
+  			} else {
+  		leftMap=40+(Mathf.Abs(leftKick)*40);
+  	}
+	
+  	if(rightKick>0){
+  		rightMap=(1-rightKick)*40;
+  			} else {
+  		rightMap=40+(Mathf.Abs(rightKick)*40);
+  	}
+	
   }
   else if (currentGameController == "X360OSX"){
 		hV  = Input.GetAxisRaw ("RightJoystickXOSX"+playerNumber);
@@ -179,6 +202,21 @@ function FixedUpdate ()
 	riseButtonDown = Input.GetButtonUp('X360AButtonOSX'+playerNumber);
 	jumpButtonDown = Input.GetButton('360RightBumperOSX'+playerNumber);
 
+  leftKick = Input.GetAxisRaw("PS3LeftLowerBumperAxisOSX"+playerNumber);
+  rightKick = Input.GetAxisRaw("PS3RightLowerBumperAxisOSX"+playerNumber);
+    
+    if(leftKick>0){
+      leftMap=(1-leftKick)*40;
+        } else {
+      leftMap=40+(Mathf.Abs(leftKick)*40);
+    }
+    
+    if(rightKick>0){
+      rightMap=(1-rightKick)*40;
+        } else {
+      rightMap=40+(Mathf.Abs(rightKick)*40);
+    }
+
   } //Check if the game is running on PC with Xbox360 controller
   else if (currentGameController == "X360PC"){
     hV  = Input.GetAxisRaw ("360RightJoystickXPC"+playerNumber);
@@ -187,9 +225,6 @@ function FixedUpdate ()
   	dragButton = Input.GetButton('360LeftBumperPC'+playerNumber);
 		riseButtonDown = Input.GetButtonUp('X360AButtonPC'+playerNumber);
 		jumpButtonDown = Input.GetButton('360RightBumperPC'+playerNumber);
-
-    	//leftBumperPressed = Input.GetButtonDown('360LeftBumperPC'+playerNumber);
-    	//rightBumperPressed = Input.GetButtonDown('360RightBumperPC'+playerNumber);
 
   }
 
@@ -261,9 +296,11 @@ function FixedUpdate ()
       isMoving = false;
     }
 
+
     if(shouldMove && !playerCollider.isHit && !playerCollider.occupied){
       playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
       AnimateLegs(h, v, hV, vV);
+
     }
     else if(!playerCollider.isHit&&!playerCollider.occupied&&playerCollider.onGround&&!isJumping){
       playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
@@ -290,6 +327,7 @@ function FixedUpdate ()
     else {
     	playerBody.transform.rotation.x = 0;
     	playerBody.transform.rotation.z = 0;
+
     }
 
     if(jumpButtonDown&&!isFallen){
@@ -299,7 +337,6 @@ function FixedUpdate ()
     		jumpFwdForce = 5;
     		//leftHand.transform.position = transform.forward;
     		//leftArm.transform.position  = transform.forward;
-    		Debug.Log("Fully charged");
     		this.transform.Find("body").gameObject.transform.localScale.y = bodySize*0.8f;
     	}
     }
@@ -314,10 +351,11 @@ function FixedUpdate ()
     }
 
 
-    if (h == 0 && v == 0 && hV == 0 && vV == 0){
-  		leftLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
-  		rightLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
-  	}
+   if (h == 0 && v == 0 && hV == 0 && vV == 0){
+ 		leftLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
+ 		rightLeg.transform.rotation = Quaternion.Euler(0, 0, 0);
+    resetLegs();
+    }
 
 	if(isFallen){
 		if(riseButtonDown){
@@ -333,28 +371,38 @@ function FixedUpdate ()
 		}
 		jumpFwdForce = 0;
 	}
-}
 
-function UpdateGameController ()
-{
-  if (isOSX){
-    if(Input.GetKey('joystick button 9')){
-      currentGameController = "X360OSX";
-    }else if(Input.GetKey('joystick button 0')){
-      currentGameController = "PS3OSX";
-    }
-  }else{
 
-    if(Input.GetKey('joystick button 7')){
-      currentGameController = "X360PC";
-      Debug.Log("stitched controller");
+  if(!shouldMove && !(leftKick !=1 && rightKick!=1)){
+      if (leftKick!=1 && rightKick==1){
+        isKicking = true;
+
+        if (shouldInvert) {
+          kickLeg(rightLeg, leftMap, rightOriginalPosition, rightOriginalScale);
+        } 
+        else {
+          kickLeg(leftLeg, leftMap, leftOriginalPosition, leftOriginalScale);
+        }            
+      }
+      else if (rightKick!=1 && leftKick==1){
+        isKicking = true;
+        if (shouldInvert){
+          kickLeg(leftLeg, rightMap, leftOriginalPosition, leftOriginalScale);
+        } 
+        else {
+          kickLeg(rightLeg, rightMap, rightOriginalPosition, rightOriginalScale);
+          
+        }            
+      }
     }
-  }
+
+    else {
+      isKicking = false;
+    }
 }
 
 
 function AnimateArm (movement : Vector3, armObject: GameObject, originalScale: Vector3) {
-
 
   isMoving = (movement.sqrMagnitude > 0.95);
 
@@ -363,6 +411,10 @@ function AnimateArm (movement : Vector3, armObject: GameObject, originalScale: V
 
   if(isJumping){
   	forceVector = 0.25f;
+  }else if(isFallen){
+  	forceVector = 1f;
+  }else if(isDragging){
+  	forceVector*=2f;
   }
 
 	forceVector *= speedMultiplyer;
@@ -384,18 +436,36 @@ function AnimateHand (movement : Vector3, handObject: GameObject, originalScale 
 }
 
 function AnimateLegs(h : float, v : float, hV : float, vV : float) {
+  if(isKicking) {
+    resetLegs();
+  }
   //get rigidbody velocity vector
   movement = playerRigidbody.velocity;
   //remove velocity in y axis
   //leftArmMovement.y = 0f;
 
   //find the forward rotation based on this and rotate parent leg object towards this vector
-  newRotation = Quaternion.LookRotation(movement);
-  legs.transform.rotation=newRotation;
+  newRotation = Quaternion.LookRotation(playerRigidbody.transform.forward);
+  // legs.transform.rotation=newRotation;
 
   //also use sin function to rotate legs and apply same rotation to them.
-  leftLeg.transform.rotation = newRotation * Quaternion.Euler(-Mathf.Sin(Time.realtimeSinceStartup*10) * 50, 0, 0);
-  rightLeg.transform.rotation = newRotation * Quaternion.Euler(Mathf.Sin(Time.realtimeSinceStartup*10) * 50, 0, 0);
+ leftLeg.transform.rotation = newRotation * Quaternion.Euler(-Mathf.Sin(Time.realtimeSinceStartup*10) * 50, 0, 0);
+ rightLeg.transform.rotation = newRotation * Quaternion.Euler(Mathf.Sin(Time.realtimeSinceStartup*10) * 50, 0, 0);
+}
+
+function resetLegs () {
+  leftLeg.transform.localPosition = new Vector3(-0.286, -0.42, 0);
+  leftLeg.transform.localScale= new Vector3(0.35, 0.7, 0.35);
+  rightLeg.transform.localPosition = new Vector3(0.286, -0.42, 0);
+  rightLeg.transform.localScale= new Vector3(0.35, 0.7, 0.35);
+}
+
+function kickLeg(legObject: GameObject, triggerMap: float, oPosition: Vector3, oScale: Vector3){
+  legObject.transform.localRotation= Quaternion.Euler(-triggerMap,0,0);
+  legObject.transform.localPosition= Vector3.Lerp(oPosition, new Vector3(oPosition.x, 0.15, 1.2), triggerMap/80);
+
+
+  legObject.transform.localScale= Vector3.Lerp(oScale, new Vector3(0.35, 1.6, 0.35), triggerMap/80);
 }
 
 function Jump(){
@@ -411,7 +481,10 @@ function Jump(){
   if(numberOfJumps<2){
     var jumpVector : Vector3 = new Vector3(0f, jumpForce*Mathf.Max(jumpFwdForce, 1), 0f);
     var jumpVectorFWD : Vector3 = playerBody.transform.forward*jumpFwdForce*7f;
-	Debug.Log(jumpFwdForce);
+    if(isDragging){
+    	jumpVector *= 5;
+    }
+    
     playerBody.transform.position.y+=1f;
    	playerRigidbody.AddForce(jumpVector+jumpVectorFWD, ForceMode.Impulse);
     //playerRigidbody.velocity = jumpVector+jumpVectorFWD;

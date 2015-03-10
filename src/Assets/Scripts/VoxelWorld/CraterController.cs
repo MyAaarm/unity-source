@@ -18,8 +18,7 @@ public class CraterController : MonoBehaviour {
 		this.Impact (hit, 450);
 
 	}
-	
-	
+
 	public void Impact (RaycastHit hit, int force) {
 		Block b = Terrain.GetBlock (hit);
 		chunk = hit.collider.GetComponent<Chunk>();

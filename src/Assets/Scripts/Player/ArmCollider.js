@@ -12,6 +12,10 @@ private var otherBody : Rigidbody;
 private var collisionTimer : int;
 private var cld : Collision;
 
+private var dragTimer : float;
+private var dragCooldown : float;
+public var isDragging : boolean;
+
 
 function Awake (){
 	playerHealth = GetComponent (PlayerHealth);
@@ -25,31 +29,40 @@ function OnCollisionEnter( col : Collision ){
 					print(contact.thisCollider.name + " hit " + contact.otherCollider.name);
 		}*/
 
-		if(col.collider.gameObject.transform.root.tag=="Player"){
+		if(col.collider.gameObject.transform.root.Find("body")!=null&&col.collider.gameObject.transform.root.Find("body").tag=="Player"){
 			cld = col;
 			handCollision = true;
 			collisionTimer = 100;
+			
 		}
 }
 
 function FixedUpdate(){
     var hingeJoints : Component[];
-
-    if(!this.transform.root.GetComponent(PlayerMovement).dragButton) {
+	//Debug.Log("Drag timer: " + dragTimer + "Drag cd: "+ dragCooldown);
+    if(!this.transform.root.GetComponent(PlayerMovement).dragButton||dragTimer>5) {
 
 		hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
 		for (var joint : HingeJoint in hingeJoints) {
 			Destroy(joint);
 		}
-
+		isDragging = false;
+		this.transform.root.GetComponent(PlayerMovement).isDragging = false;
 	}
 
 	hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
 	if(hingeJoints.Length==0&&cld!=null){
-//    	cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = false;
-    }
 
-    if(collisionTimer > 0  && handCollision){
+    	cld.collider.gameObject.transform.root.Find("body").GetComponent(PlayerCollider).occupied = false;
+    }
+	
+	if(dragCooldown>0){
+		dragCooldown -= Time.deltaTime;
+	}
+	if(isDragging){
+		dragTimer += Time.deltaTime;
+	}
+    if(collisionTimer > 0  && handCollision&&dragCooldown<=0){
 
     	collisionTimer = collisionTimer-1;
 
@@ -70,24 +83,37 @@ function FixedUpdate(){
 				hJ = this.gameObject.GetComponentsInChildren(HingeJoint);
 				if(hJ.Length == 0){
         		this.gameObject.AddComponent(HingeJoint);
-        		var otherBody = cld.collider.gameObject.gameObject.rigidbody;
+        		var otherBody = cld.collider.gameObject.transform.root.Find("body").rigidbody;
         		if(otherBody==null){
         			otherBody = cld.collider.transform.root.gameObject.rigidbody;
         		}
         		Debug.Log(otherBody.name);
-        		hingeJoint.breakForce = 45;
-        		hingeJoint.breakTorque = 45;
+        		hingeJoint.breakForce = 15;
+        		hingeJoint.breakTorque = 15;
         		hingeJoint.connectedBody = otherBody;}
-        		cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = true;
-      			cld.collider.gameObject.transform.root.rigidbody.constraints =  RigidbodyConstraints.None;
+        		cld.collider.gameObject.transform.root.Find("body").GetComponent(PlayerCollider).occupied = true;
+      			cld.collider.gameObject.transform.root.Find("body").rigidbody.constraints =  RigidbodyConstraints.None;
         		D = this.transform.root.transform.position - cld.collider.gameObject.transform.root.transform.position; // line from crate to player
                 pullF = 10;
                 dist = D.magnitude;
                 pullDir = D.normalized;
                 //Debug.Log(pullDir*(pullF * Time.deltaTime)*100f);
-        		cld.collider.gameObject.transform.root.rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*100f, ForceMode.Impulse);
-
-
+				//cld.collider.gameObject.transform.root.Find("body").rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*100f, ForceMode.Impulse);
+				isDragging = true;
+				this.transform.root.GetComponent(PlayerMovement).isDragging = true;
+				if(dragTimer>5){
+					dragTimer = 0;
+					dragCooldown = 5f;
+					isDragging=false;
+					this.transform.root.GetComponent(PlayerMovement).isDragging = false;
+					hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
+					for (var joint : HingeJoint in hingeJoints) {
+						Destroy(joint);
+					}
+					cld.collider.gameObject.transform.root.Find("body").GetComponent(PlayerCollider).occupied = false;
+					
+				}
+				
 
         		/*//Debug.Log("WIN " + collisionTimer);
         		cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = true;

@@ -9,7 +9,9 @@ function Start () {
   healthLabels.push(GameObject.Find("player3Health"));
   healthLabels.push(GameObject.Find("player4Health"));
 
-  Show();
+  if(Application.loadedLevel == 1) {
+    Show();
+  }
 }
 
 
