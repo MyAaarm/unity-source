@@ -8,13 +8,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 22430268}
-  - 65: {fileID: 6530268}
   - 23: {fileID: 2330268}
   - 33: {fileID: 3330268}
   - 114: {fileID: 11430268}
   - 122: {fileID: 12230268}
   - 54: {fileID: 5476266}
-  - 136: {fileID: 13628752}
+  - 135: {fileID: 13519532}
+  - 135: {fileID: 13561754}
   m_Layer: 0
   m_Name: Crate
   m_TagString: Untagged
@@ -64,18 +64,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 10
   m_CollisionDetection: 0
---- !u!65 &6530268
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 130268}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: .005894979, z: 0}
 --- !u!114 &11430268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,6 +79,7 @@ MonoBehaviour:
   heart: {fileID: 170772, guid: aedf5020e9880084abbeea54b7f59da9, type: 2}
   LightningBolt: {fileID: 167722, guid: 1fe5d59fd6ffe1e4c9248db3457e38cb, type: 2}
   weight: {fileID: 148446, guid: 227f9d935a5cd4e47ade4d8fed3444d5, type: 2}
+  boulder: {fileID: 130852, guid: b4606bb2162cf834e960c13ecf8709a3, type: 2}
 --- !u!122 &12230268
 Halo:
   m_ObjectHideFlags: 1
@@ -102,8 +91,20 @@ Halo:
     serializedVersion: 2
     rgba: 2618338
   m_Size: 3
---- !u!136 &13628752
-CapsuleCollider:
+--- !u!135 &13519532
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130268}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.11000001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13561754
+SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -111,9 +112,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2.1500001
-  m_Height: 1
-  m_Direction: 1
+  serializedVersion: 2
+  m_Radius: 1.11000001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!224 &22430268
 RectTransform:

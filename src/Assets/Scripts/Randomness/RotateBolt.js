@@ -12,11 +12,11 @@ function Awake(){
 }
 function Update () {
 	if (player != null){
-	transform.position = Vector3(player.gameObject.transform.position.x, player.gameObject.transform.position.y+8.5, player.gameObject.transform.position.z+0.5);
+	transform.position = Vector3(player.gameObject.transform.position.x, player.gameObject.transform.position.y+5.5, player.gameObject.transform.position.z+0.5);
 	tempPlayer = player;
 	}
 	else{
-		transform.position = Vector3(tempPlayer.gameObject.transform.position.x, tempPlayer.gameObject.transform.position.y+8.5, tempPlayer.gameObject.transform.position.z+0.5);
+		transform.position = Vector3(tempPlayer.gameObject.transform.position.x, tempPlayer.gameObject.transform.position.y+5.5, tempPlayer.gameObject.transform.position.z+0.5);
 	}
 	rotationAmount += 5;
 	transform.Rotate(Vector3(0,rotationAmount*Time.deltaTime,0));

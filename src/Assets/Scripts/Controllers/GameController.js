@@ -30,6 +30,7 @@ function Start () {
 function setGameControllers(){
 	var gameControllers : String[] = Input.GetJoystickNames();
 	for(var i = 0; i < gameControllers.Length; i++){
+
 		if(gameControllers[i]=="XBOX 360 For Windows (Controller)"){
 			playerControllers[i] = "X360PC";
 		}else if(gameControllers[i]=="©Microsoft Corporation Xbox 360 Wired Controller"){

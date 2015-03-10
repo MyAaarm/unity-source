@@ -5,6 +5,7 @@ private var timer: float = 30;
 public var heart : GameObject;
 public var LightningBolt : GameObject;
 public var weight : GameObject;
+public var pan : GameObject;
 
 //Transforms & Rotates the crate 
 function Update () {
@@ -37,7 +38,6 @@ function OnTriggerEnter (other : Collider) {
 		var rand = Random.Range(0, 100);
 		if (rand <= playerHealth){
 			var rand2 = Random.Range(1, 4);
-			Debug.Log(rand2);
 			switch(rand2){
 				case 1:
 					RotateHeart.player = other;
@@ -54,7 +54,16 @@ function OnTriggerEnter (other : Collider) {
 			}
 		}
 		else{
-			Instantiate (explosion, transform.position, Quaternion.identity);
+			var rand3 = Random.Range(1, 3);
+			switch(rand3){
+				case 1:
+					Instantiate (explosion, transform.position, Quaternion.identity);
+					break;
+				case 2:
+					PanScript.player = other;
+					Instantiate (pan, transform.position, Quaternion.identity);
+					break;
+			}
 		}	
 	}
 }

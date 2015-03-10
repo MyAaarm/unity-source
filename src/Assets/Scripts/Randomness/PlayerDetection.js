@@ -15,8 +15,8 @@ function Update(){
 }
 
 function OnTriggerExit(collisionInfo : Collider) {
-		playerDetected = false;
-	}
+	playerDetected = false;
+}
 
 function OnTriggerStay (other : Collider)
 {	if (other.gameObject.tag == "Player"){
@@ -30,7 +30,6 @@ function OnTriggerStay (other : Collider)
        		// If the raycast hits the player...
        		if(Physics.Raycast(transform.position, relPlayerPos, hit)){
        		
-       			//Debug.Log(playerDetected);
        			if(hit.collider.gameObject.tag == "Player" && JudgeScript.theTarget == hit.collider.gameObject){
        				playerDetected = true;
        			}

@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
 var startingHealth : int = 100;                             // The amount of health the player starts the game with.
-var currentHealth : int;
+static var currentHealth : int;
 var regenFactor : int = 2;                                  // The current health the player has.
 var regenHealth : int = 30;
 
