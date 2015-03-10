@@ -40,15 +40,16 @@ function FixedUpdate () {
 					if (Vector3.Distance(enemy.transform.position, transform.position) < Vector3.Distance(enemy2.transform.position, transform.position)){
 						myTarget = enemy.transform.position;
 						theTarget = enemy;
-						timer = 30;
+						timer = 15;
 					}
 					else{
 						myTarget = enemy2.transform.position;
 						theTarget = enemy2;
-						timer = 30;
+						timer = 15;
 					}
 				}	
 				else if (targets.Length == 1){
+					Debug.Log("SetPos");
 					myTarget = enemy.transform.position;
 					theTarget = enemy;
 				}

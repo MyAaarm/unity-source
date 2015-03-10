@@ -8,14 +8,14 @@ private var tempPlayer : Collider;
 
 function Awake(){
 	transform.Rotate(Vector3(-90, 0, 0));
-	//ADD SPEED HERE
+	player.transform.root.gameObject.GetComponent(PlayerHealth).TakeDamage(-70);
 }
 function Update () { 
 	if(player != null){
-	transform.position = Vector3(player.gameObject.transform.position.x, player.gameObject.transform.position.y+7, player.gameObject.transform.position.z);
+	transform.position = Vector3(player.gameObject.transform.position.x, player.gameObject.transform.position.y+5, player.gameObject.transform.position.z);
 	}
 	else{
-		transform.position = Vector3(tempPlayer.gameObject.transform.position.x, tempPlayer.gameObject.transform.position.y+7, tempPlayer.gameObject.transform.position.z);	
+		transform.position = Vector3(tempPlayer.gameObject.transform.position.x, tempPlayer.gameObject.transform.position.y+5, tempPlayer.gameObject.transform.position.z);	
 	}
 	rotationAmount += 5;
 	transform.Rotate(Vector3(0,0,rotationAmount*Time.deltaTime));

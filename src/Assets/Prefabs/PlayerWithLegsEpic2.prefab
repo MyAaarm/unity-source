@@ -229,7 +229,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187756}
-  m_LocalRotation: {x: 0, y: 0, z: -.707106829, w: .707106709}
+  m_LocalRotation: {x: 0, y: 0, z: -.707106888, w: .707106769}
   m_LocalPosition: {x: -.950999975, y: 1.14999998, z: .419}
   m_LocalScale: {x: .25, y: .400000036, z: .25}
   m_Children: []
@@ -271,7 +271,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187762}
-  m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106709}
+  m_LocalRotation: {x: 0, y: 0, z: .707106888, w: .707106769}
   m_LocalPosition: {x: .949999988, y: 1.14999998, z: .419}
   m_LocalScale: {x: .25, y: .400000036, z: .25}
   m_Children: []
@@ -665,6 +665,7 @@ MonoBehaviour:
   dragButton: 0
   jumpForce: 0
   numberOfJumps: 0
+  isJumping: 0
   isFallen: 0
 --- !u!114 &11487768
 MonoBehaviour:
@@ -678,9 +679,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
-  currentHealth: 0
   regenFactor: 2
   regenHealth: 30
+  isDead: 0
 --- !u!144 &14487766
 CharacterJoint:
   m_ObjectHideFlags: 1
