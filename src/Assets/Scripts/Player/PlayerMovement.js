@@ -9,6 +9,7 @@ private var rigjumphtArmMovement : Vector3;                   // The vector to s
 private var playerMaxVelocity : Vector3;
 private var playerBody : GameObject;          // Reference to the player's rigidbody.\
 private var playerRigidbody : Rigidbody;          // Reference to the player's rigidbody.\
+private var playerHealth : PlayerHealth;          // Reference to the player's rigidbody.
 private var playerCollider : PlayerCollider;          // Reference to the player's rigidbody.
 private var floorMask : int;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 private var camRayLength : float = 100f;          // The length of the ray from the camera into the scene.
@@ -89,6 +90,7 @@ function Start () {
     playerBody = this.transform.Find("body").gameObject;
     playerRigidbody = this.transform.Find("body").GetComponent(Rigidbody);
     playerCollider = this.transform.Find("body").GetComponent(PlayerCollider);
+    playerHealth = this.transform.GetComponent(PlayerHealth);
 
 
 
@@ -124,6 +126,12 @@ function FixedUpdate ()
 		return;
 	}
 
+  if(playerHealth.isKnocked){
+    playerRigidbody.constraints = RigidbodyConstraints.None;
+    return;
+  } else {
+    playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+  }
 
 	/*if( Time.frameCount%300==0){
 	playerRigidbody.AddForce(new Vector3(100, 20, 20), ForceMode.Impulse);
@@ -178,20 +186,20 @@ function FixedUpdate ()
 
     leftKick = Input.GetAxisRaw("PS3LeftLowerBumperAxisOSX"+playerNumber);
     rightKick = Input.GetAxisRaw("PS3RightLowerBumperAxisOSX"+playerNumber);
-    
+
 
     if(leftKick>0){
   		leftMap=(1-leftKick)*40;
   			} else {
   		leftMap=40+(Mathf.Abs(leftKick)*40);
   	}
-	
+
   	if(rightKick>0){
   		rightMap=(1-rightKick)*40;
   			} else {
   		rightMap=40+(Mathf.Abs(rightKick)*40);
   	}
-	
+
   }
   else if (currentGameController == "X360OSX"){
 		hV  = Input.GetAxisRaw ("RightJoystickXOSX"+playerNumber);
@@ -204,13 +212,13 @@ function FixedUpdate ()
 
   leftKick = Input.GetAxisRaw("PS3LeftLowerBumperAxisOSX"+playerNumber);
   rightKick = Input.GetAxisRaw("PS3RightLowerBumperAxisOSX"+playerNumber);
-    
+
     if(leftKick>0){
       leftMap=(1-leftKick)*40;
         } else {
       leftMap=40+(Mathf.Abs(leftKick)*40);
     }
-    
+
     if(rightKick>0){
       rightMap=(1-rightKick)*40;
         } else {
@@ -379,20 +387,20 @@ function FixedUpdate ()
 
         if (shouldInvert) {
           kickLeg(rightLeg, leftMap, rightOriginalPosition, rightOriginalScale);
-        } 
+        }
         else {
           kickLeg(leftLeg, leftMap, leftOriginalPosition, leftOriginalScale);
-        }            
+        }
       }
       else if (rightKick!=1 && leftKick==1){
         isKicking = true;
         if (shouldInvert){
           kickLeg(leftLeg, rightMap, leftOriginalPosition, leftOriginalScale);
-        } 
+        }
         else {
           kickLeg(rightLeg, rightMap, rightOriginalPosition, rightOriginalScale);
-          
-        }            
+
+        }
       }
     }
 
@@ -484,7 +492,7 @@ function Jump(){
     if(isDragging){
     	jumpVector *= 5;
     }
-    
+
     playerBody.transform.position.y+=1f;
    	playerRigidbody.AddForce(jumpVector+jumpVectorFWD, ForceMode.Impulse);
     //playerRigidbody.velocity = jumpVector+jumpVectorFWD;
