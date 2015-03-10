@@ -411,7 +411,6 @@ function Jump(){
   if(numberOfJumps<2){
     var jumpVector : Vector3 = new Vector3(0f, jumpForce*Mathf.Max(jumpFwdForce, 1), 0f);
     var jumpVectorFWD : Vector3 = playerBody.transform.forward*jumpFwdForce*7f;
-	Debug.Log(jumpFwdForce);
     playerBody.transform.position.y+=1f;
    	playerRigidbody.AddForce(jumpVector+jumpVectorFWD, ForceMode.Impulse);
     //playerRigidbody.velocity = jumpVector+jumpVectorFWD;

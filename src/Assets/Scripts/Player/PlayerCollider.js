@@ -33,7 +33,7 @@ function OnCollisionEnter( col : Collision ){
 
 	if(col.collider.transform.parent != null && (col.collider.transform.name == "leftArm" || col.collider.transform.name == "rightArm")&&!this.transform.root.GetComponent(PlayerMovement).dragButton) {
 
-    Debug.Log(col.relativeVelocity.magnitude);
+
 		if(col.collider.transform.root.name != gameObject.name){
 
 			if(col.relativeVelocity.magnitude>3){
@@ -77,13 +77,12 @@ function OnCollisionEnter( col : Collision ){
 	
 	if(col.collider.transform.root.name=="SpawnedChunks" || col.collider.transform.root.name=="Floor"){
 		
-		if(this.transform.parent.gameObject.GetComponent(PlayerMovement).isJumping){
+		if(this.transform.parent.gameObject.GetComponent(PlayerMovement).isJumping&&col.relativeVelocity.magnitude>70){
 			
 			
 			var ums = GameObject.Find( "CraterController" );	
 			ums.BroadcastMessage( "handleOuterImpacts", col.contacts[0].point );
-			
-			
+				
 			
 		}		
 
