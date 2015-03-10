@@ -134,7 +134,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148290}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106709}
+  m_LocalRotation: {x: -.707106888, y: 0, z: 0, w: .707106769}
   m_LocalPosition: {x: 0, y: 6.63999987, z: 0}
   m_LocalScale: {x: 1, y: .5, z: 1}
   m_Children: []
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d081bcfb6b02d4a49972bed850379787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 180930, guid: dde94e6ab86db1d4087dac5375a6a0d1, type: 2}
+  explosion: {fileID: 182164, guid: d62218922f4beb0478cad9ff73e2c4b5, type: 2}
 --- !u!198 &19848290
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -281,7 +281,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -1333,7 +1333,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1

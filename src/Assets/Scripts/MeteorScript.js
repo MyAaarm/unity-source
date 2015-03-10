@@ -22,17 +22,46 @@ function OnCollisionEnter( col : Collision ){
     if(playerHealth != null) {
       playerHealth.TakeDamage(50);
 
+      //Instantiate (explosion, transform.position, Quaternion.identity);
+      var ums = GameObject.Find("BlockHandler");
+      ums.BroadcastMessage( "meteorExplosion", transform.position );
+	  var pX : Vector3 = transform.position;
+	  pX.x += 1;
+	  ums.BroadcastMessage( "meteorExplosion", pX);
+	  pX.x += -1;
+      pX.y += 1;
+	  ums.BroadcastMessage( "meteorExplosion", pX);
+	  pX.x += 1;
+      pX.y += -1;
+	  ums.BroadcastMessage( "meteorExplosion", pX);
+      pX.y += 1;
+	  pX.z += -1;
+      ums.BroadcastMessage( "meteorExplosion", pX);
+	  pX.z += -2;
+      ums.BroadcastMessage( "meteorExplosion", pX);
       Instantiate (explosion, transform.position, Quaternion.identity);
       Destroy(this.gameObject);
     }
   }
 
   else if(col.collider.transform.root.name=="SpawnedChunks" || col.collider.transform.root.name=="Floor"){
-    var ums = GameObject.Find( "CraterController" );
-
-    Instantiate (explosion, transform.position, Quaternion.identity);
-    ums.BroadcastMessage( "handleOuterImpacts", col.contacts[0].point);
-
-    Destroy(this.gameObject);
+      var pms = GameObject.Find("BlockHandler");
+	  pms.BroadcastMessage( "meteorExplosion", transform.position );
+	  var vX : Vector3 = transform.position;
+	  vX.x += 1;
+	  pms.BroadcastMessage( "meteorExplosion", vX);
+	  vX.x += -1;
+      vX.y += 1;
+	  pms.BroadcastMessage( "meteorExplosion", vX);
+	  vX.x += 1;
+      vX.y += -1;
+	  pms.BroadcastMessage( "meteorExplosion", vX);
+      vX.y += 1;
+	  vX.z += -1;
+      pms.BroadcastMessage( "meteorExplosion", vX);
+	  vX.z += -2;
+      pms.BroadcastMessage( "meteorExplosion", vX);
+      Instantiate (explosion, transform.position, Quaternion.identity);
+      Destroy(this.gameObject);
   }
 }

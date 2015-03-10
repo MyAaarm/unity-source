@@ -213,7 +213,7 @@ Transform:
   m_PrefabParentObject: {fileID: 448290, guid: 71f30e290f090446488fbd3d5611f4a9, type: 2}
   m_PrefabInternal: {fileID: 357497062}
   m_GameObject: {fileID: 94183152}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106709}
+  m_LocalRotation: {x: -.707106888, y: 0, z: 0, w: .707106769}
   m_LocalPosition: {x: 0, y: 6.63999987, z: 0}
   m_LocalScale: {x: 1, y: .5, z: 1}
   m_Children: []
@@ -265,7 +265,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -1719,7 +1719,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 965478428}
   m_GameObject: {fileID: 222029584}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6, y: 10, z: 6}
@@ -1736,7 +1736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d081bcfb6b02d4a49972bed850379787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 180930, guid: dde94e6ab86db1d4087dac5375a6a0d1, type: 2}
+  explosion: {fileID: 182164, guid: d62218922f4beb0478cad9ff73e2c4b5, type: 2}
 --- !u!1 &235308835
 GameObject:
   m_ObjectHideFlags: 0
@@ -4293,7 +4293,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -5631,6 +5631,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 187760, guid: 76b7de08b50f54e86a0c1d9647d87540, type: 2}
   Judge: {fileID: 0}
+--- !u!1 &638425278
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 638425280}
+  - 114: {fileID: 638425279}
+  m_Layer: 0
+  m_Name: BlockHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &638425279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638425278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b535d5f21011a8c488a1d07ed747d870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlockStonePooler: {fileID: 0}
+  BlockGrassPooler: {fileID: 0}
+--- !u!4 &638425280
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638425278}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -42.796257, y: 13.2026005, z: 76.098671}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
 --- !u!1 &663108477
 GameObject:
   m_ObjectHideFlags: 0
@@ -5908,7 +5949,7 @@ Transform:
   m_PrefabParentObject: {fileID: 448290, guid: 71f30e290f090446488fbd3d5611f4a9, type: 2}
   m_PrefabInternal: {fileID: 690667867}
   m_GameObject: {fileID: 722220913}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106709}
+  m_LocalRotation: {x: -.707106888, y: 0, z: 0, w: .707106769}
   m_LocalPosition: {x: 0, y: 6.63999987, z: 0}
   m_LocalScale: {x: 1, y: .5, z: 1}
   m_Children: []
@@ -5960,7 +6001,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -7425,7 +7466,7 @@ Transform:
   m_PrefabParentObject: {fileID: 448290, guid: 71f30e290f090446488fbd3d5611f4a9, type: 2}
   m_PrefabInternal: {fileID: 965478428}
   m_GameObject: {fileID: 812358283}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106709}
+  m_LocalRotation: {x: -.707106888, y: 0, z: 0, w: .707106769}
   m_LocalPosition: {x: 0, y: 6.63999987, z: 0}
   m_LocalScale: {x: 1, y: .5, z: 1}
   m_Children: []
@@ -7477,7 +7518,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -8795,7 +8836,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -9893,7 +9934,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 690667867}
   m_GameObject: {fileID: 995507268}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6, y: 10, z: 6}
@@ -9910,7 +9951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d081bcfb6b02d4a49972bed850379787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 180930, guid: dde94e6ab86db1d4087dac5375a6a0d1, type: 2}
+  explosion: {fileID: 182164, guid: d62218922f4beb0478cad9ff73e2c4b5, type: 2}
 --- !u!1 &1034337901
 GameObject:
   m_ObjectHideFlags: 0
@@ -10263,7 +10304,7 @@ Transform:
   m_PrefabParentObject: {fileID: 448290, guid: 71f30e290f090446488fbd3d5611f4a9, type: 2}
   m_PrefabInternal: {fileID: 31603352}
   m_GameObject: {fileID: 1122845878}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106709}
+  m_LocalRotation: {x: -.707106888, y: 0, z: 0, w: .707106769}
   m_LocalPosition: {x: 0, y: 6.63999987, z: 0}
   m_LocalScale: {x: 1, y: .5, z: 1}
   m_Children: []
@@ -10315,7 +10356,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -11450,7 +11491,7 @@ Transform:
   m_PrefabParentObject: {fileID: 448290, guid: 71f30e290f090446488fbd3d5611f4a9, type: 2}
   m_PrefabInternal: {fileID: 538102364}
   m_GameObject: {fileID: 1151861828}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106709}
+  m_LocalRotation: {x: -.707106888, y: 0, z: 0, w: .707106769}
   m_LocalPosition: {x: 0, y: 6.63999987, z: 0}
   m_LocalScale: {x: 1, y: .5, z: 1}
   m_Children: []
@@ -11502,7 +11543,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -12714,7 +12755,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -13829,7 +13870,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -14927,7 +14968,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 538102364}
   m_GameObject: {fileID: 1388702669}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6, y: 10, z: 6}
@@ -14944,7 +14985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d081bcfb6b02d4a49972bed850379787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 180930, guid: dde94e6ab86db1d4087dac5375a6a0d1, type: 2}
+  explosion: {fileID: 182164, guid: d62218922f4beb0478cad9ff73e2c4b5, type: 2}
 --- !u!1 &1390645887
 GameObject:
   m_ObjectHideFlags: 0
@@ -15040,7 +15081,7 @@ Transform:
   m_PrefabParentObject: {fileID: 448290, guid: 71f30e290f090446488fbd3d5611f4a9, type: 2}
   m_PrefabInternal: {fileID: 735463971}
   m_GameObject: {fileID: 1410626776}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106709}
+  m_LocalRotation: {x: -.707106888, y: 0, z: 0, w: .707106769}
   m_LocalPosition: {x: 0, y: 6.63999987, z: 0}
   m_LocalScale: {x: 1, y: .5, z: 1}
   m_Children: []
@@ -15092,7 +15133,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -16520,7 +16561,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -17618,7 +17659,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 735463971}
   m_GameObject: {fileID: 1622938329}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6, y: 10, z: 6}
@@ -17635,7 +17676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d081bcfb6b02d4a49972bed850379787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 180930, guid: dde94e6ab86db1d4087dac5375a6a0d1, type: 2}
+  explosion: {fileID: 182164, guid: d62218922f4beb0478cad9ff73e2c4b5, type: 2}
 --- !u!1 &1635325949
 GameObject:
   m_ObjectHideFlags: 0
@@ -17764,7 +17805,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 357497062}
   m_GameObject: {fileID: 1656420593}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6, y: 10, z: 6}
@@ -17781,7 +17822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d081bcfb6b02d4a49972bed850379787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 180930, guid: dde94e6ab86db1d4087dac5375a6a0d1, type: 2}
+  explosion: {fileID: 182164, guid: d62218922f4beb0478cad9ff73e2c4b5, type: 2}
 --- !u!1 &1689488685
 GameObject:
   m_ObjectHideFlags: 0
@@ -17840,7 +17881,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 31603352}
   m_GameObject: {fileID: 1689488685}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6, y: 10, z: 6}
@@ -17857,7 +17898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d081bcfb6b02d4a49972bed850379787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 180930, guid: dde94e6ab86db1d4087dac5375a6a0d1, type: 2}
+  explosion: {fileID: 182164, guid: d62218922f4beb0478cad9ff73e2c4b5, type: 2}
 --- !u!1 &1721165391
 GameObject:
   m_ObjectHideFlags: 0
@@ -24372,7 +24413,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
