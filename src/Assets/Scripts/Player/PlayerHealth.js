@@ -7,6 +7,7 @@ var regenHealth : int = 30;
 var DeadPlayer: GameObject;
 
 public var isDead : boolean;                                                // Whether the player is dead.
+public var isKnocked : boolean;
 private var damaged : boolean;
 private var lastDamaged : float = 0;
 private var healthAdder : float = 0;                                          // True when the player gets damaged.
@@ -110,6 +111,13 @@ public function TakeDamage (amount : int) {
   else {
 		GameController.PlayerHurt(this);
 	}
+
+  if(currentHealth<=10){
+    isKnocked = true;
+  }
+  else {
+    isKnocked = false;
+  }
 
 }
 

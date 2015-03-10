@@ -1962,6 +1962,7 @@ MonoBehaviour:
   regenHealth: 30
   DeadPlayer: {fileID: 147918, guid: 06f4e6f41c549456b9f00477ea232227, type: 2}
   isDead: 0
+  isKnocked: 0
   punch1: {fileID: 8209058}
   punch2: {fileID: 8209050}
   punch3: {fileID: 8209046}
