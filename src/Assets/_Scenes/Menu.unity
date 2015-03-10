@@ -1058,6 +1058,14 @@ MonoBehaviour:
   regenFactor: 2
   regenHealth: 30
   isDead: 0
+  punch1: {fileID: 0}
+  punch2: {fileID: 0}
+  punch3: {fileID: 0}
+  punch4: {fileID: 0}
+  punch5: {fileID: 0}
+  punch6: {fileID: 0}
+  punch7: {fileID: 0}
+  death1: {fileID: 0}
 --- !u!114 &127104258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1091,7 +1099,12 @@ MonoBehaviour:
   dragButton: 0
   jumpForce: 0
   numberOfJumps: 0
+  isJumping: 0
   isFallen: 0
+  jump1: {fileID: 0}
+  jump2: {fileID: 0}
+  jump3: {fileID: 0}
+  jump4: {fileID: 0}
 --- !u!82 &127104260
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8874,6 +8887,14 @@ MonoBehaviour:
   regenFactor: 2
   regenHealth: 30
   isDead: 0
+  punch1: {fileID: 0}
+  punch2: {fileID: 0}
+  punch3: {fileID: 0}
+  punch4: {fileID: 0}
+  punch5: {fileID: 0}
+  punch6: {fileID: 0}
+  punch7: {fileID: 0}
+  death1: {fileID: 0}
 --- !u!114 &1131308740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8907,7 +8928,12 @@ MonoBehaviour:
   dragButton: 0
   jumpForce: 0
   numberOfJumps: 0
+  isJumping: 0
   isFallen: 0
+  jump1: {fileID: 0}
+  jump2: {fileID: 0}
+  jump3: {fileID: 0}
+  jump4: {fileID: 0}
 --- !u!82 &1131308742
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12806,7 +12832,7 @@ AudioSource:
   m_GameObject: {fileID: 1687118652}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 7c12610a531394ea2a8f2ca34d7126f4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6483c3cf780254e0c87c5fe3ef9b030d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

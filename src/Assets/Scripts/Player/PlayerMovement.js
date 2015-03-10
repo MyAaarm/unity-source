@@ -4,6 +4,7 @@ var currentGameController : String;
 
 private var leftArmMovement : Vector3;                   // The vector to store the direction of the player's leftArmMovement.
 private var rightArmMovement : Vector3;                   // The vector to store the direction of the player's leftArmMovement.
+private var rigjumphtArmMovement : Vector3;                   // The vector to store the direction of the player's leftArmMovement.
 
 private var playerMaxVelocity : Vector3;
 private var playerBody : GameObject;          // Reference to the player's rigidbody.\
@@ -41,7 +42,7 @@ public var dragButton : boolean;
 public var jumpForce : float;
 public var numberOfJumps : int = 0;
 private var newRotation : Quaternion;
-private var old : int; 
+private var old : int;
 public var isJumping : boolean;
 private var jumpButtonDown : boolean;
 private var jumpFwdForce : float;
@@ -52,6 +53,13 @@ private var bodySize : float;
 
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
 
+
+private var jumpSounds:Array = new Array();
+
+var jump1: AudioSource;
+var jump2: AudioSource;
+var jump3: AudioSource;
+var jump4: AudioSource;
 
 function Awake () {
     jumpForce = 50f;
@@ -85,6 +93,11 @@ function Start () {
     legs = this.transform.Find("body/Legs").gameObject;
     leftLeg = legs.transform.Find("leftLeg").gameObject;
     rightLeg = legs.transform.Find("rightLeg").gameObject;
+
+    jumpSounds.push(jump1);
+    jumpSounds.push(jump2);
+    jumpSounds.push(jump3);
+    jumpSounds.push(jump4);
 }
 
 function FixedUpdate ()
@@ -93,7 +106,7 @@ function FixedUpdate ()
 	if(playerNumber==0){
 		return;
 	}
-	
+
 	/*if( Time.frameCount%300==0){
 	playerRigidbody.AddForce(new Vector3(100, 20, 20), ForceMode.Impulse);
 	Debug.Log("jump");
@@ -108,10 +121,10 @@ function FixedUpdate ()
     var jumpButtonPressed : boolean;
 
     if(playerRigidbody.velocity.magnitude > playerMaxVelocity.magnitude&&!isJumping) {
-		var yVel = playerRigidbody.velocity.y;     
+		var yVel = playerRigidbody.velocity.y;
     	playerRigidbody.velocity *= 0.5;
        playerRigidbody.velocity.y = yVel;
-      
+
     }
 
 
@@ -338,17 +351,17 @@ function UpdateGameController ()
 
 
 function AnimateArm (movement : Vector3, armObject: GameObject, originalScale: Vector3) {
-  
-  
+
+
   isMoving = (movement.sqrMagnitude > 0.95);
 
 
   var forceVector = isFallen ? 2.5f : (isMoving ? 1.5f : 0.5f);
-  
+
   if(isJumping){
   	forceVector = 0.25f;
   }
-  
+
   armObject.rigidbody.AddForce(movement*forceVector, ForceMode.Impulse);
 
   movement.x = Mathf.Min(movement.x, 0.75f);
@@ -382,6 +395,9 @@ function AnimateLegs(h : float, v : float, hV : float, vV : float) {
 }
 
 function Jump(){
+
+  var sound = jumpSounds[Random.Range(0, jumpSounds.length-1)] as AudioSource;
+  sound.Play();
 
   if(playerCollider.onGround){
     numberOfJumps = 0;
