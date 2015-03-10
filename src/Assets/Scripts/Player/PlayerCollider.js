@@ -21,8 +21,8 @@ private var hitTimer : float;
 
 function Awake (){
 	playerHealth = GetComponentInParent(PlayerHealth);
-  playerRigidbody = this.transform.GetComponent(Rigidbody);
-  bloodObject = gameObject.transform.parent.Find('Blood').gameObject;
+  	playerRigidbody = this.transform.GetComponent(Rigidbody);
+ 	bloodObject = gameObject.transform.parent.Find('Blood').gameObject;
 
 	occupied = false;
 }
