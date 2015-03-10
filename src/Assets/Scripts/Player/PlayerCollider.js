@@ -74,6 +74,7 @@ function OnCollisionEnter( col : Collision ){
 	}
 
 	if(col.collider.name=="DespawnPlane"){
+    playerHealth.Death();
 		GameController.PlayerDied(this.transform.parent);
 	}
 	

@@ -13,6 +13,8 @@ function Start () {
     var playerNumber = currentPlayer.GetComponent(PlayerMovement).playerNumber;
 
  	body = this.transform.Find("body").gameObject;
+
+  this.transform.Find("body").Find('Nose').renderer.material.color = Color.green;
 	body.renderer.material.color = colors[playerNumber-1];
 }
 

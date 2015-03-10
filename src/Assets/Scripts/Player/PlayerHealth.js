@@ -11,6 +11,20 @@ private var lastDamaged : float = 0;
 private var healthAdder : float = 0;                                          // True when the player gets damaged.
 
 private var GameController:GameController;
+private var nose: GameObject;
+private var noseInitialSize:Vector3;
+
+private var punchSounds:Array = new Array();
+var punch1: AudioSource;
+var punch2: AudioSource;
+var punch3: AudioSource;
+var punch4: AudioSource;
+var punch5: AudioSource;
+var punch6: AudioSource;
+var punch7: AudioSource;
+
+private var deathSounds:Array = new Array();
+var death1: AudioSource;
 
 function Awake () {
   // Set the initial health of the player (Maybe cheat a little and add more health to your character, only an if statement away).
@@ -20,7 +34,20 @@ function Awake () {
 
 function Start () {
   // Set the initial health of the player (Maybe cheat a little and add more health to your character, only an if statement away).
+  punchSounds.push(punch1);
+  punchSounds.push(punch2);
+  punchSounds.push(punch3);
+  punchSounds.push(punch4);
+  punchSounds.push(punch5);
+  punchSounds.push(punch6);
+  punchSounds.push(punch7);
+
+  deathSounds.push(death1);
+
   GameController = GetComponent('GameController');
+
+  nose = this.transform.Find("body").Find('Nose').gameObject;
+  noseInitialSize = nose.transform.localScale;
 }
 
 
@@ -52,8 +79,7 @@ function Update ()
 }
 
 
-public function TakeDamage (amount : int)
-{
+public function TakeDamage (amount : int) {
 	if(isDead) {
     	return;
   	}
@@ -72,29 +98,47 @@ public function TakeDamage (amount : int)
     }
     else{
     	currentHealth -= amount;
+      UpdateNoseColor();
+      PlayPunchSound();
     }
 
     if(currentHealth <= 0) {
     	// ... it should die a horrible horrible (and possibly humiliating) death.
     	Death ();
-	}else {
+	}
+  else {
 		GameController.PlayerHurt(this);
 	}
 
 }
 
+function PlayPunchSound(){
+  var sound = punchSounds[Random.Range(0, punchSounds.length-1)] as AudioSource;
+  sound.Play();
+}
+
+function PlayDeathSound(){
+  var sound = deathSounds[Random.Range(0, deathSounds.length-1)] as AudioSource;
+  sound.Play();
+  return sound.clip.length;
+}
+
+function ConvertColor (r : int, g : int, b : int) : Color { return Color(r/255.0, g/255.0, b/255.0); }
+function UpdateNoseColor() {
+  var r = 255 * (100 - currentHealth) / 100;
+  var g = (255 * currentHealth) / 100;
+  var b = 0;
+
+  //nose.transform.localScale = noseInitialSize * Mathf.Min(currentHealth/100, 0.25);
+  nose.transform.renderer.material.color = ConvertColor(r,g,b);
+}
+
+
 
 function Death () {
-  // Set the death flag so this function won't be called again (you wouldn't want to die twice would you?).
-  var rigidBody = this.GetComponent(Rigidbody);
-
+  //Implement a knockout here instead
   isDead = true;
+  var audioLength = PlayDeathSound();
   GameController.PlayerDied(this);
-  //lets make the body fly around!
-  rigidBody.constraints = RigidbodyConstraints.None;
-  yield WaitForSeconds(0.1);
-
-  Destroy(this.gameObject);
-
-
+  Destroy(this.gameObject, audioLength);
 }

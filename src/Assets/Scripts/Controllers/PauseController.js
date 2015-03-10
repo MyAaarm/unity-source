@@ -2,7 +2,7 @@
 private var pauseMenu:Array = new Array();
 
 private var selection:GameObject;
-private var selectionNum:float = 1;
+private var selectionNum:float = 0;
 private var isChanging = false;
 private var isHidden = true;
 private var won: GameObject;
