@@ -25,7 +25,7 @@ function OnCollisionEnter( col : Collision ){
 					print(contact.thisCollider.name + " hit " + contact.otherCollider.name);
 		}*/
 
-		if(col.collider.gameObject.transform.root.tag=="Player"){
+		if(col.collider.gameObject.transform.root.Find("body")!=null&&col.collider.gameObject.transform.root.Find("body").tag=="Player"){
 			cld = col;
 			handCollision = true;
 			collisionTimer = 100;
@@ -46,7 +46,7 @@ function FixedUpdate(){
 
 	hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
 	if(hingeJoints.Length==0&&cld!=null){
-    	cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = false;
+    	cld.collider.gameObject.transform.root.Find("body").GetComponent(PlayerCollider).occupied = false;
     }
 
     if(collisionTimer > 0  && handCollision){
@@ -70,7 +70,7 @@ function FixedUpdate(){
 				hJ = this.gameObject.GetComponentsInChildren(HingeJoint);
 				if(hJ.Length == 0){
         		this.gameObject.AddComponent(HingeJoint);
-        		var otherBody = cld.collider.gameObject.gameObject.rigidbody;
+        		var otherBody = cld.collider.gameObject.transform.root.Find("body").rigidbody;
         		if(otherBody==null){
         			otherBody = cld.collider.transform.root.gameObject.rigidbody;
         		}
@@ -78,14 +78,14 @@ function FixedUpdate(){
         		hingeJoint.breakForce = 45;
         		hingeJoint.breakTorque = 45;
         		hingeJoint.connectedBody = otherBody;}
-        		cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = true;
-      			cld.collider.gameObject.transform.root.rigidbody.constraints =  RigidbodyConstraints.None;
+        		cld.collider.gameObject.transform.root.Find("body").GetComponent(PlayerCollider).occupied = true;
+      			cld.collider.gameObject.transform.root.Find("body").rigidbody.constraints =  RigidbodyConstraints.None;
         		D = this.transform.root.transform.position - cld.collider.gameObject.transform.root.transform.position; // line from crate to player
                 pullF = 10;
                 dist = D.magnitude;
                 pullDir = D.normalized;
                 //Debug.Log(pullDir*(pullF * Time.deltaTime)*100f);
-        		cld.collider.gameObject.transform.root.rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*100f, ForceMode.Impulse);
+				//cld.collider.gameObject.transform.root.Find("body").rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*100f, ForceMode.Impulse);
 
 
 

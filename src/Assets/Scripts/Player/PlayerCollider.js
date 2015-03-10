@@ -30,7 +30,7 @@ function OnCollisionEnter( col : Collision ){
 
 	isHit = false;
 
-	if(col.collider.transform.parent != null && (col.collider.transform.name == "leftArm" || col.collider.transform.name == "rightArm")) {
+	if(col.collider.transform.parent != null && (col.collider.transform.name == "leftArm" || col.collider.transform.name == "rightArm")&&!this.transform.root.GetComponent(PlayerMovement).dragButton) {
 
     Debug.Log(col.relativeVelocity.magnitude);
 		if(col.collider.transform.root.name != gameObject.name){
