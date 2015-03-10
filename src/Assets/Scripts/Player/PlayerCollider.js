@@ -1,6 +1,5 @@
 ﻿#pragma strict
 
-var isHit : boolean;
 
 private var playerHealth : PlayerHealth;
 private var thingToPull : Transform;
@@ -16,6 +15,8 @@ private var bloodObject : GameObject;
 private var playerRigidbody : Rigidbody;          // Reference to the player's rigidbody.
 public var occupied : boolean;
 public var onGround : boolean;
+public var isHit : boolean;
+private var hitTimer : float;
 
 
 function Awake (){
@@ -28,7 +29,7 @@ function Awake (){
 
 function OnCollisionEnter( col : Collision ){
 
-	isHit = false;
+	//isHit = false;
 
 	if(col.collider.transform.parent != null && (col.collider.transform.name == "leftArm" || col.collider.transform.name == "rightArm")&&!this.transform.root.GetComponent(PlayerMovement).dragButton) {
 
@@ -39,7 +40,7 @@ function OnCollisionEnter( col : Collision ){
 				playerHealth.TakeDamage(col.relativeVelocity.magnitude*0.25);
 
 
-				if(col.relativeVelocity.magnitude > 40){
+				if(col.relativeVelocity.magnitude > 30){
 					bloodObject.particleSystem.transform.position = col.transform.position;
 					bloodObject.particleSystem.transform.rotation = col.transform.rotation;
 					bloodObject.particleSystem.enableEmission = true;
@@ -47,20 +48,16 @@ function OnCollisionEnter( col : Collision ){
 					bloodObject.particleSystem.Play();
 				}
 
-				playerRigidbody.constraints = RigidbodyConstraints.None;
+				//playerRigidbody.constraints = RigidbodyConstraints.None;
 
-				playerRigidbody.constraints =  RigidbodyConstraints.FreezeAll;
-  			playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
-				playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionZ;
-				playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionX;
-				isHit = true;
+				
 
-
-				var forceDirection = col.rigidbody.velocity.normalized;
-        var forceMagnitude = Mathf.Min(col.relativeVelocity.magnitude*10, 50f);
-
-				playerRigidbody.AddForce(forceDirection*forceMagnitude, ForceMode.Impulse);
-
+				if(col.relativeVelocity.magnitude > 15){
+					var forceDirection = col.rigidbody.velocity.normalized;
+	       			var forceMagnitude = Mathf.Min(col.relativeVelocity.magnitude*50, 150f);
+					isHit = true;
+					playerRigidbody.AddForce(forceDirection*forceMagnitude, ForceMode.Impulse);
+				}
 
 			}
 
@@ -96,7 +93,7 @@ function OnCollisionEnter( col : Collision ){
 }
 
 function OnCollisionExit( col : Collision ){
-  isHit = false;
+ // isHit = false;
   if(col.collider.transform.parent != null && (col.collider.transform.parent.name == "Arms" || col.collider.transform.parent.name == "Hands")) {
 
       if(col.collider.transform.root.name != gameObject.name){
@@ -111,6 +108,17 @@ function OnCollisionExit( col : Collision ){
   if(col.collider.transform.root.name=="SpawnedChunks" || col.collider.transform.root.name=="Floor"){
 	onGround = false;
 	}
+}
+
+function FixedUpdate(){
+	if(isHit){
+		hitTimer += Time.deltaTime;
+	}
+	if(hitTimer>3){
+		hitTimer = 0;
+		isHit = false;
+	}
+	
 }
 
 /*

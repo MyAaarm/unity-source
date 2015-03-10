@@ -65,7 +65,7 @@ public class Debris : MonoBehaviour {
 							}
 
 				}
-		AstarPath.active.Scan ();
+
 		
 	}
 	

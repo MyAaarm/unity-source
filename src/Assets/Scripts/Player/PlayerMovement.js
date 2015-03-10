@@ -362,6 +362,8 @@ function AnimateArm (movement : Vector3, armObject: GameObject, originalScale: V
 
   if(isJumping){
   	forceVector = 0.25f;
+  }else if(isFallen){
+  	forceVector = 1f;
   }
 
   armObject.rigidbody.AddForce(movement*forceVector, ForceMode.Impulse);

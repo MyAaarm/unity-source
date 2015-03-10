@@ -12,6 +12,10 @@ private var otherBody : Rigidbody;
 private var collisionTimer : int;
 private var cld : Collision;
 
+private var dragTimer : float;
+private var dragCooldown : float;
+private var isDragging : boolean;
+
 
 function Awake (){
 	playerHealth = GetComponent (PlayerHealth);
@@ -29,13 +33,14 @@ function OnCollisionEnter( col : Collision ){
 			cld = col;
 			handCollision = true;
 			collisionTimer = 100;
+			
 		}
 }
 
 function FixedUpdate(){
     var hingeJoints : Component[];
-
-    if(!this.transform.root.GetComponent(PlayerMovement).dragButton) {
+	//Debug.Log("Drag timer: " + dragTimer + "Drag cd: "+ dragCooldown);
+    if(!this.transform.root.GetComponent(PlayerMovement).dragButton||dragTimer>5) {
 
 		hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
 		for (var joint : HingeJoint in hingeJoints) {
@@ -48,8 +53,14 @@ function FixedUpdate(){
 	if(hingeJoints.Length==0&&cld!=null){
     	cld.collider.gameObject.transform.root.Find("body").GetComponent(PlayerCollider).occupied = false;
     }
-
-    if(collisionTimer > 0  && handCollision){
+	
+	if(dragCooldown>0){
+		dragCooldown -= Time.deltaTime;
+	}
+	if(isDragging){
+		dragTimer += Time.deltaTime;
+	}
+    if(collisionTimer > 0  && handCollision&&dragCooldown<=0){
 
     	collisionTimer = collisionTimer-1;
 
@@ -75,8 +86,8 @@ function FixedUpdate(){
         			otherBody = cld.collider.transform.root.gameObject.rigidbody;
         		}
         		Debug.Log(otherBody.name);
-        		hingeJoint.breakForce = 45;
-        		hingeJoint.breakTorque = 45;
+        		hingeJoint.breakForce = 15;
+        		hingeJoint.breakTorque = 15;
         		hingeJoint.connectedBody = otherBody;}
         		cld.collider.gameObject.transform.root.Find("body").GetComponent(PlayerCollider).occupied = true;
       			cld.collider.gameObject.transform.root.Find("body").rigidbody.constraints =  RigidbodyConstraints.None;
@@ -86,8 +97,19 @@ function FixedUpdate(){
                 pullDir = D.normalized;
                 //Debug.Log(pullDir*(pullF * Time.deltaTime)*100f);
 				//cld.collider.gameObject.transform.root.Find("body").rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*100f, ForceMode.Impulse);
-
-
+				isDragging = true;
+				if(dragTimer>5){
+					dragTimer = 0;
+					dragCooldown = 5f;
+					isDragging=false;
+					hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
+					for (var joint : HingeJoint in hingeJoints) {
+						Destroy(joint);
+					}
+					cld.collider.gameObject.transform.root.Find("body").GetComponent(PlayerCollider).occupied = false;
+					
+				}
+				
 
         		/*//Debug.Log("WIN " + collisionTimer);
         		cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = true;
