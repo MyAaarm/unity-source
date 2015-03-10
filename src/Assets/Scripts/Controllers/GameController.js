@@ -10,7 +10,7 @@ public var Player : GameObject;
 public var Judge : GameObject;
 
 static var players : GameObject[];
-static var playerControllers = ['Keyboard', 'X360OSX', 'PS3OSX', 'PS3OSX'];
+static var playerControllers = ['Keyboard', 'Keyboard', 'PS3OSX', 'PS3OSX'];
 
 function Awake () {
   DontDestroyOnLoad(this);
@@ -29,7 +29,7 @@ function Start () {
 
 function setGameControllers(){
 	var gameControllers : String[] = Input.GetJoystickNames();
-	for(var i = 0; i < numberOfPlayers; i++){
+	for(var i = 0; i < gameControllers.Length; i++){
 		Debug.Log(gameControllers[i]);
 		if(gameControllers[i]=="XBOX 360 For Windows (Controller)"){
 			playerControllers[i] = "X360PC";
