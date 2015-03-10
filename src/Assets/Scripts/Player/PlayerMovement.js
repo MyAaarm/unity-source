@@ -51,6 +51,8 @@ private var riseButtonDown : boolean;
 
 private var bodySize : float;
 
+public var speedMultiplyer : float;
+
 private var isOSX : boolean = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXWebPlayer;
 
 
@@ -62,6 +64,7 @@ var jump3: AudioSource;
 var jump4: AudioSource;
 
 function Awake () {
+	speedMultiplyer = 1;
     jumpForce = 50f;
     playerMaxVelocity = new Vector3(20f,20f,20f);
     bodySize = this.transform.Find("body").gameObject.transform.localScale.y;
@@ -362,6 +365,7 @@ function AnimateArm (movement : Vector3, armObject: GameObject, originalScale: V
   	forceVector = 0.25f;
   }
 
+	forceVector *= speedMultiplyer;
   armObject.rigidbody.AddForce(movement*forceVector, ForceMode.Impulse);
 
   movement.x = Mathf.Min(movement.x, 0.75f);

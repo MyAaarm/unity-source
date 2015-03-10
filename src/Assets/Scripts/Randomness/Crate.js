@@ -24,12 +24,11 @@ function OldCrate(){
 //The crate is destroyed, the crate count decreases
 function DestroyCrate(){
 	Destroy(this.gameObject);
-	spawnCrates.nbrOfCrates --;
 }
 
 //When player picks up the crate the content is instantiated 
 function OnTriggerEnter (other : Collider) {
-	if(other.tag == "Player"){
+	if(other.tag == "Player" || other.tag == "body"){
 		DestroyCrate();
 		var playerHealth = 100 - other.gameObject.GetComponent(PlayerHealth).currentHealth;
 		if(playerHealth <= 40){

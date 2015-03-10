@@ -46,7 +46,7 @@ function FixedUpdate(){
 
 	hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
 	if(hingeJoints.Length==0&&cld!=null){
-    	cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = false;
+//    	cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = false;
     }
 
     if(collisionTimer > 0  && handCollision){

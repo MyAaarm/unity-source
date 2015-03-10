@@ -2,7 +2,7 @@
 
 #pragma strict
 
-public static var theTarget : GameObject;
+public var theTarget : GameObject;
 private var timer: float; 			// set duration time in seconds in the Inspector
 private var seeker : GameObject;
 //The calculated pat
@@ -29,7 +29,7 @@ function Awake ()
 }
 
 function FixedUpdate () {
-	var targets = gameObject.FindGameObjectsWithTag("Player");
+	var targets = GameObject.FindGameObjectsWithTag("body");
 	var minDist = Number.MaxValue;
 	if ((theTarget == null || timer <= 0) && targets.Length != 0){
 		timer = 0;
@@ -38,20 +38,19 @@ function FixedUpdate () {
 				if ((Vector3.Distance(enemy.transform.position, enemy2.transform.position) < minDist) && !enemy.Equals(enemy2)){
 					minDist = Vector3.Distance(enemy.transform.position, enemy2.transform.position);
 					if (Vector3.Distance(enemy.transform.position, transform.position) < Vector3.Distance(enemy2.transform.position, transform.position)){
-						myTarget = enemy.transform.position;
 						theTarget = enemy;
+						myTarget = enemy.transform.position;
 						timer = 15;
 					}
 					else{
-						myTarget = enemy2.transform.position;
 						theTarget = enemy2;
+						myTarget = enemy2.transform.position;
 						timer = 15;
 					}
 				}	
 				else if (targets.Length == 1){
-					Debug.Log("SetPos");
-					myTarget = enemy.transform.position;
 					theTarget = enemy;
+					myTarget = enemy.transform.position;
 				}
 			}
 		}
