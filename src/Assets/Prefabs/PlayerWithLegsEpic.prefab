@@ -900,14 +900,15 @@ MonoBehaviour:
   speed: 15
   playerNumber: 0
   currentGameController: PS3OSX
-  leftArm: {fileID: 0}
-  rightArm: {fileID: 0}
-  leftHand: {fileID: 126730}
-  rightHand: {fileID: 126728}
   dragButton: 0
   jumpForce: 0
   numberOfJumps: 0
+  isJumping: 0
   isFallen: 0
+  jump1: {fileID: 0}
+  jump2: {fileID: 0}
+  jump3: {fileID: 0}
+  jump4: {fileID: 0}
 --- !u!114 &11426728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -919,9 +920,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a604b927336b1942863f00d58451d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHit: 0
   occupied: 0
   onGround: 0
+  isHit: 0
 --- !u!114 &11426730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -934,9 +935,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
-  currentHealth: 0
   regenFactor: 2
   regenHealth: 30
+  isDead: 0
+  punch1: {fileID: 0}
+  punch2: {fileID: 0}
+  punch3: {fileID: 0}
+  punch4: {fileID: 0}
+  punch5: {fileID: 0}
+  punch6: {fileID: 0}
+  punch7: {fileID: 0}
+  death1: {fileID: 0}
 --- !u!114 &11453152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1047,7 +1056,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: .5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.620000064, y: 1.14999998, z: .389999986}
+  m_ConnectedAnchor: {x: -.620000005, y: 1.14999998, z: .390000045}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -20
@@ -1082,7 +1091,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: .5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .620000005, y: 1.14999998, z: .389999986}
+  m_ConnectedAnchor: {x: .620000005, y: 1.14999998, z: .390000045}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -20
@@ -1113,7 +1122,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103356}
-  lengthInSec: 1
+  lengthInSec: 2
   startDelay: 0
   speed: 1
   randomSeed: 0
@@ -1124,7 +1133,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 2
+      scalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1351,12 +1360,12 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 1
     inheritVelocity: 0
-    maxNumParticles: 100
+    maxNumParticles: 1000
   ShapeModule:
     serializedVersion: 2
     enabled: 1
     type: 4
-    radius: .0845507309
+    radius: .409999996
     angle: 12.6943302
     length: 5
     boxX: 1
@@ -1422,8 +1431,8 @@ ParticleSystem:
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - time: .648325324
-          value: .133802816
+        - time: .645099521
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
