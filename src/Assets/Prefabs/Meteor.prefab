@@ -281,7 +281,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -1333,7 +1333,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   moveWithTransform: 1
   InitialModule:
     enabled: 1
