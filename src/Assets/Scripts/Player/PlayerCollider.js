@@ -11,6 +11,7 @@ private var pullF : float;
 private var handCollision : boolean;
 private var otherBody : Rigidbody;
 private var bloodObject : GameObject;
+public var damageMultiplyer : float;
 
 private var playerRigidbody : Rigidbody;          // Reference to the player's rigidbody.
 public var occupied : boolean;
@@ -23,7 +24,7 @@ function Awake (){
 	playerHealth = GetComponentInParent(PlayerHealth);
   	playerRigidbody = this.transform.GetComponent(Rigidbody);
  	bloodObject = gameObject.transform.parent.Find('Blood').gameObject;
-
+	damageMultiplyer = 1;
 	occupied = false;
 }
 
@@ -53,7 +54,7 @@ function OnCollisionEnter( col : Collision ){
 		if(col.collider.transform.root.name != gameObject.name){
 
 			if(col.relativeVelocity.magnitude>3){
-				playerHealth.TakeDamage(col.relativeVelocity.magnitude*0.25);
+				playerHealth.TakeDamage(col.relativeVelocity.magnitude*0.25*damageMultiplyer);
 
 
 				if(col.relativeVelocity.magnitude > 30){

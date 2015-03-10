@@ -17,18 +17,19 @@ function Update () {
 	tempPlayer = player;
 	}
 	else if(player == null){
-		transform.position = Vector3(tempPlayer.gameObject.transform.position.x, tempPlayer.gameObject.transform.position.y+3, tempPlayer.gameObject.transform.position.z);
+		transform.position = Vector3(transform.position.x, 10, transform.position.z);
 	}
 	else if(player.gameObject.GetComponentInParent(PlayerMovement).isFallen && !playerFallen){
 		gameObject.collider.enabled = true;
 		playerFallen = true;
 		transform.position = Vector3(transform.position.x, 10, transform.position.z); 
 	}
-	if(playerFallen && player.gameObject.GetComponentInParent(PlayerMovement).isFallen){
+	if(playerFallen && player != null){
 		player.gameObject.rigidbody.mass = 1;
-		if(timer <= 0){
-			Destroy(this.gameObject);
-		}
 	}
+	if(timer <= 0){
+			Destroy(this.gameObject);
+			player.gameObject.rigidbody.mass = 1;
+		}
 	timer -= Time.deltaTime;
 }

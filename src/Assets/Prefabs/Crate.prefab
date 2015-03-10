@@ -17,7 +17,7 @@ GameObject:
   - 135: {fileID: 13561754}
   m_Layer: 0
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: Crate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   heart: {fileID: 170772, guid: aedf5020e9880084abbeea54b7f59da9, type: 2}
   LightningBolt: {fileID: 167722, guid: 1fe5d59fd6ffe1e4c9248db3457e38cb, type: 2}
   weight: {fileID: 148446, guid: 227f9d935a5cd4e47ade4d8fed3444d5, type: 2}
-  boulder: {fileID: 130852, guid: b4606bb2162cf834e960c13ecf8709a3, type: 2}
+  pan: {fileID: 110174, guid: 4a3a83d9e69cadd49896cc1fef39b525, type: 2}
 --- !u!122 &12230268
 Halo:
   m_ObjectHideFlags: 1

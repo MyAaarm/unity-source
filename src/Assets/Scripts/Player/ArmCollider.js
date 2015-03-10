@@ -52,6 +52,7 @@ function FixedUpdate(){
 
 	hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
 	if(hingeJoints.Length==0&&cld!=null){
+
     	cld.collider.gameObject.transform.root.Find("body").GetComponent(PlayerCollider).occupied = false;
     }
 	

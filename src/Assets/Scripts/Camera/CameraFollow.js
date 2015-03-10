@@ -9,9 +9,9 @@ private var largestDistance : float;
 
 function FixedUpdate ()
 {	
-	targets = GameObject.FindGameObjectsWithTag("Player"); 
+	targets = GameObject.FindGameObjectsWithTag("body"); 
 	
-	if (!GameObject.FindWithTag("Player")){ //If no Players are left on the battlefield
+	if (!GameObject.FindWithTag("body")){ //If no Players are left on the battlefield
  		return;	//Maybe the camera should focus on something else here?
 	}
 	

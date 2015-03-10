@@ -100,7 +100,6 @@ public function TakeDamage (amount : int) {
     }
     else{
     	currentHealth -= amount;
-      UpdateNoseColor();
       PlayPunchSound();
     }
 
@@ -109,6 +108,7 @@ public function TakeDamage (amount : int) {
     	Death ();
 	}
   else {
+  		UpdateNoseColor();
 		GameController.PlayerHurt(this);
 	}
 
