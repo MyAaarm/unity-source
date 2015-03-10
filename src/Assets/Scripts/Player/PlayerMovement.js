@@ -178,17 +178,16 @@ function FixedUpdate ()
     
 
     if(leftKick>0){
-		leftMap=(1-leftKick)*40;
-			} else {
-		leftMap=40+(Mathf.Abs(leftKick)*40);
-	}
+  		leftMap=(1-leftKick)*40;
+  			} else {
+  		leftMap=40+(Mathf.Abs(leftKick)*40);
+  	}
 	
-	if(rightKick>0){
-		rightMap=(1-rightKick)*40;
-			} else {
-		rightMap=40+(Mathf.Abs(rightKick)*40);
-	}
-	
+  	if(rightKick>0){
+  		rightMap=(1-rightKick)*40;
+  			} else {
+  		rightMap=40+(Mathf.Abs(rightKick)*40);
+  	}
 	
   }
   else if (currentGameController == "X360OSX"){
@@ -199,6 +198,21 @@ function FixedUpdate ()
 
 	riseButtonDown = Input.GetButtonUp('X360AButtonOSX'+playerNumber);
 	jumpButtonDown = Input.GetButton('360RightBumperOSX'+playerNumber);
+
+  leftKick = Input.GetAxisRaw("PS3LeftLowerBumperAxisOSX"+playerNumber);
+  rightKick = Input.GetAxisRaw("PS3RightLowerBumperAxisOSX"+playerNumber);
+    
+    if(leftKick>0){
+      leftMap=(1-leftKick)*40;
+        } else {
+      leftMap=40+(Mathf.Abs(leftKick)*40);
+    }
+    
+    if(rightKick>0){
+      rightMap=(1-rightKick)*40;
+        } else {
+      rightMap=40+(Mathf.Abs(rightKick)*40);
+    }
 
   } //Check if the game is running on PC with Xbox360 controller
   else if (currentGameController == "X360PC"){
