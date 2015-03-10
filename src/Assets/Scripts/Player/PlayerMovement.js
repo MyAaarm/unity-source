@@ -48,6 +48,7 @@ private var jumpButtonDown : boolean;
 private var jumpFwdForce : float;
 public var isFallen : boolean;
 private var riseButtonDown : boolean;
+public var isDragging : boolean;
 
 private var bodySize : float;
 
@@ -341,6 +342,8 @@ function AnimateArm (movement : Vector3, armObject: GameObject, originalScale: V
   	forceVector = 0.25f;
   }else if(isFallen){
   	forceVector = 1f;
+  }else if(isDragging){
+  	forceVector*=2f;
   }
 
   armObject.rigidbody.AddForce(movement*forceVector, ForceMode.Impulse);
@@ -388,6 +391,10 @@ function Jump(){
   if(numberOfJumps<2){
     var jumpVector : Vector3 = new Vector3(0f, jumpForce*Mathf.Max(jumpFwdForce, 1), 0f);
     var jumpVectorFWD : Vector3 = playerBody.transform.forward*jumpFwdForce*7f;
+    if(isDragging){
+    	jumpVector *= 5;
+    }
+    
     playerBody.transform.position.y+=1f;
    	playerRigidbody.AddForce(jumpVector+jumpVectorFWD, ForceMode.Impulse);
     //playerRigidbody.velocity = jumpVector+jumpVectorFWD;

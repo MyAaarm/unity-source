@@ -14,7 +14,7 @@ private var cld : Collision;
 
 private var dragTimer : float;
 private var dragCooldown : float;
-private var isDragging : boolean;
+public var isDragging : boolean;
 
 
 function Awake (){
@@ -46,7 +46,8 @@ function FixedUpdate(){
 		for (var joint : HingeJoint in hingeJoints) {
 			Destroy(joint);
 		}
-
+		isDragging = false;
+		this.transform.root.GetComponent(PlayerMovement).isDragging = false;
 	}
 
 	hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
@@ -98,10 +99,12 @@ function FixedUpdate(){
                 //Debug.Log(pullDir*(pullF * Time.deltaTime)*100f);
 				//cld.collider.gameObject.transform.root.Find("body").rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*100f, ForceMode.Impulse);
 				isDragging = true;
+				this.transform.root.GetComponent(PlayerMovement).isDragging = true;
 				if(dragTimer>5){
 					dragTimer = 0;
 					dragCooldown = 5f;
 					isDragging=false;
+					this.transform.root.GetComponent(PlayerMovement).isDragging = false;
 					hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
 					for (var joint : HingeJoint in hingeJoints) {
 						Destroy(joint);
