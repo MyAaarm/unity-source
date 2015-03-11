@@ -51,8 +51,6 @@ public class Debris : MonoBehaviour {
 				}
 				if (impactSize > 10) {
 							for(int i = 0; i < (impactSize)-10; i++){
-										//int pw = Random.Range (2, 6);
-										//int pwx = pw + Random.Range(-1,1); int pwy = pw + Random.Range(-1,1); int pwz = pw + Random.Range(-1,1);
 										int pwx = Random.Range (2, 6); int pwy = Random.Range (2, 3); int pwz = Random.Range (2, 6);
 										int multix = Random.Range(-1,1); int multiy = Random.Range(-1,1); int multiz = Random.Range(-1,1);
 										Block bx = chunk.world.GetBlock (x + pwx * multix, y + pwy * multiy, z + pwz * multiz);
@@ -68,9 +66,6 @@ public class Debris : MonoBehaviour {
 
 	private void spawnDebris(int x, int y, int z, Block bt, int[] da){
 		if (bt is BlockGrass) {
-
-			/*dynamicBlock = Instantiate (Resources.Load ("BlockStoneDynamic"), new Vector3 (x, y, z), Quaternion.identity) as GameObject;
-			dynamicBlock.rigidbody.AddForce (150*da[0], 150*da[1], 150*da[2])*/
 			dynamicBlock = bh.SpawnBlock(new Vector3 (x, y, z), Quaternion.identity, "Grass");
 			dynamicBlock.rigidbody.AddForce (250*da[0], 350*da[1], 250*da[2]);
 		} else if (bt is BlockAir) {

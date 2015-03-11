@@ -25,21 +25,16 @@ function Awake (){
 
 function OnCollisionEnter( col : Collision ){
 
-		/*for (var contact : ContactPoint in col.contacts) {
-					print(contact.thisCollider.name + " hit " + contact.otherCollider.name);
-		}*/
-
-		if(col.collider.gameObject.transform.root.Find("body")!=null&&col.collider.gameObject.transform.root.Find("body").tag=="Player"){
+		if(col.collider.gameObject.transform.root.Find("body")!=null&&col.collider.gameObject.transform.root.Find("body").tag=="body"){
 			cld = col;
 			handCollision = true;
 			collisionTimer = 100;
-			
+
 		}
 }
 
 function FixedUpdate(){
     var hingeJoints : Component[];
-	//Debug.Log("Drag timer: " + dragTimer + "Drag cd: "+ dragCooldown);
     if(!this.transform.root.GetComponent(PlayerMovement).dragButton||dragTimer>5) {
 
 		hingeJoints = this.gameObject.GetComponentsInChildren(HingeJoint);
@@ -55,30 +50,21 @@ function FixedUpdate(){
 
     	cld.collider.gameObject.transform.root.Find("body").GetComponent(PlayerCollider).occupied = false;
     }
-	
+
 	if(dragCooldown>0){
 		dragCooldown -= Time.deltaTime;
 	}
 	if(isDragging){
 		dragTimer += Time.deltaTime;
 	}
+
     if(collisionTimer > 0  && handCollision&&dragCooldown<=0){
 
     	collisionTimer = collisionTimer-1;
 
-		/*
-    	Debug.Log("Object name" + this.name + "object parent" + this.transform.parent.name+ " objects parents parent" + this.transform.parent.transform.parent.name + "objects parents parents parents" + this.transform.root.name);
-    	Debug.Log("collider root = " + cld.collider.gameObject.transform.root.name);
-    	Debug.Log(collisionTimer);*/
-
-    	//Debug.Log("THIS =====" + this.transform.root.name);
-    	//Debug.Log("NOT THIS =====" + cld.collider.gameObject.transform.root.name);
-    	// && this.transform.root.GetComponent(PlayerCollider).occupied != true
     	if(cld.collider.gameObject.transform.root.name != this.transform.root.name){
         	if(this.transform.root.GetComponent(PlayerMovement).dragButton){
-        	//if(Input.GetButton("X360AButtonPC")||Input.GetButton("X360AButtonOSX")||Input.GetKey(KeyCode.E)){
 
-        		//Debug.Log("Collided");
         		var hJ : Component[];
 				hJ = this.gameObject.GetComponentsInChildren(HingeJoint);
 				if(hJ.Length == 0){
@@ -87,7 +73,6 @@ function FixedUpdate(){
         		if(otherBody==null){
         			otherBody = cld.collider.transform.root.gameObject.rigidbody;
         		}
-        		Debug.Log(otherBody.name);
         		hingeJoint.breakForce = 15;
         		hingeJoint.breakTorque = 15;
         		hingeJoint.connectedBody = otherBody;}
@@ -97,8 +82,7 @@ function FixedUpdate(){
                 pullF = 10;
                 dist = D.magnitude;
                 pullDir = D.normalized;
-                //Debug.Log(pullDir*(pullF * Time.deltaTime)*100f);
-				//cld.collider.gameObject.transform.root.Find("body").rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*100f, ForceMode.Impulse);
+
 				isDragging = true;
 				this.transform.root.GetComponent(PlayerMovement).isDragging = true;
 				if(dragTimer>5){
@@ -111,32 +95,9 @@ function FixedUpdate(){
 						Destroy(joint);
 					}
 					cld.collider.gameObject.transform.root.Find("body").GetComponent(PlayerCollider).occupied = false;
-					
+
 				}
-				
 
-        		/*//Debug.Log("WIN " + collisionTimer);
-        		cld.collider.gameObject.transform.root.GetComponent(PlayerCollider).occupied = true;
-        		cld.collider.gameObject.transform.root.rigidbody.constraints =  RigidbodyConstraints.None;
-      			//cld.collider.gameObject.transform.root.rigidbody.constraints &=  ~RigidbodyConstraints.FreezePositionX;
-      			//cld.collider.gameObject.transform.root.rigidbody.constraints &=  ~RigidbodyConstraints.FreezePositionZ;
-      			D = this.transform.root.transform.position - cld.collider.gameObject.transform.root.transform.position; // line from crate to player
-                this.gameObject.transform.rotation = Quaternion.LookRotation(D);
-                dist = D.magnitude;
-                pullDir = D.normalized;
-
-               if(dist>50) thingToPull=null;
-               else if(dist>3) {
-
-                 pullF = 10;
-
-                 // (so, random, optional junk):
-                 /*pullForDist = (dist-3)/2.0f;
-                 if(pullForDist>20) pullForDist=20;
-                 pullF += pullForDist;*/
-                	//cld.collider.gameObject.transform.root.rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*20f, ForceMode.Impulse);
-                 //GameObject.Find("Player 2").rigidbody.velocity += pullDir*(pullF * Time.deltaTime); */
-               //}
             }
         }
 

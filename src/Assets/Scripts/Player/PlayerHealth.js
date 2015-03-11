@@ -66,7 +66,7 @@ function Update ()
     	//Make player look not damaged (duh)
     }
 
-	if(Time.time-lastDamaged>3&&currentHealth<regenHealth){
+	if(Time.time-lastDamaged>3&&currentHealth<=regenHealth){
 		healthAdder += regenFactor*Time.deltaTime;
 		if(healthAdder>=1){
 			healthAdder = 0;
@@ -152,8 +152,8 @@ function Death () {
   var audioLength = PlayDeathSound();
 
   this.transform.gameObject.active = false;
+
   var deadPlayer = GameObject.Instantiate(DeadPlayer, this.transform.Find("body").transform.position, this.transform.Find("body").transform.rotation) as GameObject;
   deadPlayer.transform.Find("body").transform.renderer.material.color = this.transform.Find("body").transform.renderer.material.color;
-
   Destroy(this.gameObject, audioLength);
 }

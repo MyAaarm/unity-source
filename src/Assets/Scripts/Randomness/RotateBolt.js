@@ -23,7 +23,6 @@ function Update () {
 	tempPlayer = player;
 	}
 	else{
-		//transform.position = Vector3(tempPlayer.gameObject.transform.position.x, tempPlayer.gameObject.transform.position.y+5.5, tempPlayer.gameObject.transform.position.z+0.5);
 		Destroy(this.gameObject);
 	}
 	rotationAmount += 2;

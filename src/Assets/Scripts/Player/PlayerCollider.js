@@ -135,36 +135,3 @@ function FixedUpdate(){
 	}
 
 }
-
-/*
-function FixedUpdate(){
-
-    if((GameObject.Find("Player1").transform.position - GameObject.Find("Player2").transform.position).magnitude <20){
-
-        if(Input.GetButton("X360AButtonPC")||Input.GetButton("X360AButtonOSX")||Input.GetKey(KeyCode.E)){
-
-        		//GameObject.Find("Player2").rigidbody.constraints =  RigidbodyConstraints.None;
-      			GameObject.Find("Player2").rigidbody.constraints &=  ~RigidbodyConstraints.FreezePositionX;
-      			GameObject.Find("Player2").rigidbody.constraints &=  ~RigidbodyConstraints.FreezePositionZ;
-      			 D = GameObject.Find("Player1").transform.position - GameObject.Find("Player2").transform.position; // line from crate to player
-                dist = D.magnitude;
-                pullDir = D.normalized;
-
-               if(dist>50) thingToPull=null;
-               else if(dist>3) {
-
-                 pullF = 10;
-
-                 // (so, random, optional junk):
-                 pullForDist = (dist-3)/2.0f;
-                 if(pullForDist>20) pullForDist=20;
-                 pullF += pullForDist;
-
-                // Debug.Log(pullDir*(pullF * Time.deltaTime));
-                 GameObject.Find("Player2").rigidbody.AddForce (pullDir*(pullF * Time.deltaTime)*300f, ForceMode.Acceleration);
-                 //GameObject.Find("Player 2").rigidbody.velocity += pullDir*(pullF * Time.deltaTime);
-               }
-            }
-        }
-    }   */
-

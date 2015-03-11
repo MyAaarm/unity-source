@@ -26,13 +26,9 @@ function OnTriggerEnter (other : Collider) {
      	var direction : Vector3 = other.transform.position - transform.position;
      	other.rigidbody.AddForce(direction * 1800,ForceMode.Acceleration);
 		ums = GameObject.Find( "CraterController" );
-		Debug.Log(ums);
-		Debug.Log("explosion");
 		ums.BroadcastMessage( "handleOuterImpacts", transform.position );
-		
-		//Physics.Raycast(transform.position, -Vector3.up, hit, 100 );
-		//cc.Impact(hit, 150);
-     	other.rigidbody.useGravity = true;
+
+   	other.rigidbody.useGravity = true;
 	}
 }
 
@@ -41,16 +37,16 @@ function Update ()
 
 	var targets = gameObject.FindGameObjectsWithTag("Player");
 	var minDist = Number.MaxValue;
-	
+
 	var myTarget : GameObject;
- 
+
 	for (var enemy : GameObject in targets)
 	{
     	var distance = Vector3.Distance(enemy.transform.position, transform.position);
      	if (distance < minDist){
 			minDist = distance;
      		myTarget = enemy;
-     	}      
+     	}
 	}
     // If the enemy and the player have health left...
     //if(enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
@@ -67,7 +63,7 @@ function Update ()
    //     nav.enabled = false;
    // }
   EnemyTimer();
-  
+
 }
 
 function EnemyTimer (){

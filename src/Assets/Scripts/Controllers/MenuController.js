@@ -66,9 +66,6 @@ function ChangePlayerNumber(value) {
   isChanging = true;
   GameController.numberOfPlayers += value;
 
-  Debug.Log('change value:' + GameController.numberOfPlayers);
-
-  //homeMenu[1].GetComponentInChildren(UI.Text).text = playerMap[GameController.numberOfPlayers] + ' PLAYERS';
   homeMenu[1].GetComponentInChildren(UI.Text).text = "< " + playerMap[GameController.numberOfPlayers-1]  + ' PLAYERS >';
   yield WaitForSeconds (0.01);
   isChanging = false;

@@ -10,12 +10,12 @@ function Awake(){
 	transform.Rotate(Vector3(-90, 0, 0));
 	player.transform.root.gameObject.GetComponent(PlayerHealth).TakeDamage(-70);
 }
-function Update () { 
+function Update () {
 	if(player != null){
 	transform.position = Vector3(player.gameObject.transform.position.x, player.gameObject.transform.position.y+5, player.gameObject.transform.position.z);
 	}
 	else{
-		transform.position = Vector3(tempPlayer.gameObject.transform.position.x, tempPlayer.gameObject.transform.position.y+5, tempPlayer.gameObject.transform.position.z);	
+		Destroy(this.gameObject);
 	}
 	rotationAmount += 5;
 	transform.Rotate(Vector3(0,0,rotationAmount*Time.deltaTime));

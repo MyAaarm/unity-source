@@ -47,7 +47,7 @@ function FixedUpdate () {
 						myTarget = enemy2.transform.position;
 						timer = 15;
 					}
-				}	
+				}
 				else if (targets.Length == 1){
 					theTarget = enemy;
 					myTarget = enemy.transform.position;
@@ -65,9 +65,9 @@ function FixedUpdate () {
 	}
 	//Look at the target
 	transform.LookAt(myTarget);
-	
+
 	seeker.BroadcastMessage("IsDone");
-	
+
 		if (path != null && currentWaypoint < path.vectorPath.Count && Mathf.RoundToInt(Vector3.Distance(transform.position,myTarget)) > nextWaypointDistance){
             rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionX;
             rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionZ;
@@ -92,7 +92,6 @@ function setTarget(){
 }
 
 function OnPathComplete (p : Path) {
-	//Debug.Log ("Yay, we got a path back. Did it have an error? "+p.error);
 	if (!p.error) {
     	path = p;
         //Reset the waypoint counter

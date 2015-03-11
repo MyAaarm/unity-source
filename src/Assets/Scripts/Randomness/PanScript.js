@@ -17,12 +17,12 @@ function Update () {
 	tempPlayer = player;
 	}
 	else if(player == null){
-		transform.position = Vector3(transform.position.x, 10, transform.position.z);
+		Destroy(this.gameObject);
 	}
 	else if(player.gameObject.GetComponentInParent(PlayerMovement).isFallen && !playerFallen){
 		gameObject.collider.enabled = true;
 		playerFallen = true;
-		transform.position = Vector3(transform.position.x, 10, transform.position.z); 
+		transform.position = Vector3(transform.position.x, 10, transform.position.z);
 	}
 	if(playerFallen && player != null){
 		player.gameObject.rigidbody.mass = 1;

@@ -1,6 +1,12 @@
 ﻿private var GameController:GameController;
 private var healthLabels:Array = new Array();
 
+private var p1Color = Color.Lerp(Color.cyan,Color.blue, 0.2);
+private var p2Color = Color.green;
+private var p3Color = new Color(1f, 0.8, 0);
+private var p4Color = Color.Lerp(Color.magenta,Color.red, 0.5);
+private var colors = [p1Color, p2Color, p3Color, p4Color];
+
 function Start () {
   GameController = GetComponent('GameController');
 
@@ -17,7 +23,7 @@ function Start () {
 
 function Show() {
   for(var i  = 0; i < GameController.numberOfPlayers; i++) {
-    healthLabels[i].GetComponentInChildren(UI.Text).color = Color.red;
+    healthLabels[i].GetComponentInChildren(UI.Text).color = colors[i];
     healthLabels[i].GetComponent(UI.Text).text = 'p' + (i + 1) + ':' + 100;
   }
 }

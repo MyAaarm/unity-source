@@ -129,17 +129,9 @@ function FixedUpdate ()
   if(playerHealth.isKnocked){
     playerRigidbody.constraints = RigidbodyConstraints.None;
     return;
-  } else {
-    playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
   }
 
-	/*if( Time.frameCount%300==0){
-	playerRigidbody.AddForce(new Vector3(100, 20, 20), ForceMode.Impulse);
-	Debug.Log("jump");
-	}
-	return;
-	*/
-    // Store the input axes.
+
 
     var h : float;
     var v : float;
@@ -181,7 +173,7 @@ function FixedUpdate ()
     dragButton = Input.GetButton('PS3LeftBumperOSX'+playerNumber);
 		riseButtonDown = Input.GetButtonUp('PS3AButtonOSX'+playerNumber);
 
-		jumpButtonPressed =  Input.GetButtonUp('PS3RightBumperOSX'+playerNumber);
+
     jumpButtonDown = Input.GetButton('PS3RightBumperOSX'+playerNumber);
 
     leftKick = Input.GetAxisRaw("PS3LeftLowerBumperAxisOSX"+playerNumber);
@@ -233,6 +225,35 @@ function FixedUpdate ()
   	dragButton = Input.GetButton('360LeftBumperPC'+playerNumber);
 		riseButtonDown = Input.GetButtonUp('X360AButtonPC'+playerNumber);
 		jumpButtonDown = Input.GetButton('360RightBumperPC'+playerNumber);
+
+  }
+
+   if(currentGameController == "PS4OSX"){
+
+
+
+    hV = Input.GetAxisRaw ("RightJoystickXOSX"+playerNumber);
+    vV = Input.GetAxisRaw ("RightJoystickYOSX"+playerNumber);
+
+    dragButton = Input.GetButton('PS4LeftBumperOSX'+playerNumber);
+
+    jumpButtonDown = Input.GetButton('PS4RightBumperOSX'+playerNumber);
+
+    leftKick = Input.GetAxisRaw("PS3LeftLowerBumperAxisOSX"+playerNumber);
+    rightKick = Input.GetAxisRaw("PS3RightLowerBumperAxisOSX"+playerNumber);
+
+
+    if(leftKick>0){
+      leftMap=(1-leftKick)*40;
+        } else {
+      leftMap=40+(Mathf.Abs(leftKick)*40);
+    }
+
+    if(rightKick>0){
+      rightMap=(1-rightKick)*40;
+        } else {
+      rightMap=40+(Mathf.Abs(rightKick)*40);
+    }
 
   }
 

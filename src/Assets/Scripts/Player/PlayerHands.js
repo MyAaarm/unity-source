@@ -40,10 +40,4 @@ function FixedUpdate () {
       rightHandRigidBody.mass += 0.01;
       leftHandRigidBody.mass -= 0.01;
     }
-
-  //  Debug.Log('button 8:' + Input.GetKey('joystick button 8'));
-   // Debug.Log('button 9:' + Input.GetKey('joystick button 9'));
-
-    //Debug.Log('left Hand:' + leftHandRigidBody.mass);
-    //Debug.Log('right Hand:' + rightHandRigidBody.mass);
 }
