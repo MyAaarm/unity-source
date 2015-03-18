@@ -5654,7 +5654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 187760, guid: 76b7de08b50f54e86a0c1d9647d87540, type: 2}
-  Judge: {fileID: 0}
+  Judge: {fileID: 107754, guid: 7fea62840de72104d92681a6563667ca, type: 2}
 --- !u!1 &638425278
 GameObject:
   m_ObjectHideFlags: 0

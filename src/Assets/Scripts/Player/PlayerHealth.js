@@ -78,6 +78,14 @@ function Update ()
 
     // Reset the damaged flag.
     damaged = false;
+    
+    if(currentHealth<=10){
+   		isKnocked = true;
+	}
+	else {
+		isKnocked = false;
+	}
+    
 }
 
 
@@ -112,13 +120,7 @@ public function TakeDamage (amount : int) {
 		GameController.PlayerHurt(this);
 	}
 
-  if(currentHealth<=10){
-    isKnocked = true;
-  }
-  else {
-    isKnocked = false;
-  }
-
+  
 }
 
 function PlayPunchSound(){
