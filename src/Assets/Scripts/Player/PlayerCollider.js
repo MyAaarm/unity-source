@@ -50,10 +50,9 @@ function OnCollisionEnter( col : Collision ){
 
 	if(col.collider.transform.parent != null && (col.collider.transform.name == "leftArm" || col.collider.transform.name == "rightArm")&&!this.transform.root.GetComponent(PlayerMovement).dragButton) {
 
-
 		if(col.collider.transform.root.name != gameObject.name){
 
-			if(col.relativeVelocity.magnitude>3){
+			if(col.relativeVelocity.magnitude>1){
 				playerHealth.TakeDamage(col.relativeVelocity.magnitude*0.25*damageMultiplyer);
 
 
@@ -69,9 +68,9 @@ function OnCollisionEnter( col : Collision ){
 
 
 
-				if(col.relativeVelocity.magnitude > 15){
+				if(col.relativeVelocity.magnitude > 1){
 					var forceDirection = col.rigidbody.velocity.normalized;
-	       			var forceMagnitude = Mathf.Min(col.relativeVelocity.magnitude*50, 150f);
+	       			var forceMagnitude = Mathf.Min(col.relativeVelocity.magnitude*30, 150f);
 					isHit = true;
 					playerRigidbody.AddForce(forceDirection*forceMagnitude, ForceMode.Impulse);
 				}
